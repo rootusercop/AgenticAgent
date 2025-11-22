@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 11: Building Simple Agentic AI Agents Using Open-Source LLMs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <style>
+        .reveal h1, .reveal h2, .reveal h3 { text-transform: none; }
+        .reveal h1 { font-size: 2.5em; margin-bottom: 20px; }
+        .reveal h2 { font-size: 2em; margin-bottom: 30px; color: #4a9eff; }
+        .reveal h3 { font-size: 1.5em; margin-bottom: 20px; color: #5ac8fa; }
+        .reveal h4 { font-size: 1.2em; margin-top: 20px; color: #64d2ff; }
+        .reveal ul, .reveal ol { display: block; margin-left: 20px; text-align: left; }
+        .reveal li { margin-bottom: 15px; font-size: 0.9em; line-height: 1.6; }
+        .reveal p { font-size: 0.9em; line-height: 1.6; margin: 10px 0; }
+        .reveal pre { width: 100%; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .reveal pre code { max-height: 500px; font-size: 0.5em; line-height: 1.4; padding: 20px; }
+        .reveal table { font-size: 0.75em; margin: 20px auto; border-collapse: collapse; width: 90%; }
+        .reveal table th { background-color: #2a5599; color: white; padding: 15px; border: 2px solid #555; font-weight: bold; }
+        .reveal table td { padding: 12px; border: 2px solid #555; }
+        .reveal table tr:nth-child(even) { background-color: #1a1a1a; }
+        .reveal table tr:nth-child(odd) { background-color: #2a2a2a; }
+        .diagram { font-family: 'Courier New', monospace; font-size: 0.65em; white-space: pre; text-align: left; margin: 20px auto; background: #1a1a1a; padding: 20px; border: 2px solid #555; border-radius: 5px; display: inline-block; }
+        .two-column { display: flex; gap: 40px; align-items: flex-start; }
+        .two-column > div { flex: 1; }
+        .highlight-box { background: linear-gradient(135deg, #2a5599 0%, #1e3a5f 100%); padding: 25px; border-radius: 10px; margin: 20px 0; border: 2px solid #4a9eff; }
+        .checklist li { list-style: none; padding-left: 0; }
+        .checklist li:before { content: "✅ "; color: #4ade80; font-size: 1.2em; }
+        .dont-list li { list-style: none; padding-left: 0; }
+        .dont-list li:before { content: "❌ "; color: #ef4444; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+<section>
+<h2>Building Simple Agentic AI Agents Using Open-Source LLMs</h2>
+<p>Mr. Nikhil Katre</p>
+<p>Staff Software Engineer, Walmart Global Tech</p>
+<p>AICTE ATAL FDP on Agentic AI</p>
+<p>22nd November 2025</p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 1 - Title Slide</h2>
+<p><strong>TIMING:</strong> 2:00 PM - 2:03 PM (3 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Good afternoon everyone! Welcome to Session 11"</p>
+<p><strong>SAY:</strong> "I'm Nikhil Katre, Staff Software Engineer at Walmart Global Tech"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Thank you for making it to Day 6"</p>
+<p><strong>SAY:</strong> "Past 5 days: theory. Today: practice"</p>
+<h3>🤔 AUDIENCE ENGAGEMENT</h3>
+<p><strong>ASK:</strong> "Show of hands - Python experience?"</p>
+<p><strong>WAIT FOR RESPONSE</strong></p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>HIGH energy</li><li>Build excitement</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "What will we accomplish in 90 minutes?"</p>
+</aside>
+</section>
+
+<section>
+<h2>What We'll Cover Today</h2>
+<ol>
+<li>Recap: From Theory to Practice (5 min)</li>
+<li>Understanding Open-Source LLMs for Agents (15 min)</li>
+<li>Core Components of Agentic Systems (15 min)</li>
+<li>Hands-On Workshop: Building Your First Agent (35 min)</li>
+<li>Testing and Debugging Agents (15 min)</li>
+<li>Q&A and Next Steps (5 min)</li>
+</ol>
+<h2>Learning Outcomes:</h2>
+<ul>
+<li>Understand open-source LLM options for agentic AI</li>
+<li>Build a functional AI agent from scratch</li>
+<li>Implement tools and memory for agents</li>
+<li>Test and debug agentic systems</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 2 - Session Overview</h2>
+<p><strong>TIMING:</strong> 2:03 PM - 2:05 PM (2 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Ambitious session - you'll build working AI agent from scratch"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "5-min recap, 15-min on open-source LLMs, 15-min on core components"</p>
+<p><strong>SAY:</strong> "35 minutes hands-on - YOU will build it"</p>
+<p><strong>SAY:</strong> "15-min testing and debugging, 5-min Q&A"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Stress "YOU will build"</li><li>High energy</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Sound good? Let's go!"</p>
+</aside>
+</section>
+
+<section>
+<h2>What You've Learned (Days 1-5)</h2>
+<h2>Foundational Knowledge:</h2>
+<ul>
+<li>✅ Agentic AI fundamentals and architecture (Sessions 1-4)</li>
+<li>✅ Real-world use cases and applications (Sessions 5-6)</li>
+<li>✅ Security, accountability, and bias mitigation (Sessions 7-8)</li>
+<li>✅ Programming tools and frameworks (Sessions 9-10)</li>
+</ul>
+<h2>Today's Focus:</h2>
+<p>🎯 <strong>Hands-on implementation with open-source LLMs</strong></p>
+<p>🔧 <strong>Building production-ready agents</strong></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 3 - Journey So Far</h2>
+<p><strong>TIMING:</strong> 2:05 PM - 2:08 PM (3 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Appreciate how far you've come"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Day 1: agentic AI concept"</p>
+<p><strong>SAY:</strong> "Days 2-4: architecture, use cases, security"</p>
+<p><strong>SAY:</strong> "Yesterday: tools and frameworks"</p>
+<p><strong>SAY:</strong> "Today: BUILD"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Build confidence</li><li>Use car driving analogy</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Ready? Let's build!"</p>
+</aside>
+</section>
+
+<section>
+<h2>The Open-Source Advantage</h2>
+<h2>Benefits:</h2>
+<ul>
+<li>💰 Cost-effective (no API fees)</li>
+<li>🔒 Data privacy and control</li>
+<li>⚙️ Full customization and fine-tuning</li>
+<li>🌍 No vendor lock-in</li>
+<li>🚀 Deploy anywhere (on-prem, cloud, edge)</li>
+</ul>
+<h2>Use Cases:</h2>
+<ul>
+<li>Enterprise applications with sensitive data</li>
+<li>Research and experimentation</li>
+<li>Educational purposes</li>
+<li>Resource-constrained environments</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 4 - Why Open-Source LLMs?</h2>
+<p><strong>TIMING:</strong> 2:08 PM - 2:13 PM (5 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>ASK:</strong> "Used ChatGPT or Claude?"</p>
+<p><strong>SAY:</strong> "Great for daily use, but limitations in production"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Medical college example - can't send patient data to OpenAI"</p>
+<p><strong>SAY:</strong> "HIPAA violation - $50K fines"</p>
+<p><strong>SAY:</strong> "Cost example: $108K/year for e-commerce chatbot"</p>
+<p><strong>SAY:</strong> "Open-source benefits: Cost, Privacy, Control, No vendor lock-in"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Stress HIPAA seriously</li><li>Make cost calculation relatable</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>ASK:</strong> "Make sense? Questions?"</p>
+</aside>
+</section>
+
+<section>
+<h2>Top Choices in 2025</h2>
+<table><tbody>
+<tr>
+<td>Model</td>
+<td>Size</td>
+<td>Strengths</td>
+<td>Best For</td>
+</tr>
+</tbody></table>
+<p>|-------|------|-----------|----------|</p>
+<table><thead>
+<tr>
+<th>Llama 3.1/3.2</th>
+<th>8B-70B</th>
+<th>Instruction following, reasoning</th>
+<th>General-purpose agents</th>
+</tr>
+</thead><tbody>
+<table><thead>
+<tr>
+<th>Mistral 7B</th>
+<th>7B</th>
+<th>Efficiency, speed</th>
+<th>Lightweight agents</th>
+</tr>
+</thead><tbody>
+<table><thead>
+<tr>
+<th>Phi-3</th>
+<th>3.8B-14B</th>
+<th>Small, capable</th>
+<th>Edge deployment</th>
+</tr>
+</thead><tbody>
+<table><thead>
+<tr>
+<th>Gemma 2</th>
+<th>9B-27B</th>
+<th>Google-backed, reliable</th>
+<th>Production systems</th>
+</tr>
+</thead><tbody>
+<table><thead>
+<tr>
+<th>DeepSeek-V2</th>
+<th>16B-236B</th>
+<th>Strong reasoning</th>
+<th>Complex tasks</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<p><strong>Recommended for Today:</strong> Llama 3.2 (8B) or Mistral 7B</p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 5 - Popular Open-Source LLMs</h2>
+<p><strong>TIMING:</strong> 2:13 PM - 2:18 PM (5 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Which model to choose? My recommendations from 2 years at Walmart"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Llama 3.2 - Most popular, 8B runs on laptop"</p>
+<p><strong>SAY:</strong> "Mistral 7B - Efficient sports car"</p>
+<p><strong>SAY:</strong> "Phi-3 - 3.8B, runs on MacBook Air"</p>
+<p><strong>SAY:</strong> "Gemma 2 - Enterprise reliability"</p>
+<p><strong>SAY:</strong> "DeepSeek-V2 - Complex reasoning"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Share personal experience</li><li>Emphasize accessibility</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Today: Llama 3.2 or Mistral 7B"</p>
+</aside>
+</section>
+
+<section>
+<h2>Building Blocks of an AI Agent</h2>
+<pre><code class="python">
+┌─────────────────────────────────────┐
+│         USER INTERFACE              │
+└──────────────┬──────────────────────┘
+               │
+┌──────────────▼──────────────────────┐
+│     AGENT ORCHESTRATOR              │
+│  (Planning &amp; Decision Making)       │
+└──┬────────┬──────────┬──────────────┘
+   │        │          │
+┌──▼──┐  ┌─▼───┐  ┌───▼────┐
+│ LLM │  │Tools│  │ Memory │
+└─────┘  └─────┘  └────────┘
+</code></pre>
+<h2>Components:</h2>
+<ol>
+<li><strong>LLM Brain:</strong> Decision-making engine</li>
+<li><strong>Tools:</strong> External capabilities (APIs, databases, calculators)</li>
+<li><strong>Memory:</strong> Context retention (short-term and long-term)</li>
+<li><strong>Orchestrator:</strong> Coordinates everything</li>
+</ol>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 6 - Agentic Architecture</h2>
+<p><strong>TIMING:</strong> 2:18 PM - 2:25 PM (7 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "What makes up an agent? You're implementing this in 10 minutes"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Like human employee: brain, tools, memory, orchestrator"</p>
+<p><strong>DO:</strong> Point to diagram components</p>
+<p><strong>SAY:</strong> "User → Orchestrator → LLM → Tools → Memory"</p>
+<p><strong>SAY:</strong> "Flow: decide, call tool, get data, respond, store"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Walk through diagram slowly</li><li>Use hand gestures</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>ASK:</strong> "Clear? We're building this!"</p>
+</aside>
+</section>
+
+<section>
+<h2>Choosing Your Development Framework</h2>
+<h2>Popular Frameworks:</h2>
+<ol>
+<li><strong>LangChain</strong> 🦜🔗</li>
+<li>Most popular, extensive ecosystem</li>
+<li>Rich tool integrations</li>
+<li>Great documentation</li>
+<li><strong>LlamaIndex</strong> 🦙</li>
+<li>Excellent for RAG applications</li>
+<li>Data-centric approach</li>
+<li>Strong indexing capabilities</li>
+<li><strong>AutoGen</strong> 🤖</li>
+<li>Microsoft-backed</li>
+<li>Multi-agent systems</li>
+<li>Conversation-driven</li>
+<li><strong>CrewAI</strong> 👥</li>
+<li>Role-based agents</li>
+<li>Team collaboration</li>
+<li>Simple API</li>
+</ol>
+<p><strong>Today's Choice:</strong> LangChain (most versatile)</p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 7 - Framework Options</h2>
+<p><strong>TIMING:</strong> 2:25 PM - 2:30 PM (5 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Could build from scratch - but that's weeks of work"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "LangChain - 800-pound gorilla, biggest ecosystem"</p>
+<p><strong>SAY:</strong> "LlamaIndex - RAG specialist"</p>
+<p><strong>SAY:</strong> "AutoGen - Multi-agent systems"</p>
+<p><strong>SAY:</strong> "CrewAI - Role-based agents"</p>
+<p><strong>SAY:</strong> "Today: LangChain - versatile, Ollama support, huge ecosystem"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Keep concise</li><li>Make gorilla reference humorous</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>ASK:</strong> "Comfortable with LangChain choice?"</p>
+</aside>
+</section>
+
+<section>
+<h2>What You Need</h2>
+<h2>Software Requirements:</h2>
+<pre><code class="bash">
+- Python 3.9+
+- pip or conda
+- 8GB+ RAM
+- Code editor (VS Code recommended)
+</code></pre>
+<h2>Installation Commands:</h2>
+<pre><code class="bash">
+pip install langchain langchain-community
+pip install ollama
+pip install python-dotenv
+pip install duckduckgo-search
+pip install wikipedia
+</code></pre>
+<h2>Running Ollama (LLM Server):</h2>
+<pre><code class="bash">
+# Install Ollama from https://ollama.ai
+ollama pull llama3.2
+ollama serve
+</code></pre>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 8 - Workshop Setup</h2>
+<p><strong>TIMING:</strong> 2:30 PM - 2:35 PM (5 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Hands-on time! Let's setup environment"</p>
+<h3>🎬 ACTIONS</h3>
+<p><strong>SAY:</strong> "Open terminal, follow along"</p>
+<p><strong>DO:</strong> Walk through pip install commands</p>
+<p><strong>SAY:</strong> "Go to ollama.ai, download installer"</p>
+<p><strong>SAY:</strong> "ollama pull llama3.2 - downloads 4.7GB"</p>
+<p><strong>SAY:</strong> "ollama serve - starts server"</p>
+<p><strong>ASK:</strong> "Thumbs up when done?"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Be patient</li><li>Monitor chat for issues</li><li>Reassure struggling participants</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>DO:</strong> Test: ollama run llama3.2 "What is agentic AI?"</p>
+<p><strong>SAY:</strong> "Perfect! Let's build!"</p>
+</aside>
+</section>
+
+<section>
+<h2>Workshop 1: Simple Agent</h2>
+<h3>Building a Basic Conversational Agent</h3>
+<p><strong>Goal:</strong> Create an agent that can answer questions using its knowledge</p>
+<h2>Architecture:</h2>
+<pre><code class="python">
+User Question → LLM → Response
+</code></pre>
+<h2>Code Preview:</h2>
+<pre><code class="python">
+from langchain_community.llms import Ollama
+from langchain.prompts import PromptTemplate
+# Initialize LLM
+llm = Ollama(model=&quot;llama3.2&quot;)
+# Create prompt
+template = &quot;&quot;&quot;You are a helpful AI assistant.
+Question: {question}
+Answer:&quot;&quot;&quot;
+prompt = PromptTemplate(template=template,
+                        input_variables=[&quot;question&quot;])
+# Create chain
+chain = prompt | llm
+# Use the agent
+response = chain.invoke({&quot;question&quot;: &quot;What is agentic AI?&quot;})
+print(response)
+</code></pre>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 9 - Workshop 1: Simple Agent</h2>
+<p><strong>TIMING:</strong> 2:35 PM - 2:45 PM (10 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Starting with Workshop 1 - Simple Agent"</p>
+<p><strong>SAY:</strong> "This is our first hands-on workshop - building a basic conversational agent"</p>
+
+<h3>💻 CODE WALKTHROUGH</h3>
+<p><strong>SAY:</strong> "Let me walk through this code line by line"</p>
+<p><strong>SAY:</strong> "Line 1-2: Imports - we need Ollama to connect to our local LLM, and PromptTemplate to structure our prompts"</p>
+<p><strong>SAY:</strong> "Line 4: llm = Ollama(model='llama3.2') - this creates our connection to the Llama 3.2 model running via Ollama"</p>
+<p><strong>SAY:</strong> "Lines 6-9: Creating a prompt template. The triple quotes is multi-line string. Curly braces {question} is where user's question gets injected"</p>
+<p><strong>SAY:</strong> "'You are a helpful AI assistant' - this is the system message that sets the agent's behavior"</p>
+<p><strong>SAY:</strong> "Lines 10-11: PromptTemplate object takes our template and declares 'question' as an input variable"</p>
+<p><strong>PAUSE</strong> - let them absorb (2 seconds)</p>
+<p><strong>SAY:</strong> "Line 13: chain = prompt | llm - this pipe operator creates a data flow. Prompt gets formatted, then flows to LLM"</p>
+<p><strong>SAY:</strong> "Line 15: chain.invoke() - we pass a dictionary with our question, and it returns the AI's response"</p>
+<p><strong>SAY:</strong> "That's it! Just 15 lines to create a working AI agent"</p>
+
+<h3>🎬 ACTIONS</h3>
+<p><strong>DO:</strong> Create simple_agent.py, type code line by line</p>
+<p><strong>SAY:</strong> "Type along with me - don't copy-paste, typing helps you learn"</p>
+<p><strong>DO:</strong> Run it: python simple_agent.py</p>
+<p><strong>SAY:</strong> "Look at that! It's answering our question about agentic AI!"</p>
+<p><strong>SAY:</strong> "Your turn - modify line 15, change the question to something else"</p>
+<p><strong>WAIT</strong> - 2 minutes for them to experiment</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Type slowly so they can follow</li><li>Point to each line number as you explain</li><li>Show excitement when it works</li><li>Monitor chat for questions</li></ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>ASK:</strong> "Everyone see it working? Questions so far?"</p>
+<p><strong>PAUSE</strong> - address 1-2 quick questions (30 seconds)</p>
+</aside>
+</section>
+
+<section>
+<h2>Workshop 2: Agent with Tools</h2>
+<h3>Adding External Capabilities</h3>
+<p><strong>Goal:</strong> Create an agent that can search the web and access Wikipedia</p>
+<h2>Architecture:</h2>
+<pre><code class="python">
+User Question → Agent → [LLM + Tools] → Response
+                         ↓
+                    Tool Selection
+                    (Wikipedia/Search)
+</code></pre>
+<h2>Why Tools Matter:</h2>
+<ul>
+<li>Agents need to interact with the real world</li>
+<li>Tools extend capabilities beyond LLM knowledge</li>
+<li>Enable up-to-date information retrieval</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 10 - Workshop 2: Agent with Tools (Part 1)</h2>
+<p><strong>TIMING:</strong> 2:45 PM - 2:58 PM (part 1/2)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Workshop 2 - Agent with Tools. Now we level up - adding web search and Wikipedia"</p>
+<h3>🎬 ACTIONS</h3>
+<p><strong>DO:</strong> Create agent_with_tools.py</p>
+<p><strong>SAY:</strong> "initialize_agent with DuckDuckGoSearchRun, WikipediaQueryRun"</p>
+<p><strong>SAY:</strong> "AgentType.ZERO_SHOT_REACT_DESCRIPTION - Reasoning and Acting"</p>
+<p><strong>SAY:</strong> "verbose=True - see thought process"</p>
+<p><strong>DO:</strong> Run with 2025 question</p>
+<p><strong>SAY:</strong> "Watch: Thought → Action → Observation → Final Answer"</p>
+<p><strong>SAY:</strong> "Automatic! LLM chose the right tool"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Build excitement</li><li>Point out ReAct steps</li><li>Celebrate success</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Try asking about MIT president - should use Wikipedia"</p>
+<p><strong>WAIT</strong> - 5 minutes experiment time</p>
+</aside>
+</section>
+
+<section>
+<h2>Workshop 2: Agent with Tools (continued)</h2>
+<h3>Tool-Enabled Agent Implementation</h3>
+<pre><code class="python">
+from langchain.agents import initialize_agent, AgentType
+from langchain_community.tools import DuckDuckGoSearchRun
+from langchain_community.tools import WikipediaQueryRun
+from langchain_community.utilities import WikipediaAPIWrapper
+# Initialize tools
+search = DuckDuckGoSearchRun()
+wikipedia = WikipediaQueryRun(
+    api_wrapper=WikipediaAPIWrapper()
+)
+# Define tools
+tools = [
+    search,
+    wikipedia
+]
+# Create agent
+agent = initialize_agent(
+    tools=tools,
+    llm=llm,
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+    verbose=True
+)
+# Use agent
+result = agent.run(
+    &quot;What are the latest developments in agentic AI in 2025?&quot;
+)
+</code></pre>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 11 - Workshop 2: Agent with Tools (Part 2)</h2>
+<p><strong>TIMING:</strong> 2:45 PM - 2:58 PM (part 2/2)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Continuing Workshop 2 - let's look at the complete code for our tool-enabled agent"</p>
+
+<h3>💻 CODE WALKTHROUGH</h3>
+<p><strong>SAY:</strong> "This code is more complex, but I'll break it down"</p>
+<p><strong>SAY:</strong> "Lines 1-4: New imports - initialize_agent creates the agent, AgentType defines reasoning pattern"</p>
+<p><strong>SAY:</strong> "DuckDuckGoSearchRun is our web search tool, WikipediaQueryRun lets us query Wikipedia"</p>
+<p><strong>PAUSE</strong> - point to screen (2 seconds)</p>
+<p><strong>SAY:</strong> "Lines 6-7: search = DuckDuckGoSearchRun() - instantiating the web search tool"</p>
+<p><strong>SAY:</strong> "Lines 8-10: wikipedia tool needs a wrapper - WikipediaAPIWrapper handles the API calls for us"</p>
+<p><strong>SAY:</strong> "Lines 12-16: tools list - this tells the agent what capabilities it has. Just two tools here, but you could add dozens"</p>
+<p><strong>PAUSE</strong> - emphasize this (2 seconds)</p>
+<p><strong>SAY:</strong> "Lines 18-23: initialize_agent - this is where the magic happens"</p>
+<p><strong>SAY:</strong> "tools=tools - passing our tool list"</p>
+<p><strong>SAY:</strong> "llm=llm - our Llama 3.2 model from earlier"</p>
+<p><strong>SAY:</strong> "agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION - ZERO_SHOT means no examples needed, REACT means Reasoning and Acting"</p>
+<p><strong>SAY:</strong> "verbose=True - CRITICAL for learning. Prints the agent's thought process"</p>
+
+<h3>🎬 ACTIONS</h3>
+<p><strong>DO:</strong> Create agent_with_tools.py, type the code</p>
+<p><strong>DO:</strong> Add: result = agent.run("What are latest developments in agentic AI in 2025?")</p>
+<p><strong>SAY:</strong> "Notice - I'm asking about 2025, information the base model doesn't have"</p>
+<p><strong>DO:</strong> Run it: python agent_with_tools.py</p>
+<p><strong>SAY:</strong> "Watch the output - this is the ReAct loop in action!"</p>
+<p><strong>SAY:</strong> "See: 'Thought: I need current information' - agent is reasoning"</p>
+<p><strong>SAY:</strong> "'Action: duckduckgo_search' - it decided which tool to use"</p>
+<p><strong>SAY:</strong> "'Action Input: agentic AI developments 2025' - it formulated the search query"</p>
+<p><strong>SAY:</strong> "'Observation: [results]' - tool returned data"</p>
+<p><strong>SAY:</strong> "'Final Answer: Based on recent information...' - agent synthesized response"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "This happened automatically! You didn't tell it which tool - the LLM figured it out"</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Build excitement as agent reasons</li><li>Point to each step on screen</li><li>Emphasize "automatic" nature</li><li>Celebrate when it works</li></ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Try it: Ask 'Who is current president of MIT?' - should use Wikipedia"</p>
+<p><strong>SAY:</strong> "Or 'What's weather in Mumbai today?' - should search"</p>
+<p><strong>WAIT</strong> - 5 minutes experiment time</p>
+<p><strong>ASK:</strong> "This is powerful, right? Questions?"</p>
+</aside>
+</section>
+
+<section>
+<h2>Reasoning + Acting</h2>
+<h2>ReAct Loop:</h2>
+<pre><code class="python">
+1. Thought: What do I need to do?
+2. Action: Which tool should I use?
+3. Action Input: What parameters?
+4. Observation: What did I get back?
+5. Thought: Is this enough? Or continue?
+6. Final Answer: Respond to user
+</code></pre>
+<h2>Example Trace:</h2>
+<pre><code class="python">
+Thought: I need current information about agentic AI
+Action: duckduckgo_search
+Action Input: &quot;agentic AI developments 2025&quot;
+Observation: [Search results...]
+Thought: I have enough information now
+Final Answer: Based on recent information...
+</code></pre>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 12 - ReAct Pattern</h2>
+<p><strong>TIMING:</strong> 2:58 PM - 3:02 PM (4 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Pause - make sure everyone understands this foundational pattern"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "ReAct: Reasoning + Acting, from Google/Princeton paper"</p>
+<p><strong>SAY:</strong> "Loop: Thought → Action → Input → Observation → Thought → Final Answer"</p>
+<p><strong>SAY:</strong> "Mirrors human problem solving"</p>
+<p><strong>SAY:</strong> "Example: 'When does library close?' - think, search, read, answer"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Clear, deliberate pace</li><li>Make human parallel relatable</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Important for debugging - look at thought process, find where it went wrong"</p>
+</aside>
+</section>
+
+<section>
+<h2>Workshop 3: Custom Calculator Tool</h2>
+<h3>Creating Your Own Tools</h3>
+<p><strong>Goal:</strong> Build a custom calculator tool</p>
+<pre><code class="python">
+from langchain.tools import Tool
+from langchain.agents import initialize_agent
+def calculator(expression: str) -&gt; str:
+    &quot;&quot;&quot;Evaluates mathematical expressions safely.&quot;&quot;&quot;
+    try:
+        # Use safe evaluation
+        result = eval(expression, {&quot;__builtins__&quot;: {}}, {})
+        return f&quot;The result is: {result}&quot;
+    except Exception as e:
+        return f&quot;Error: {str(e)}&quot;
+# Create tool
+calc_tool = Tool(
+    name=&quot;Calculator&quot;,
+    func=calculator,
+    description=&quot;Useful for mathematical calculations. Input should be a valid Python expression.&quot;
+)
+# Add to agent
+tools = [search, wikipedia, calc_tool]
+agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION)
+# Test
+agent.run(&quot;What is 234 * 567 + 890?&quot;)
+</code></pre>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 13 - Workshop 3: Custom Calculator Tool</h2>
+<p><strong>TIMING:</strong> 3:02 PM - 3:10 PM (8 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Workshop 3 - Custom Calculator Tool"</p>
+<p><strong>SAY:</strong> "DuckDuckGo is great, but what if you need something specific to your domain?"</p>
+<p><strong>SAY:</strong> "Let me show you how to create your own custom tools"</p>
+
+<h3>💻 CODE WALKTHROUGH</h3>
+<p><strong>SAY:</strong> "We're building a calculator tool from scratch. Look at this code"</p>
+<p><strong>SAY:</strong> "Line 1: from langchain.tools import Tool - this is the wrapper we'll use"</p>
+<p><strong>SAY:</strong> "Lines 3-10: def calculator(expression: str) -> str"</p>
+<p><strong>SAY:</strong> "This is a regular Python function. Takes a mathematical expression as string"</p>
+<p><strong>SAY:</strong> "Line 5: try/except block - handle errors gracefully"</p>
+<p><strong>SAY:</strong> "Line 7: result = eval(expression, {'__builtins__': {}}, {}) - eval is dangerous normally"</p>
+<p><strong>SAY:</strong> "But we're restricting builtins to empty dict - makes it safe, only math operations allowed"</p>
+<p><strong>SAY:</strong> "Line 8: return formatted result"</p>
+<p><strong>SAY:</strong> "Line 9-10: If anything goes wrong, return error message"</p>
+<p><strong>PAUSE</strong> - emphasize next part (2 seconds)</p>
+<p><strong>SAY:</strong> "Lines 12-17: Tool wrapper - this is the key!"</p>
+<p><strong>SAY:</strong> "name='Calculator' - what the tool is called"</p>
+<p><strong>SAY:</strong> "func=calculator - the Python function we just wrote"</p>
+<p><strong>SAY:</strong> "description='...' - THIS IS CRITICAL. This tells the LLM WHEN to use this tool"</p>
+<p><strong>SAY:</strong> "The description must be clear and specific. Look: 'Useful for mathematical calculations. Input should be valid Python expression'"</p>
+<p><strong>SAY:</strong> "The LLM reads this description and decides if this tool fits the user's request"</p>
+
+<h3>🎬 ACTIONS</h3>
+<p><strong>DO:</strong> Create agent_with_calculator.py</p>
+<p><strong>DO:</strong> Type the calculator function</p>
+<p><strong>DO:</strong> Create the Tool wrapper</p>
+<p><strong>DO:</strong> Initialize agent with calc_tool in tools list</p>
+<p><strong>DO:</strong> Test: agent.run("What is 234 multiplied by 567, plus 890?")</p>
+<p><strong>SAY:</strong> "Watch - agent sees math question, looks at tools, sees 'useful for mathematical calculations', uses it!"</p>
+<p><strong>SAY:</strong> "Gets exact answer: 132,678 + 890 = 133,568"</p>
+
+<h3>🤔 AUDIENCE ENGAGEMENT</h3>
+<p><strong>SAY:</strong> "Now think about YOUR domain. What custom tools could you create?"</p>
+<p><strong>SAY:</strong> "Database query tool - executes SQL"</p>
+<p><strong>SAY:</strong> "API caller - hits your university's student information system"</p>
+<p><strong>SAY:</strong> "File reader - parses PDFs or Excel files"</p>
+<p><strong>SAY:</strong> "Email sender - sends notifications"</p>
+<p><strong>SAY:</strong> "The pattern is always same: Write Python function, wrap in Tool, add good description"</p>
+<p><strong>SAY:</strong> "Exercise: 5 minutes - create simple custom tool. Ideas: string reverser, word counter, random number generator"</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Emphasize importance of good descriptions</li><li>Encourage creativity</li><li>Help in chat during exercise</li></ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>WAIT</strong> - 5 minutes exercise time</p>
+<p><strong>ASK:</strong> "Anyone want to share what they built?"</p>
+<p><strong>PAUSE</strong> - take 1-2 shares (1 minute)</p>
+</aside>
+</section>
+
+<section>
+<h2>Workshop 4: Agent with Memory</h2>
+<h3>Making Agents Remember</h3>
+<h2>Types of Memory:</h2>
+<ol>
+<li><strong>Short-term:</strong> Conversation buffer</li>
+<li><strong>Long-term:</strong> Vector store (for RAG)</li>
+<li><strong>Hybrid:</strong> Combination approach</li>
+</ol>
+<h2>Implementation:</h2>
+<pre><code class="python">
+from langchain.memory import ConversationBufferMemory
+# Create memory
+memory = ConversationBufferMemory(
+    memory_key=&quot;chat_history&quot;,
+    return_messages=True
+)
+# Create agent with memory
+agent = initialize_agent(
+    tools=tools,
+    llm=llm,
+    agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
+    memory=memory,
+    verbose=True
+)
+# Conversation
+agent.run(&quot;My name is Nikhil&quot;)
+agent.run(&quot;What is my name?&quot;)  # Agent remembers!
+</code></pre>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 14 - Workshop 4: Agent with Memory</h2>
+<p><strong>TIMING:</strong> 3:10 PM - 3:18 PM (8 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Workshop 4 - Agent with Memory"</p>
+<p><strong>SAY:</strong> "Critical piece missing - memory. Right now agent has amnesia"</p>
+<p><strong>SAY:</strong> "Let me demonstrate the problem"</p>
+
+<h3>🎬 DEMONSTRATE PROBLEM</h3>
+<p><strong>DO:</strong> Run agent without memory</p>
+<p><strong>SAY:</strong> "Watch: agent.run('My name is Nikhil')"</p>
+<p><strong>SAY:</strong> "Agent responds: 'Hello Nikhil! Nice to meet you.'"</p>
+<p><strong>SAY:</strong> "Now: agent.run('What is my name?')"</p>
+<p><strong>SAY:</strong> "Agent responds: 'I don't know your name. Can you tell me?'"</p>
+<p><strong>PAUSE</strong> - let them see the problem (3 seconds)</p>
+<p><strong>SAY:</strong> "It forgot! Every interaction is like talking for the first time"</p>
+
+<h3>💻 CODE WALKTHROUGH - THE FIX</h3>
+<p><strong>SAY:</strong> "Here's how we add memory. Look at this code"</p>
+<p><strong>SAY:</strong> "Line 1: from langchain.memory import ConversationBufferMemory"</p>
+<p><strong>SAY:</strong> "Lines 3-6: Creating memory object"</p>
+<p><strong>SAY:</strong> "ConversationBufferMemory - simplest type, stores entire conversation in buffer"</p>
+<p><strong>SAY:</strong> "memory_key='chat_history' - where conversation gets stored"</p>
+<p><strong>SAY:</strong> "return_messages=True - return as message objects instead of strings"</p>
+<p><strong>PAUSE</strong> - point to next section (2 seconds)</p>
+<p><strong>SAY:</strong> "Lines 8-14: initialize_agent with TWO changes"</p>
+<p><strong>SAY:</strong> "Change 1: memory=memory - pass our memory object"</p>
+<p><strong>SAY:</strong> "Change 2: agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION"</p>
+<p><strong>SAY:</strong> "Notice CONVERSATIONAL instead of ZERO_SHOT - this agent type knows how to use memory"</p>
+<p><strong>SAY:</strong> "That's it! Just these two changes enable memory"</p>
+
+<h3>🎬 DEMONSTRATE SOLUTION</h3>
+<p><strong>DO:</strong> Run same test with memory</p>
+<p><strong>SAY:</strong> "agent.run('My name is Nikhil')"</p>
+<p><strong>SAY:</strong> "'Hello Nikhil! Nice to meet you.'"</p>
+<p><strong>SAY:</strong> "agent.run('What is my name?')"</p>
+<p><strong>SAY:</strong> "'Your name is Nikhil.'"</p>
+<p><strong>SAY:</strong> "It remembers! Because memory stores: 'Human: My name is Nikhil' then 'AI: Hello Nikhil!'"</p>
+<p><strong>SAY:</strong> "When you ask second question, agent sees full context"</p>
+
+<h3>🤔 WHY THIS MATTERS</h3>
+<p><strong>SAY:</strong> "Imagine teaching assistant agent:"</p>
+<p><strong>SAY:</strong> "Student: 'I'm struggling with recursion'"</p>
+<p><strong>SAY:</strong> "Agent: 'What specifically is confusing?'"</p>
+<p><strong>SAY:</strong> "Student: 'The base case'"</p>
+<p><strong>SAY:</strong> "Agent: explains base case"</p>
+<p><strong>SAY:</strong> "Student: 'Can you show example?'"</p>
+<p><strong>SAY:</strong> "Without memory, agent wouldn't know example should be about recursion and base cases"</p>
+<p><strong>SAY:</strong> "With memory, it has full conversation context"</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Show dramatic before/after</li><li>Make teaching assistant example relatable</li><li>Emphasize how simple the code change is</li></ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Important: Long conversations, memory grows. Use ConversationSummaryMemory for very long chats"</p>
+<p><strong>SAY:</strong> "But for today, buffer memory is perfect. Try it yourself!"</p>
+<p><strong>WAIT</strong> - 3 minutes experiment time</p>
+</aside>
+</section>
+
+<section>
+<h2>Workshop 5: Complete Agent</h2>
+<h3>Putting It All Together</h2>
+<h2>Full-Featured Agent with:</h2>
+<ul>
+<li>✅ Open-source LLM (Llama 3.2)</li>
+<li>✅ Multiple tools (Search, Wikipedia, Calculator)</li>
+<li>✅ Memory (Conversation history)</li>
+<li>✅ Custom system prompt</li>
+<pre><code class="python">
+from langchain.agents import initialize_agent, AgentType
+from langchain.memory import ConversationBufferMemory
+from langchain_community.llms import Ollama
+# Initialize components
+llm = Ollama(model=&quot;llama3.2&quot;)
+memory = ConversationBufferMemory(memory_key=&quot;chat_history&quot;)
+tools = [search_tool, wikipedia_tool, calculator_tool]
+# Create agent with custom prompt
+system_prompt = &quot;&quot;&quot;You are an expert AI assistant specializing in
+helping faculty members understand agentic AI concepts. Always provide
+clear, educational responses with examples.&quot;&quot;&quot;
+agent = initialize_agent(
+    tools=tools,
+    llm=llm,
+    agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
+    memory=memory,
+    verbose=True,
+    agent_kwargs={&quot;system_message&quot;: system_prompt}
+)
+</code></pre>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 15 - Workshop 5: Complete Agent</h2>
+<p><strong>TIMING:</strong> 3:18 PM - 3:25 PM (7 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "All pieces together - comprehensive production-ready agent"</p>
+<h3>🎬 ACTIONS</h3>
+<p><strong>DO:</strong> Create complete_agent.py</p>
+<p><strong>SAY:</strong> "Local LLM, multiple tools, memory, custom system prompt"</p>
+<p><strong>SAY:</strong> "temperature=0.7, max_iterations=5, interactive loop"</p>
+<p><strong>DO:</strong> Run interactive demo</p>
+<p><strong>SAY:</strong> "'Hello I'm CS professor' → 'What's 145*89?' → 'Search transformers'"</p>
+<p><strong>SAY:</strong> "See full capabilities working together!"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Make it feel like culmination</li><li>Show enthusiasm</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "This is your template. Save it. Use it."</p>
+<p><strong>ASK:</strong> "Questions?"</p>
+</aside>
+</section>
+
+<section>
+<h2>Quality Assurance for Agents</h2>
+<h2>Key Testing Dimensions:</h2>
+<ol>
+<li><strong>Functionality:</strong></li>
+<li>Does it use the right tools?</li>
+<li>Are responses accurate?</li>
+<li><strong>Performance:</strong></li>
+<li>Response time</li>
+<li>Token usage</li>
+<li><strong>Robustness:</strong></li>
+<li>Edge cases</li>
+<li>Error handling</li>
+<li><strong>Memory:</strong></li>
+<li>Context retention</li>
+<li>Conversation flow</li>
+</ol>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 16 - Testing and Debugging</h2>
+<p><strong>TIMING:</strong> 3:25 PM - 3:28 PM (~1 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Agents don't always work perfectly - you need debugging skills"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Common issues: doesn't use tools, infinite loops, memory too large, too slow"</p>
+<p><strong>SAY:</strong> "Solutions: clear tool descriptions, max_iterations, ConversationSummaryMemory, smaller models"</p>
+<p><strong>SAY:</strong> "Debug systematically: verbose=True, read thought process, test tools independently"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Share practical experience</li><li>Make debugging approachable</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Write these patterns down - you WILL encounter them"</p>
+</aside>
+</section>
+
+<section>
+<h2>Practical Testing Approaches</h2>
+<h2>1. Unit Tests (Tools):</h2>
+<pre><code class="python">
+def test_calculator_tool():
+    result = calculator(&quot;2 + 2&quot;)
+    assert &quot;4&quot; in result
+</code></pre>
+<h2>2. Integration Tests (Agent):</h2>
+<pre><code class="python">
+def test_agent_memory():
+    agent.run(&quot;Remember: My favorite color is blue&quot;)
+    response = agent.run(&quot;What&#x27;s my favorite color?&quot;)
+    assert &quot;blue&quot; in response.lower()
+</code></pre>
+<h2>3. End-to-End Tests:</h2>
+<pre><code class="python">
+test_queries = [
+    &quot;What is agentic AI?&quot;,
+    &quot;Search for latest AI news&quot;,
+    &quot;Calculate 25 * 4&quot;,
+    &quot;What did I just ask you?&quot;
+]
+for query in test_queries:
+    response = agent.run(query)
+    assert len(response) &gt; 0
+</code></pre>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 17 - Testing and Debugging</h2>
+<p><strong>TIMING:</strong> 3:25 PM - 3:28 PM (~2 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Agents don't always work perfectly - you need debugging skills"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Common issues: doesn't use tools, infinite loops, memory too large, too slow"</p>
+<p><strong>SAY:</strong> "Solutions: clear tool descriptions, max_iterations, ConversationSummaryMemory, smaller models"</p>
+<p><strong>SAY:</strong> "Debug systematically: verbose=True, read thought process, test tools independently"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Share practical experience</li><li>Make debugging approachable</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Write these patterns down - you WILL encounter them"</p>
+</aside>
+</section>
+
+<section>
+<h2>Troubleshooting Guide</h2>
+<h2>Issue 1: Agent Not Using Tools</h2>
+<ul>
+<li><strong>Symptom:</strong> Agent hallucinates instead of searching</li>
+<li><strong>Solution:</strong> Improve tool descriptions</li>
+<pre><code class="python">
+Tool(
+    name=&quot;Search&quot;,
+    func=search,
+    description=&quot;Use this ONLY when you need current information not in your training data. Input: search query&quot;
+)
+</code></pre>
+</ul>
+<h2>Issue 2: Infinite Loops</h2>
+<ul>
+<li><strong>Symptom:</strong> Agent keeps calling same tool</li>
+<li><strong>Solution:</strong> Add max iterations</li>
+<pre><code class="python">
+agent = initialize_agent(tools, llm, max_iterations=5)
+</code></pre>
+</ul>
+<h2>Issue 3: Memory Overflow</h2>
+<ul>
+<li><strong>Symptom:</strong> Context too long errors</li>
+<li><strong>Solution:</strong> Use ConversationSummaryMemory</li>
+<pre><code class="python">
+from langchain.memory import ConversationSummaryMemory
+memory = ConversationSummaryMemory(llm=llm)
+</code></pre>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 18 - Testing and Debugging</h2>
+<p><strong>TIMING:</strong> 3:25 PM - 3:28 PM (~3 minutes)</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Agents don't always work perfectly - you need debugging skills"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Common issues: doesn't use tools, infinite loops, memory too large, too slow"</p>
+<p><strong>SAY:</strong> "Solutions: clear tool descriptions, max_iterations, ConversationSummaryMemory, smaller models"</p>
+<p><strong>SAY:</strong> "Debug systematically: verbose=True, read thought process, test tools independently"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Share practical experience</li><li>Make debugging approachable</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Write these patterns down - you WILL encounter them"</p>
+</aside>
+</section>
+
+<section>
+<h2>Making Agents Faster and Cheaper</h2>
+<h2>Optimization Techniques:</h2>
+<ol>
+<li><strong>Model Selection:</strong></li>
+<li>Use smaller models (7B vs 70B) when possible</li>
+<li>Quantization (4-bit, 8-bit models)</li>
+<li><strong>Prompt Engineering:</strong></li>
+<li>Shorter, clearer prompts</li>
+<li>Few-shot examples for better tool selection</li>
+<li><strong>Caching:</strong></li>
+<li>Cache LLM responses for repeated queries</li>
+<li>Cache tool results (e.g., Wikipedia lookups)</li>
+<li><strong>Streaming:</strong></li>
+<li>Stream responses for better UX</li>
+<pre><code class="python">
+   for chunk in agent.stream({&quot;input&quot;: query}):
+       print(chunk, end=&quot;&quot;, flush=True)
+</code></pre>
+</ol>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 19</h2>
+<p><strong>TIMING:</strong> ~2-3 minutes</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's continue with the workshop"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Key points for this slide"</p>
+<p><strong>PAUSE</strong> - let this sink in</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Maintain energy</li><li>Clear pacing</li><li>Engage audience</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's move to the next topic"</p>
+</aside>
+</section>
+
+<section>
+<h2>Practical Use Case</h2>
+<p><strong>Scenario:</strong> Faculty Research Assistant Agent</p>
+<h2>Capabilities:</h2>
+<ul>
+<li>Search academic papers (arXiv, Google Scholar)</li>
+<li>Summarize research papers</li>
+<li>Answer questions about research</li>
+<li>Remember previous conversations</li>
+</ul>
+<h2>Tools Needed:</h2>
+<ul>
+<li>ArXiv search tool</li>
+<li>PDF reader/parser</li>
+<li>Summarization capability</li>
+<li>Conversational memory</li>
+</ul>
+<p><strong>Demo:</strong> Live coding session</p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 20</h2>
+<p><strong>TIMING:</strong> ~2-3 minutes</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's continue with the workshop"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Key points for this slide"</p>
+<p><strong>PAUSE</strong> - let this sink in</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Maintain energy</li><li>Clear pacing</li><li>Engage audience</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's move to the next topic"</p>
+</aside>
+</section>
+
+<section>
+<h2>Building Research Assistant Agent</h2>
+<h2>Step-by-Step:</h2>
+<ol>
+<li><strong>Set up ArXiv tool:</strong></li>
+<pre><code class="python">
+from langchain_community.tools import ArxivQueryRun
+arxiv_tool = ArxivQueryRun()
+</code></pre>
+<li><strong>Create specialized system prompt:</strong></li>
+<pre><code class="python">
+system_prompt = &quot;&quot;&quot;You are a research assistant helping
+faculty find and understand academic papers. When asked about
+research topics, search arXiv and provide concise summaries.&quot;&quot;&quot;
+</code></pre>
+<li><strong>Initialize agent:</strong></li>
+<pre><code class="python">
+research_agent = initialize_agent(
+    tools=[arxiv_tool, wikipedia_tool],
+    llm=llm,
+    agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
+    memory=memory,
+    agent_kwargs={&quot;system_message&quot;: system_prompt}
+)
+</code></pre>
+<li><strong>Test queries:</strong></li>
+<pre><code class="python">
+research_agent.run(&quot;Find recent papers on transformer models for agentic AI&quot;)
+</code></pre>
+</ol>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 21</h2>
+<p><strong>TIMING:</strong> ~2-3 minutes</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's continue with the workshop"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Key points for this slide"</p>
+<p><strong>PAUSE</strong> - let this sink in</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Maintain energy</li><li>Clear pacing</li><li>Engage audience</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's move to the next topic"</p>
+</aside>
+</section>
+
+<section>
+<h2>Your Turn!</h2>
+<p><strong>Challenge:</strong> Build a "Teaching Assistant Agent"</p>
+<h2>Requirements:</h2>
+<ol>
+<li>Can search web for teaching resources</li>
+<li>Can access Wikipedia for definitions</li>
+<li>Has a calculator for examples</li>
+<li>Remembers student questions in the session</li>
+<li>Uses friendly, educational tone</li>
+</ol>
+<p><strong>Time:</strong> 15 minutes</p>
+<p><strong>Starter Code:</strong> (Provided in workshop materials)</p>
+<p><strong>Bonus:</strong> Add a tool to search YouTube for educational videos</p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 22</h2>
+<p><strong>TIMING:</strong> ~2-3 minutes</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's continue with the workshop"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Key points for this slide"</p>
+<p><strong>PAUSE</strong> - let this sink in</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Maintain energy</li><li>Clear pacing</li><li>Engage audience</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's move to the next topic"</p>
+</aside>
+</section>
+
+<section>
+<h2>Teaching Assistant Agent</h2>
+<h2>Key Implementation Decisions:</h2>
+<pre><code class="python">
+# 1. Educational system prompt
+system_prompt = &quot;&quot;&quot;You are a friendly teaching assistant.
+Explain concepts clearly, use examples, and encourage learning.&quot;&quot;&quot;
+# 2. Relevant tools
+tools = [
+    search_tool,      # For current info
+    wikipedia_tool,   # For definitions
+    calculator_tool,  # For math examples
+    youtube_tool      # For video resources
+]
+# 3. Conversational memory
+memory = ConversationBufferMemory(
+    memory_key=&quot;chat_history&quot;,
+    return_messages=True
+)
+# 4. Appropriate agent type
+agent_type = AgentType.CONVERSATIONAL_REACT_DESCRIPTION
+</code></pre>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 23</h2>
+<p><strong>TIMING:</strong> ~2-3 minutes</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's continue with the workshop"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Key points for this slide"</p>
+<p><strong>PAUSE</strong> - let this sink in</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Maintain energy</li><li>Clear pacing</li><li>Engage audience</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's move to the next topic"</p>
+</aside>
+</section>
+
+<section>
+<h2>Production-Ready Patterns</h2>
+<h2>DO's:</h2>
+<ul>
+<li>✅ Clear, specific tool descriptions</li>
+<li>✅ Validate tool inputs</li>
+<li>✅ Handle errors gracefully</li>
+<li>✅ Log agent decisions for debugging</li>
+<li>✅ Set maximum iterations</li>
+<li>✅ Use appropriate memory type</li>
+<li>✅ Test with diverse queries</li>
+</ul>
+<h2>DON'Ts:</h2>
+<ul>
+<li>❌ Too many tools (limit to 5-7)</li>
+<li>❌ Ambiguous tool names</li>
+<li>❌ Unlimited iterations</li>
+<li>❌ No error handling</li>
+<li>❌ Exposing sensitive data in prompts</li>
+<li>❌ Ignoring latency</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 24</h2>
+<p><strong>TIMING:</strong> ~2-3 minutes</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's continue with the workshop"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Key points for this slide"</p>
+<p><strong>PAUSE</strong> - let this sink in</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Maintain energy</li><li>Clear pacing</li><li>Engage audience</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's move to the next topic"</p>
+</aside>
+</section>
+
+<section>
+<h2>Keeping Your Agents Safe</h2>
+<h2>Key Security Principles:</h2>
+<ol>
+<li><strong>Input Validation:</strong></li>
+<pre><code class="python">
+   def safe_calculator(expr: str) -&gt; str:
+       # Whitelist allowed characters
+       if not re.match(r&#x27;^[0-9+\-*/().\s]+$&#x27;, expr):
+           return &quot;Invalid input&quot;
+       return str(eval(expr))
+</code></pre>
+<li><strong>Tool Sandboxing:</strong></li>
+<li>Limit file system access</li>
+<li>Restrict network calls</li>
+<li>Use timeouts</li>
+<li><strong>Prompt Injection Protection:</strong></li>
+<li>Validate user inputs</li>
+<li>Use system prompts to set boundaries</li>
+<li>Monitor for suspicious patterns</li>
+<li><strong>Data Privacy:</strong></li>
+<li>Don't log sensitive information</li>
+<li>Use local LLMs for confidential data</li>
+</ol>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 25</h2>
+<p><strong>TIMING:</strong> ~2-3 minutes</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's continue with the workshop"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Key points for this slide"</p>
+<p><strong>PAUSE</strong> - let this sink in</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Maintain energy</li><li>Clear pacing</li><li>Engage audience</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's move to the next topic"</p>
+</aside>
+</section>
+
+<section>
+<h2>Understanding Agent Behavior</h2>
+<h2>What to Monitor:</h2>
+<ol>
+<li><strong>Agent Traces:</strong></li>
+<pre><code class="python">
+   agent = initialize_agent(tools, llm, verbose=True)
+   # Shows thought process, tool calls, observations
+</code></pre>
+<li><strong>Key Metrics:</strong></li>
+<li>Response time per query</li>
+<li>Tool usage frequency</li>
+<li>Success/failure rates</li>
+<li>Token consumption</li>
+<li><strong>Tools for Observability:</strong></li>
+<li>LangSmith (LangChain's platform)</li>
+<li>Custom logging</li>
+<li>Weights & Biases</li>
+</ol>
+<h2>Example:</h2>
+<pre><code class="python">
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+# Log agent decisions
+logger.info(f&quot;Query: {query}&quot;)
+logger.info(f&quot;Agent response: {response}&quot;)
+</code></pre>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 26</h2>
+<p><strong>TIMING:</strong> ~2-3 minutes</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's continue with the workshop"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Key points for this slide"</p>
+<p><strong>PAUSE</strong> - let this sink in</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Maintain energy</li><li>Clear pacing</li><li>Engage audience</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's move to the next topic"</p>
+</aside>
+</section>
+
+<section>
+<h2>Taking Agents to Production</h2>
+<h2>Deployment Patterns:</h2>
+<ol>
+<li><strong>Local Development:</strong></li>
+<li>Ollama + LangChain</li>
+<li>Testing and prototyping</li>
+<li><strong>Self-Hosted:</strong></li>
+<li>vLLM, TGI (Text Generation Inference)</li>
+<li>Docker containers</li>
+<li>Kubernetes for scaling</li>
+<li><strong>Hybrid:</strong></li>
+<li>Local LLM for reasoning</li>
+<li>Cloud APIs for specialized tasks</li>
+</ol>
+<h2>Example Docker Setup:</h2>
+<pre><code class="dockerfile">
+FROM python:3.11-slim
+RUN pip install langchain ollama
+COPY agent.py /app/
+CMD [&quot;python&quot;, &quot;/app/agent.py&quot;]
+</code></pre>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 27</h2>
+<p><strong>TIMING:</strong> ~2-3 minutes</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's continue with the workshop"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Key points for this slide"</p>
+<p><strong>PAUSE</strong> - let this sink in</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Maintain energy</li><li>Clear pacing</li><li>Engage audience</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's move to the next topic"</p>
+</aside>
+</section>
+
+<section>
+<h2>From Prototype to Production</h2>
+<h2>Scaling Challenges:</h2>
+<ol>
+<li><strong>Concurrency:</strong></li>
+<li>Handle multiple users</li>
+<li>Load balancing</li>
+<li>Resource management</li>
+<li><strong>Model Serving:</strong></li>
+<li>GPU utilization</li>
+<li>Batching requests</li>
+<li>Model caching</li>
+<li><strong>State Management:</strong></li>
+<li>Distributed memory stores (Redis)</li>
+<li>Session management</li>
+<li>Long-term memory (vector DBs)</li>
+</ol>
+<h2>Architecture Example:</h2>
+<pre><code class="python">
+Load Balancer → [Agent Instance 1, 2, 3, ...]
+                        ↓
+                  Shared Redis (Memory)
+                        ↓
+                  Vector DB (Long-term)
+</code></pre>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 28</h2>
+<p><strong>TIMING:</strong> ~2-3 minutes</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's continue with the workshop"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Key points for this slide"</p>
+<p><strong>PAUSE</strong> - let this sink in</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Maintain energy</li><li>Clear pacing</li><li>Engage audience</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's move to the next topic"</p>
+</aside>
+</section>
+
+<section>
+<h2>Making the Right Choice</h2>
+<table><tbody>
+<tr>
+<td>Aspect</td>
+<td>Open-Source LLMs</td>
+<td>Closed-Source (GPT-4, Claude)</td>
+</tr>
+</tbody></table>
+<p>|--------|------------------|-------------------------------|</p>
+<table><thead>
+<tr>
+<th>Cost</th>
+<th>Hardware only</th>
+<th>Pay-per-token</th>
+</tr>
+</thead><tbody>
+<table><thead>
+<tr>
+<th>Privacy</th>
+<th>Full control</th>
+<th>Data sent to provider</th>
+</tr>
+</thead><tbody>
+<table><thead>
+<tr>
+<th>Customization</th>
+<th>Complete</th>
+<th>Limited</th>
+</tr>
+</thead><tbody>
+<table><thead>
+<tr>
+<th>Performance</th>
+<th>Good (7B-70B)</th>
+<th>Excellent</th>
+</tr>
+</thead><tbody>
+<table><thead>
+<tr>
+<th>Maintenance</th>
+<th>Self-managed</th>
+<th>Managed service</th>
+</tr>
+</thead><tbody>
+<table><thead>
+<tr>
+<th>Latency</th>
+<th>Variable</th>
+<th>Optimized</th>
+</tr>
+</thead><tbody>
+<table><thead>
+<tr>
+<th>Best For</th>
+<th>Privacy-critical, high-volume</th>
+<th>Rapid prototyping, best quality</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<p><strong>Recommendation:</strong> Start with closed-source for prototyping, move to open-source for production</p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 29</h2>
+<p><strong>TIMING:</strong> ~2-3 minutes</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's continue with the workshop"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Key points for this slide"</p>
+<p><strong>PAUSE</strong> - let this sink in</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Maintain energy</li><li>Clear pacing</li><li>Engage audience</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's move to the next topic"</p>
+</aside>
+</section>
+
+<section>
+<h2>Beyond Basic Agents</h2>
+<h2>What's Next (Session 12):</h2>
+<ul>
+<li>Multi-agent systems</li>
+<li>Complex reasoning patterns</li>
+<li>Domain-specific agents</li>
+<li>Production deployment</li>
+<li>Real-world problem solving</li>
+</ul>
+<h2>Advanced Patterns:</h2>
+<ul>
+<li>Agent supervision</li>
+<li>Human-in-the-loop</li>
+<li>Multi-step planning</li>
+<li>Reflection and self-correction</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 30</h2>
+<p><strong>TIMING:</strong> ~2-3 minutes</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's continue with the workshop"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Key points for this slide"</p>
+<p><strong>PAUSE</strong> - let this sink in</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Maintain energy</li><li>Clear pacing</li><li>Engage audience</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's move to the next topic"</p>
+</aside>
+</section>
+
+<section>
+<h2>Continue Learning</h2>
+<h2>Documentation:</h2>
+<ul>
+<li>LangChain Docs: https://python.langchain.com</li>
+<li>Ollama Models: https://ollama.ai/library</li>
+<li>LlamaIndex: https://docs.llamaindex.ai</li>
+</ul>
+<h2>GitHub Repositories:</h2>
+<ul>
+<li>LangChain: github.com/langchain-ai/langchain</li>
+<li>Ollama: github.com/ollama/ollama</li>
+<li>AutoGen: github.com/microsoft/autogen</li>
+</ul>
+<h2>Communities:</h2>
+<ul>
+<li>LangChain Discord</li>
+<li>r/LocalLLaMA</li>
+<li>Hugging Face Forums</li>
+</ul>
+<h2>Papers:</h2>
+<ul>
+<li>"ReAct: Synergizing Reasoning and Acting in Language Models"</li>
+<li>"Toolformer: Language Models Can Teach Themselves to Use Tools"</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 31</h2>
+<p><strong>TIMING:</strong> ~2-3 minutes</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's continue with the workshop"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Key points for this slide"</p>
+<p><strong>PAUSE</strong> - let this sink in</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Maintain energy</li><li>Clear pacing</li><li>Engage audience</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's move to the next topic"</p>
+</aside>
+</section>
+
+<section>
+<h2>Questions?</h2>
+<h2>Common Questions:</h2>
+<ul>
+<li>How do I choose the right model size?</li>
+<li>Can I use multiple LLMs in one agent?</li>
+<li>How do I handle rate limits?</li>
+<li>What about fine-tuning agents?</li>
+</ul>
+<h2>5-Minute Break Before Session 12</h2>
+<p>Next: Designing and Implementing Agentic AI Solutions for Specific Problems</p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 32 - Wrap-up and Q&A</h2>
+<p><strong>TIMING:</strong> 3:26 PM - 3:30 PM</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Covered a lot in 90 minutes. Let's recap what you accomplished"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "✅ Understand open-source LLM landscape"</p>
+<p><strong>SAY:</strong> "✅ Built first agent with LangChain and Ollama"</p>
+<p><strong>SAY:</strong> "✅ Implemented tools - web search, Wikipedia, custom calculator"</p>
+<p><strong>SAY:</strong> "✅ Added memory for contextual conversations"</p>
+<p><strong>SAY:</strong> "✅ Learned testing and debugging"</p>
+<p><strong>SAY:</strong> "✅ Have complete template you can adapt"</p>
+<h3>🎬 ACTIONS</h3>
+<p><strong>SAY:</strong> "Action 1: Modify for your domain"</p>
+<p><strong>SAY:</strong> "Action 2: Experiment with different models"</p>
+<p><strong>SAY:</strong> "Action 3: Share what you build"</p>
+<p><strong>SAY:</strong> "All code in GitHub repository"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Celebrate their accomplishment</li><li>Leave them energized</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>ASK:</strong> "Quick questions? 5 minutes before Session 12"</p>
+<p><strong>SAY:</strong> "Take bio break. Back at 3:30 for building REAL solutions!"</p>
+</aside>
+</section>
+
+<section>
+<h2>What You've Learned</h2>
+<p>✅ <strong>Understanding:</strong> Open-source LLM landscape</p>
+<p>✅ <strong>Skills:</strong> Built agents with LangChain + Ollama</p>
+<p>✅ <strong>Tools:</strong> Implemented search, Wikipedia, custom tools</p>
+<p>✅ <strong>Memory:</strong> Added conversation memory</p>
+<p>✅ <strong>Testing:</strong> Debugged and optimized agents</p>
+<p>✅ <strong>Production:</strong> Security and deployment considerations</p>
+<h2>Homework:</h2>
+<ul>
+<li>Build an agent for your specific domain</li>
+<li>Experiment with different models</li>
+<li>Share your creation with the cohort</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 33 - Wrap-up and Q&A</h2>
+<p><strong>TIMING:</strong> 3:26 PM - 3:30 PM</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Covered a lot in 90 minutes. Let's recap what you accomplished"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "✅ Understand open-source LLM landscape"</p>
+<p><strong>SAY:</strong> "✅ Built first agent with LangChain and Ollama"</p>
+<p><strong>SAY:</strong> "✅ Implemented tools - web search, Wikipedia, custom calculator"</p>
+<p><strong>SAY:</strong> "✅ Added memory for contextual conversations"</p>
+<p><strong>SAY:</strong> "✅ Learned testing and debugging"</p>
+<p><strong>SAY:</strong> "✅ Have complete template you can adapt"</p>
+<h3>🎬 ACTIONS</h3>
+<p><strong>SAY:</strong> "Action 1: Modify for your domain"</p>
+<p><strong>SAY:</strong> "Action 2: Experiment with different models"</p>
+<p><strong>SAY:</strong> "Action 3: Share what you build"</p>
+<p><strong>SAY:</strong> "All code in GitHub repository"</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Celebrate their accomplishment</li><li>Leave them energized</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>ASK:</strong> "Quick questions? 5 minutes before Session 12"</p>
+<p><strong>SAY:</strong> "Take bio break. Back at 3:30 for building REAL solutions!"</p>
+</aside>
+</section>
+
+<section>
+<h2>Stay Connected</h2>
+<p><strong>Feedback:</strong> Please share your experience with today's session</p>
+<h2>Contact Information:</h2>
+<ul>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/rootuser/" target="_blank">https://www.linkedin.com/in/rootuser/</a></li>
+<li>GitHub: <a href="https://github.com/rootusercop/AgenticAgent.git" target="_blank">https://github.com/rootusercop/AgenticAgent.git</a></li>
+</ul>
+<h2>Workshop Materials:</h2>
+<ul>
+<li>All code samples</li>
+<li>Additional examples</li>
+<li>Troubleshooting guide</li>
+<li>Available at: <a href="https://github.com/rootusercop/AgenticAgent.git" target="_blank">https://github.com/rootusercop/AgenticAgent.git</a></li>
+</ul>
+<p>Thank you! See you in Session 12 (3:30 PM)</p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 34 - Wrap-up and Q&A</h2>
+<p><strong>TIMING:</strong> 3:26 PM - 3:30 PM</p>
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Covered a lot in 90 minutes. Let's recap what you accomplished"</p>
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "✅ Understand open-source LLM landscape"</p>
+<p><strong>SAY:</strong> "✅ Built first agent with LangChain and Ollama"</p>
+<p><strong>SAY:</strong> "✅ Implemented tools - web search, Wikipedia, custom calculator"</p>
+<p><strong>SAY:</strong> "✅ Added memory for contextual conversations"</p>
+<p><strong>SAY:</strong> "✅ Learned testing and debugging"</p>
+<p><strong>SAY:</strong> "✅ Have complete template you can adapt"</p>
+<h3>🎬 ACTIONS</h3>
+<p><strong>SAY:</strong> "Action 1: Modify for your domain"</p>
+<p><strong>SAY:</strong> "Action 2: Experiment with different models"</p>
+<p><strong>SAY:</strong> "Action 3: Share what you build"</p>
+<p><strong>SAY:</strong> "All code in GitHub repository: https://github.com/rootusercop/AgenticAgent.git"</p>
+<p><strong>SAY:</strong> "Connect on LinkedIn: https://www.linkedin.com/in/rootuser/"</p>
+<p><strong>DO:</strong> Share links in chat</p>
+<h3>💡 DELIVERY TIPS</h3>
+<ul><li>Celebrate their accomplishment</li><li>Leave them energized</li><li>Make sure links are visible in chat</li></ul>
+<h3>🔄 TRANSITION</h3>
+<p><strong>ASK:</strong> "Quick questions? 5 minutes before Session 12"</p>
+<p><strong>SAY:</strong> "Take bio break. Back at 3:30 for building REAL solutions!"</p>
+</aside>
+</section>
+
+</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            plugins: [ RevealNotes, RevealHighlight ],
+            slideNumber: true,
+            showNotes: false,
+            width: 1280,
+            height: 720,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 2.0
+        });
+    </script>
+</body>
+</html>

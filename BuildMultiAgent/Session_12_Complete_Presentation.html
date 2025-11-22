@@ -1,0 +1,3058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 12: Designing and Implementing Agentic AI Solutions for Specific Problems</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <style>
+        .reveal h1, .reveal h2, .reveal h3 { text-transform: none; }
+        .reveal h1 { font-size: 2.5em; margin-bottom: 20px; }
+        .reveal h2 { font-size: 2em; margin-bottom: 30px; color: #4a9eff; }
+        .reveal h3 { font-size: 1.5em; margin-bottom: 20px; color: #5ac8fa; }
+        .reveal h4 { font-size: 1.2em; margin-top: 20px; color: #64d2ff; }
+        .reveal ul, .reveal ol { display: block; margin-left: 20px; text-align: left; }
+        .reveal li { margin-bottom: 15px; font-size: 0.9em; line-height: 1.6; }
+        .reveal p { font-size: 0.9em; line-height: 1.6; margin: 10px 0; }
+        .reveal pre { width: 100%; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .reveal pre code { max-height: 500px; font-size: 0.5em; line-height: 1.4; padding: 20px; }
+        .reveal table { font-size: 0.75em; margin: 20px auto; border-collapse: collapse; width: 90%; }
+        .reveal table th { background-color: #2a5599; color: white; padding: 15px; border: 2px solid #555; font-weight: bold; }
+        .reveal table td { padding: 12px; border: 2px solid #555; }
+        .reveal table tr:nth-child(even) { background-color: #1a1a1a; }
+        .reveal table tr:nth-child(odd) { background-color: #2a2a2a; }
+        .diagram { font-family: 'Courier New', monospace; font-size: 0.65em; white-space: pre; text-align: left; margin: 20px auto; background: #1a1a1a; padding: 20px; border: 2px solid #555; border-radius: 5px; display: inline-block; }
+        .two-column { display: flex; gap: 40px; align-items: flex-start; }
+        .two-column > div { flex: 1; }
+        .highlight-box { background: linear-gradient(135deg, #2a5599 0%, #1e3a5f 100%); padding: 25px; border-radius: 10px; margin: 20px 0; border: 2px solid #4a9eff; }
+        .checklist li { list-style: none; padding-left: 0; }
+        .checklist li:before { content: "✅ "; color: #4ade80; font-size: 1.2em; }
+        .dont-list li { list-style: none; padding-left: 0; }
+        .dont-list li:before { content: "❌ "; color: #ef4444; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+
+<section>
+<p>Title Slide</p>
+<strong>Designing and Implementing Agentic AI Solutions for Specific Problems</strong>
+
+<p>Mr. Nikhil Katre</p>
+<p>Staff Software Engineer, Walmart Global Tech</p>
+<p>AICTE ATAL FDP on Agentic AI</p>
+<p>22nd November 2025</p>
+
+<strong>"From Simple Agents to Production Systems"</strong>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 1 - Title Slide</h2>
+<p><strong>TIMING:</strong> 3:30 PM - 3:32 PM (2 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Welcome back everyone! I hope you enjoyed that short break."</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "In Session 11, you built simple agents - hands-on with code and tools"</p>
+<p><strong>SAY:</strong> "Real-world problems need SYSTEMS - not just single agents"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Today we're moving from 'toy examples' to 'production-ready solutions'"</p>
+<p><strong>SAY:</strong> "By the end: blueprints for enterprise-grade agentic AI systems"</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>High energy</li>
+<li>Stress the word 'SYSTEMS'</li>
+<li>Make eye contact with camera</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Ready? Let's go big!"</p>
+</aside>
+
+</section>
+
+<section>
+<p>Session Overview</p>
+<strong>What We'll Build Today</strong>
+
+<strong>Session 11 Recap:</strong> You built simple agents with tools and memory
+
+<strong>Session 12 Focus:</strong> Design and implement REAL solutions for COMPLEX problems
+
+<h3>Agenda:</h3>
+<ol>
+<li>Problem Analysis Framework (10 min)</li>
+<li>Design Patterns for Agentic Systems (15 min)</li>
+<li><strong>Workshop 1:</strong> Multi-Agent System for Admissions (25 min)</li>
+<li><strong>Workshop 2:</strong> Personalized Learning Path Generator (25 min)</li>
+<li>Production Deployment Strategies (10 min)</li>
+<li>Final Q&A and Course Wrap-up (5 min)</li>
+</ol>
+
+<h3>By the end, you will:</h3>
+<ul>
+<li>Design multi-agent architectures for complex workflows</li>
+<li>Implement agent coordination and communication</li>
+<li>Deploy production-ready solutions</li>
+<li>Apply this to YOUR specific domain problems</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 2 - Session Overview</h2>
+<p><strong>TIMING:</strong> 3:32 PM - 3:35 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Here's our battle plan for the next 90 minutes:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "10 min: Problem analysis framework - how to approach ANY complex problem"</p>
+<p><strong>SAY:</strong> "15 min: Design patterns - common architectures in agentic systems"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "25 min: Workshop 1 - College admission management system (real university problem)"</p>
+<p><strong>SAY:</strong> "25 min: Workshop 2 - Personalized learning path generator (future of education)"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "10 min: Production deployment - Docker, Kubernetes, monitoring"</p>
+<p><strong>SAY:</strong> "5 min: Q&A and FDP wrap-up"</p>
+
+<h3>🤔 AUDIENCE CHECK</h3>
+<p><strong>ASK:</strong> "This is ambitious. This is exciting. Let's build!"</p>
+<p><strong>WAIT FOR RESPONSE</strong> - check chat, look for nods/reactions</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Enthusiastic tone</li>
+<li>Use hand gestures for each section</li>
+<li>Build anticipation</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's start with understanding when you need multiple agents..."</p>
+</aside>
+
+</section>
+
+<section>
+<p>Bridging Sessions 11 → 12</p>
+<strong>Evolution of Complexity</strong>
+
+<strong>Session 11: Simple Agents</strong>
+<pre><code class="">User → Single Agent → Tools → Response</code></pre>
+<ul>
+<li>One agent handles everything</li>
+<li>Linear workflows</li>
+<li>Good for: FAQs, simple queries, single-domain tasks</li>
+</ul>
+
+<strong>Session 12: Complex Systems</strong>
+<pre><code class="">User → Orchestrator Agent → [Agent 1, Agent 2, Agent 3, ...] → Response</code></pre>
+<ul>
+<li>Multiple specialized agents</li>
+<li>Parallel and sequential workflows</li>
+<li>Good for: Multi-step processes, cross-domain tasks, enterprise workflows</li>
+</ul>
+
+<h3>Example Evolution:</h3>
+<ul>
+<li><strong>Session 11:</strong> "Build a Q&A agent"</li>
+<li><strong>Session 12:</strong> "Build a system that answers questions, processes applications, sends emails, and generates reports"</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 3 - Bridging Sessions 11 → 12</h2>
+<p><strong>TIMING:</strong> 3:35 PM - 3:38 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let me show you the evolution from Session 11 to today."</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Session 11: User → Single Agent → Tools → Response (linear, simple)"</p>
+<p><strong>SAY:</strong> "Real example from Walmart: Customer wants laptop for video editing under $1500, delivered before Christmas"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "10 different steps needed: understand specs, search inventory, check stock, verify delivery, calculate pricing, gift wrap, accessories, process order, schedule, confirm"</p>
+<p><strong>SAY:</strong> "No single agent can handle this efficiently - need specialization"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Product search agent + inventory agent + logistics agent + pricing agent + recommendation agent + order processing agent"</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Point to the diagram on screen showing single vs multi-agent flow</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Slow down when listing the 10 steps</li>
+<li>Emphasize 'specialization'</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "That's a multi-agent system. And that's what we're building today."</p>
+</aside>
+
+</section>
+
+<section>
+<p>When Do You Need Multi-Agent Systems?</p>
+<strong>Decision Framework</strong>
+
+<h3>Use Single Agent When:</h3>
+<ul>
+<li>Task is well-defined and narrow</li>
+<li>One domain of expertise</li>
+<li>Simple tool usage</li>
+<li>Linear workflow</li>
+</ul>
+
+<h3>Examples:</h3>
+<ul>
+<li>Customer FAQ bot</li>
+<li>Document summarizer</li>
+<li>Code reviewer</li>
+</ul>
+
+<h3>Use Multi-Agent System When:</h3>
+<ul>
+<li>Multiple distinct steps with different skills</li>
+<li>Need parallelization for speed</li>
+<li>Different levels of expertise required</li>
+<li>Complex decision trees</li>
+</ul>
+
+<h3>Examples:</h3>
+<ul>
+<li>College admissions (query handling + document processing + eligibility check)</li>
+<li>E-commerce (product search + recommendation + inventory + pricing)</li>
+<li>Research assistant (literature search + summarization + comparison + citation)</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 4 - When Do You Need Multi-Agent Systems?</h2>
+<p><strong>TIMING:</strong> 3:38 PM - 3:40 PM (2 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Here's how you decide: ask yourself these questions about your problem"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Q1: Multiple distinct steps with different expertise? → probably multi-agent"</p>
+<p><strong>SAY:</strong> "Q2: Can some steps run in parallel to save time? → definitely multi-agent"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Q3: Different steps need different tools/data sources? → multi-agent helps"</p>
+<p><strong>SAY:</strong> "Q4: Complex workflow with many decision branches? → multi-agent makes it manageable"</p>
+
+<h3>📝 EXAMPLES TO SHARE</h3>
+<p><strong>Single Agent:</strong> Summarize research paper, Answer FAQs about schedule, Check grammar in essay</p>
+<p><strong>Multi Agent:</strong> Process college applications, Plan research conference, Hire new faculty</p>
+
+<h3>🤔 AUDIENCE CHECK</h3>
+<p><strong>ASK:</strong> "Make sense? Keep this framework in your head as we design systems today."</p>
+<p><strong>WAIT FOR RESPONSE</strong> - check chat, look for nods/reactions</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Ask questions rhetorically</li>
+<li>Pause after each question</li>
+<li>Check chat for reactions</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Now let's talk about HOW to design these systems..."</p>
+</aside>
+
+</section>
+
+<section>
+<p>Problem Analysis Framework</p>
+<strong>5-Step Process Before You Code</strong>
+
+<strong>Step 1: Understand the Problem</strong>
+<ul>
+<li>What is the end-to-end workflow?</li>
+<li>Who are the users?</li>
+<li>What are the pain points?</li>
+<li>What does success look like?</li>
+</ul>
+
+<strong>Step 2: Identify Sub-Tasks</strong>
+<ul>
+<li>Break down the problem into discrete steps</li>
+<li>Each step = potential agent</li>
+</ul>
+
+<strong>Step 3: Define Agent Roles</strong>
+<ul>
+<li>What expertise does each step need?</li>
+<li>What tools are required?</li>
+<li>What inputs/outputs?</li>
+</ul>
+
+<strong>Step 4: Design Communication Flow</strong>
+<ul>
+<li>Which agents need to talk to each other?</li>
+<li>Sequential or parallel execution?</li>
+<li>How is data passed between agents?</li>
+</ul>
+
+<strong>Step 5: Identify Success Metrics</strong>
+<ul>
+<li>How do you measure if it works?</li>
+<li>Performance requirements?</li>
+<li>Quality benchmarks?</li>
+</ul>
+
+<strong>We'll apply this framework in our workshops!</strong>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 5 - Problem Analysis Framework</h2>
+<p><strong>TIMING:</strong> 3:40 PM - 3:43 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Before you write a single line of code, you need to DESIGN it properly. Here's my 5-step framework from Walmart:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Step 1: Understand the Problem - What's the current manual process? Where does it break? Who are stakeholders? What does success look like quantitatively?"</p>
+<p><strong>SAY:</strong> "Step 2: Identify Sub-Tasks - Break into atomic units that are independently testable with clear inputs/outputs"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Step 3: Define Agent Roles - Group related sub-tasks, assign clear expertise, right tools for the job"</p>
+<p><strong>SAY:</strong> "Step 4: Design Communication Flow - Sequential, Parallel, or Hub-and-Spoke?"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Step 5: Define Success Metrics - Performance, quality, and business metrics"</p>
+
+<h3>💡 EXAMPLE</h3>
+<p><strong>SAY:</strong> "College admissions: Current 2-3 weeks → Target 2-3 DAYS. 30% incomplete → 95% complete. Staff overwhelmed → staff handles exceptions only."</p>
+
+<h3>🤔 AUDIENCE CHECK</h3>
+<p><strong>ASK:</strong> "Everyone following? Questions on this framework?"</p>
+<p><strong>WAIT FOR RESPONSE</strong> - check chat, look for nods/reactions</p>
+<p><strong>⏸️ PAUSE:</strong> Take 1-2 quick questions here</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Speak slowly and clearly</li>
+<li>This is framework they'll use</li>
+<li>Emphasize DESIGN before code</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Now let me show you the four design patterns you'll use 90% of the time..."</p>
+</aside>
+
+</section>
+
+<section>
+<p>Multi-Agent Design Patterns</p>
+<strong>Common Architectures</strong>
+
+<strong>Pattern 1: Sequential Pipeline</strong>
+<pre><code class="">Agent A → Agent B → Agent C → Result</code></pre>
+<ul>
+<li>Each agent's output is next agent's input</li>
+<li><strong>Use case:</strong> Document processing pipeline (extract → validate → store)</li>
+</ul>
+
+<strong>Pattern 2: Parallel Execution</strong>
+<pre><code class="">        → Agent A →
+<p>Orchestrator → Agent B → Aggregator → Result</p>
+<p>        → Agent C →</code></pre></p>
+<ul>
+<li>Multiple agents work simultaneously</li>
+<li><strong>Use case:</strong> Product research (search multiple stores in parallel)</li>
+</ul>
+
+<strong>Pattern 3: Hierarchical (Manager-Worker)</strong>
+<pre><code class="">Manager Agent
+<p>    ↓</p>
+<p>[Worker 1, Worker 2, Worker 3]</code></pre></p>
+<ul>
+<li>Manager coordinates and delegates</li>
+<li><strong>Use case:</strong> Research team (manager assigns papers to different researchers)</li>
+</ul>
+
+<strong>Pattern 4: Collaborative (Round-Robin)</strong>
+<pre><code class="">Agent A ↔ Agent B ↔ Agent C</code></pre>
+<ul>
+<li>Agents discuss and iterate</li>
+<li><strong>Use case:</strong> Code review (agent 1 writes, agent 2 reviews, agent 3 optimizes)</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 6 - Multi-Agent Design Patterns</h2>
+<p><strong>TIMING:</strong> 3:43 PM - 3:46 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Four design patterns you'll use 90% of the time:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Pattern 1: Sequential Pipeline - Assembly line, Agent A → B → C. Use for: document processing, data transformation. Pro: Simple to debug. Con: Can be slow."</p>
+<p><strong>SAY:</strong> "Pattern 2: Parallel Execution with Aggregation - Multiple agents run simultaneously. Use for: search multiple sources, independent analyses. Pro: Fast, scalable. Con: Need good aggregation logic."</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Pattern 3: Hierarchical Manager-Worker - One manager delegates to specialized workers. Use for: complex projects, resource allocation. Pro: Flexible. Con: Manager can be bottleneck."</p>
+<p><strong>SAY:</strong> "Pattern 4: Collaborative Round-Robin - Agents discuss and iterate. Use for: creative tasks, code review. Pro: High quality output. Con: Can be slow."</p>
+
+<h3>🔧 PRACTICAL NOTE</h3>
+<p><strong>SAY:</strong> "In our workshops: admissions uses Pattern 1 (Sequential), learning paths uses Pattern 1 with feedback loops."</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Show examples visually</li>
+<li>Point to patterns on slide</li>
+<li>Medium energy</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Alright, enough theory! Let's build!"</p>
+</aside>
+
+</section>
+
+<section>
+<p>Communication Between Agents</p>
+<strong>How Agents Talk</strong>
+
+<strong>Method 1: Shared Memory</strong>
+<pre><code class="python">shared_state = {
+<p>    &quot;user_info&quot;: {},</p>
+<p>    &quot;documents&quot;: [],</p>
+<p>    &quot;status&quot;: &quot;processing&quot;</p>
+<p>}</p>
+
+<p># Agent 1 writes</p>
+<p>shared_state[&quot;documents&quot;] = extracted_docs</p>
+
+<p># Agent 2 reads</p>
+<p>docs = shared_state[&quot;documents&quot;]</code></pre></p>
+
+<strong>Method 2: Message Passing</strong>
+<pre><code class="python"># Agent 1 sends message
+<p>message_queue.put({</p>
+<p>    &quot;from&quot;: &quot;Agent1&quot;,</p>
+<p>    &quot;to&quot;: &quot;Agent2&quot;,</p>
+<p>    &quot;data&quot;: processed_data</p>
+<p>})</p>
+
+<p># Agent 2 receives</p>
+<p>message = message_queue.get()</code></pre></p>
+
+<strong>Method 3: Function Calls (Direct Invocation)</strong>
+<pre><code class="python"># Agent 1 calls Agent 2
+<p>result = agent2.process(agent1_output)</code></pre></p>
+
+<strong>Method 4: Event-Driven</strong>
+<pre><code class="python"># Agent 1 emits event
+<p>event_bus.emit(&quot;documents_extracted&quot;, data)</p>
+
+<p># Agent 2 listens</p>
+<p>@event_bus.on(&quot;documents_extracted&quot;)</p>
+<p>def handle_documents(data):</p>
+<p>    process(data)</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 7 - Communication Between Agents</h2>
+<p><strong>TIMING:</strong> 3:46 PM - 3:48 PM (2 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "How do agents actually communicate? Three mechanisms:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Shared State: All agents read/write to common dictionary. Simple but requires coordination."</p>
+<p><strong>SAY:</strong> "Message Passing: Agents send explicit messages. Clean separation but adds overhead."</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Orchestrator Pattern: Central coordinator routes requests. Good for complex logic."</p>
+
+<h3>🔧 PRACTICAL NOTE</h3>
+<p><strong>SAY:</strong> "We'll use all three in today's workshops - you'll see when each fits best."</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Point to the diagram showing each communication pattern</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Keep this short</li>
+<li>Visual diagrams do the heavy lifting</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Now let's talk about the tools that make this easy..."</p>
+</aside>
+
+</section>
+
+<section>
+<p>Tools for Multi-Agent Systems</p>
+<strong>Framework Options</strong>
+
+<strong>LangGraph</strong> (LangChain's multi-agent framework)
+<ul>
+<li>Graph-based agent coordination</li>
+<li>State management built-in</li>
+<li>Visual workflow design</li>
+</ul>
+
+<strong>AutoGen</strong> (Microsoft)
+<ul>
+<li>Conversation-driven</li>
+<li>Group chat between agents</li>
+<li>Easy role definition</li>
+</ul>
+
+<strong>CrewAI</strong>
+<ul>
+<li>Role-based agents</li>
+<li>Process workflows (sequential/hierarchical)</li>
+<li>Task delegation</li>
+</ul>
+
+<strong>Custom Orchestration</strong>
+<ul>
+<li>Use LangChain agents with custom coordinator</li>
+<li>Full control</li>
+<li>More code but more flexibility</li>
+</ul>
+
+<strong>Today's Choice:</strong> Custom orchestration with LangChain (most flexible for learning)
+
+<aside class="notes">
+<h2>⏱️ SLIDE 8 - Tools for Multi-Agent Systems</h2>
+<p><strong>TIMING:</strong> 3:48 PM - 3:50 PM (2 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Tools and frameworks for multi-agent systems:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "LangChain: Great for chains and agents, good tool ecosystem"</p>
+<p><strong>SAY:</strong> "LangGraph: Perfect for complex state machines and workflows"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "CrewAI: High-level abstractions, role-based agents"</p>
+<p><strong>SAY:</strong> "AutoGen: Microsoft's framework, great for conversational agents"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Or build from scratch: Sometimes simple is better for specific use cases"</p>
+
+<h3>🔧 PRACTICAL NOTE</h3>
+<p><strong>SAY:</strong> "Today we're using LangChain - it's versatile and you already know it from Session 11."</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Don't dwell too long here</li>
+<li>This is quick overview</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Time for Workshop 1! Let's build a college admission system..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 1: Admission System</h2>
+<h3>College Admission Management System - Introduction</h3>
+
+<h3>Real Problem:</h3>
+<ul>
+<li>University receives 5,000 applications during peak season</li>
+<li>Staff overwhelmed answering repetitive questions (100+ queries/day)</li>
+<li>Document verification takes 2-3 weeks per application</li>
+<li>Inconsistent eligibility evaluation across reviewers</li>
+<li>Poor student communication leads to incomplete applications</li>
+</ul>
+
+<strong>Our Solution: Multi-Agent System with File Processing</strong>
+
+<strong>Agent 1: Query Handler (Q&A Bot)</strong>
+<ul>
+<li>What it does: Answers student questions 24/7 using FAQ database and program information</li>
+<li>Example: "What is the application deadline?" → "Application deadline is November 30th, 2025"</li>
+<li>Tools: FAQ_Search, Program_Info (CS, EE, ME programs)</li>
+</ul>
+
+<strong>Agent 2: Document Processor (Data Extractor)</strong>
+<ul>
+<li>What it does: Reads and extracts structured data from unstructured text files</li>
+<li>Processes: transcript.txt (GPA, subjects, graduation year), recommendation.txt (3 key points), essay.txt (themes, writing quality, authenticity scores)</li>
+<li>Example Input: "Sarah Johnson, GPA: 3.9/4.0, Subjects: Mathematics (A+), Physics (A)..."</li>
+<li>Example Output: JSON {"gpa": "3.9", "subjects": ["Mathematics", "Physics"], "graduation_year": "2025"}</li>
+</ul>
+
+<strong>Agent 3: Eligibility Evaluator (Decision Maker)</strong>
+<ul>
+<li>What it does: Analyzes extracted data against admission criteria and calculates scores</li>
+<li>Criteria: Min GPA 3.0, Required subjects (Math, Physics), Min essay score 6/10</li>
+<li>Output: Eligible/Not Eligible, Score 0-100, Strengths, Weaknesses, Detailed reasoning</li>
+</ul>
+
+<strong>Agent 4: Communication Manager (Email Generator)</strong>
+<ul>
+<li>What it does: Generates personalized acceptance or rejection emails using Llama 3.2</li>
+<li>Includes: Decision, next steps, encouraging tone, contact information</li>
+<li>Adapts tone based on decision (congratulatory or supportive)</li>
+</ul>
+
+<strong>Architecture:</strong> Sequential pipeline - Document Processor → Eligibility Evaluator → Communication Manager (Query Handler runs independently)
+
+<aside class="notes">
+<h2>⏱️ SLIDE 9 - Workshop 1: Admission System (Introduction)</h2>
+<p><strong>TIMING:</strong> 3:50 PM - 3:52 PM (2 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Workshop 1 - we're building a real college admission management system that processes files."</p>
+
+<h3>📋 MAIN POINTS - THE PROBLEM</h3>
+<p><strong>SAY:</strong> "Picture this: A university receives 5,000 applications. Admissions officers manually handle 100+ queries per day - 'What's the deadline?' 'What documents do I need?' Same questions over and over."</p>
+<p><strong>SAY:</strong> "Then they manually read through documents: transcripts with GPAs and subjects, recommendation letters from teachers, personal essays. Extract the data. Check if GPA meets minimum 3.0. Verify they took Math and Physics. Read essays for authenticity."</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "This takes 2-3 WEEKS per application. Staff is exhausted. Students are frustrated waiting for responses."</p>
+
+<h3>📋 THE SOLUTION - FOUR SPECIALIZED AGENTS</h3>
+<p><strong>SAY:</strong> "We'll automate 80% of this with FOUR specialized agents working together:"</p>
+<p><strong>SAY:</strong> "Agent 1 - Query Handler: Like a chatbot. Student asks 'What's the deadline?' It searches the FAQ database and instantly responds 'November 30th, 2025.' Available 24/7. No human needed."</p>
+<p><strong>SAY:</strong> "Agent 2 - Document Processor: This is where it gets interesting. It READS text files - like Sarah Johnson's transcript.txt that says 'GPA: 3.9/4.0, Subjects: Mathematics A+, Physics A' - and extracts that into clean JSON data. It does the same for recommendation letters and essays. Think of it as a smart data extractor."</p>
+<p><strong>SAY:</strong> "Agent 3 - Eligibility Evaluator: Takes that extracted data and makes the decision. Is GPA above 3.0? Check. Has Math and Physics? Check. Essay score above 6/10? Check. It calculates an overall score out of 100, identifies strengths and weaknesses, and decides: eligible or not eligible."</p>
+<p><strong>SAY:</strong> "Agent 4 - Communication Manager: Generates the personalized email. If accepted: congratulatory tone with next steps. If not: encouraging tone with suggestions for improvement. All using Llama 3.2's language generation."</p>
+
+<h3>📊 HOW THEY WORK TOGETHER</h3>
+<p><strong>SAY:</strong> "The pipeline is sequential: Files come in → Document Processor extracts data → Eligibility Evaluator makes decision → Communication Manager sends email. Query Handler works independently for Q&A."</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Use hand gestures to show the pipeline flow left to right</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Use the example of Sarah Johnson's transcript throughout</li>
+<li>Emphasize that agents READ FILES - this is key</li>
+<li>Connect to real-world impact: 2-3 weeks → 2-3 days</li>
+<li>Keep energy high - this solves a REAL problem</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let me show you the system architecture diagram - how these four agents connect together..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 1: Admission System (Architecture)</h2>
+<h3>System Design Overview</h3>
+
+<pre><code class="">┌──────────────────────────────────────────────────────────┐
+<p>│                    Student Interface                      │</p>
+<p>└───────────────────┬──────────────────────────────────────┘</p>
+<p>                    │</p>
+<p>    ┌───────────────▼────────────────┐</p>
+<p>    │   Orchestrator Agent           │</p>
+<p>    │   (Route to appropriate agent) │</p>
+<p>    └───────┬────────────────────────┘</p>
+<p>            │</p>
+<p>    ┌───────┴───────┬───────────────┬──────────────┐</p>
+<p>    │               │               │              │</p>
+<p>┌───▼────┐   ┌─────▼──────┐  ┌────▼─────┐  ┌────▼────────┐</p>
+<p>│ Query  │   │  Document  │  │Eligibility│  │Communication│</p>
+<p>│Handler │   │ Processor  │  │Evaluator │  │  Manager    │</p>
+<p>└────────┘   └────────────┘  └──────────┘  └─────────────┘</p>
+<p>    │               │               │              │</p>
+<p>    └───────┬───────┴───────┬───────┴──────────────┘</p>
+<p>            │               │</p>
+<p>            ▼               ▼</p>
+<p>     [Student DB]    [Email Service]</code></pre></p>
+
+<h3>Data Flow:</h3>
+<ol>
+<li>Student submits application → Orchestrator</li>
+<li>Orchestrator → Document Processor (extract data)</li>
+<li>Document Processor → Eligibility Evaluator (scores)</li>
+<li>Evaluator → Communication Manager (send result)</li>
+<li>Anytime: Query Handler (answers questions)</li>
+</ol>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 10 - Workshop 1: Admission System (Architecture)</h2>
+<p><strong>TIMING:</strong> 3:52 PM - 3:55 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let me walk you through the architecture diagram. This shows how all four agents connect and work together."</p>
+
+<h3>📋 ARCHITECTURE WALKTHROUGH (Point to each component as you explain)</h3>
+<p><strong>SAY:</strong> "At the top: Student Interface. This is where students interact - could be a web form, chatbot, or file upload interface."</p>
+<p><strong>SAY:</strong> "Everything flows through the Orchestrator Agent in the middle. Think of it as a traffic controller or router. It receives requests and decides which agent should handle it."</p>
+<p><strong>PAUSE</strong> - point to the diagram (2 seconds)</p>
+
+<h3>📋 THE FOUR AGENTS (Point to each box)</h3>
+<p><strong>SAY:</strong> "Bottom left - Query Handler: Runs independently. When a student asks 'What's the deadline?' or 'Tell me about the CS program?' this agent handles it immediately using two tools: FAQ_Search and Program_Info. No need to wait for the pipeline."</p>
+<p><strong>SAY:</strong> "Second box - Document Processor: This is where files come in. Student uploads transcript.txt, recommendation.txt, essay.txt. This agent READS each file and extracts the important information. For transcripts: pulls out GPA, subjects, graduation year. For recommendations: summarizes key points. For essays: identifies themes and scores writing quality."</p>
+<p><strong>PAUSE</strong> - emphasize this (3 seconds)</p>
+<p><strong>SAY:</strong> "Third box - Eligibility Evaluator: Takes the extracted data from Document Processor and evaluates against criteria. Is GPA ≥ 3.0? Has Math and Physics? Essay score ≥ 6/10? Calculates overall score out of 100. Makes the decision: eligible or not eligible."</p>
+<p><strong>SAY:</strong> "Fourth box - Communication Manager: Takes the decision and generates a personalized email using Llama 3.2. If accepted: congratulatory message with next steps. If rejected: encouraging message with improvement suggestions."</p>
+
+<h3>📊 DATA FLOW EXPLANATION</h3>
+<p><strong>SAY:</strong> "The flow is SEQUENTIAL for application processing. Follow the arrows: Files come in → Document Processor extracts data → Eligibility Evaluator makes decision → Communication Manager sends email. Each step depends on the previous one."</p>
+<p><strong>SAY:</strong> "At the bottom, you see integrations: Student Database stores all data. Email Service sends the communications. These are external systems the agents connect to."</p>
+
+<h3>🔑 KEY CONCEPT</h3>
+<p><strong>EMPHASIZE:</strong> "The power here is SPECIALIZATION. Each agent has ONE job and does it well. Document Processor doesn't make decisions. Eligibility Evaluator doesn't send emails. This makes the system maintainable and testable."</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Use your mouse or pointer to trace the flow from top to bottom</p>
+<p><strong>DO:</strong> Draw attention to the sequential nature of the pipeline</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Spend most time on Document Processor - it's the most interesting</li>
+<li>Use concrete example: "Sarah's transcript goes in, JSON data comes out"</li>
+<li>Connect back to the problem: manual work vs automated pipeline</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Now let's see the actual code. Open your editor - we'll build this step by step..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 1: Admission System (Implementation Part 1)</h2>
+<h3>Building the Orchestrator</h3>
+
+<pre><code class="python">from langchain.agents import initialize_agent, AgentType
+<p>from langchain_community.llms import Ollama</p>
+<p>from langchain.tools import Tool</p>
+<p>import json</p>
+
+<p>class AdmissionOrchestrator:</p>
+<p>    def __init__(self):</p>
+<p>        self.llm = Ollama(model=&quot;llama3.2&quot;)</p>
+<p>        self.state = {}  # Shared state across agents</p>
+
+<p>        # Initialize sub-agents</p>
+<p>        self.query_handler = QueryHandlerAgent(self.llm)</p>
+<p>        self.doc_processor = DocumentProcessorAgent(self.llm)</p>
+<p>        self.eligibility_evaluator = EligibilityEvaluatorAgent(self.llm)</p>
+<p>        self.comm_manager = CommunicationManagerAgent(self.llm)</p>
+
+<p>    def route_request(self, request_type, data):</p>
+<p>        &quot;&quot;&quot;Route request to appropriate agent&quot;&quot;&quot;</p>
+<p>        if request_type == &quot;query&quot;:</p>
+<p>            return self.query_handler.handle(data)</p>
+<p>        elif request_type == &quot;application&quot;:</p>
+<p>            return self.process_application(data)</p>
+<p>        elif request_type == &quot;status&quot;:</p>
+<p>            return self.comm_manager.get_status(data)</p>
+
+<p>    def process_application(self, application_data):</p>
+<p>        &quot;&quot;&quot;Sequential pipeline for application processing&quot;&quot;&quot;</p>
+<p>        # Step 1: Process documents</p>
+<p>        print(&quot;Step 1: Processing documents...&quot;)</p>
+<p>        extracted_data = self.doc_processor.extract(</p>
+<p>            application_data[&quot;documents&quot;]</p>
+<p>        )</p>
+<p>        self.state[&quot;extracted_data&quot;] = extracted_data</p>
+
+<p>        # Step 2: Evaluate eligibility</p>
+<p>        print(&quot;Step 2: Evaluating eligibility...&quot;)</p>
+<p>        eligibility = self.eligibility_evaluator.evaluate(</p>
+<p>            extracted_data</p>
+<p>        )</p>
+<p>        self.state[&quot;eligibility&quot;] = eligibility</p>
+
+<p>        # Step 3: Send communication</p>
+<p>        print(&quot;Step 3: Sending notification...&quot;)</p>
+<p>        notification = self.comm_manager.notify(</p>
+<p>            application_data[&quot;email&quot;],</p>
+<p>            eligibility</p>
+<p>        )</p>
+
+<p>        return {</p>
+<p>            &quot;status&quot;: &quot;processed&quot;,</p>
+<p>            &quot;eligibility&quot;: eligibility,</p>
+<p>            &quot;notification_sent&quot;: True</p>
+<p>        }</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 11 - Workshop 1: Admission System (Implementation Part 1)</h2>
+<p><strong>TIMING:</strong> 3:55 PM - 4:00 PM (5 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's build the Orchestrator - the traffic controller for all agents."</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "The init method sets up LLM connection and initializes all four sub-agents"</p>
+<p><strong>SAY:</strong> "Shared state dictionary is how agents communicate"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Route_request method: simple routing based on request type (query/application/status)"</p>
+<p><strong>SAY:</strong> "Each agent is independent, testable, and reusable"</p>
+
+<h3>🔧 PRACTICAL NOTE</h3>
+<p><strong>SAY:</strong> "This is the pattern: create orchestrator, initialize agents, route requests."</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> SWITCH TO VS CODE - show the code file, don't read every line</p>
+<p><strong>⏸️ PAUSE:</strong> Let them read the code on screen for 10 seconds</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Don't read code line by line</li>
+<li>Explain WHAT it does, not HOW</li>
+<li>Point to key sections</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Now let's build each agent. First, the Query Handler..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 1: Admission System (Implementation Part 2)</h2>
+<h3>Building Sub-Agents</h3>
+
+<pre><code class="python">class QueryHandlerAgent:
+<p>    def __init__(self, llm):</p>
+<p>        self.llm = llm</p>
+<p>        # Tools for query handling</p>
+<p>        self.tools = [</p>
+<p>            Tool(</p>
+<p>                name=&quot;FAQ_Search&quot;,</p>
+<p>                func=self.search_faq,</p>
+<p>                description=&quot;Search FAQ database for admission questions&quot;</p>
+<p>            ),</p>
+<p>            Tool(</p>
+<p>                name=&quot;Program_Info&quot;,</p>
+<p>                func=self.get_program_info,</p>
+<p>                description=&quot;Get information about programs, fees, deadlines&quot;</p>
+<p>            )</p>
+<p>        ]</p>
+<p>        self.agent = initialize_agent(</p>
+<p>            self.tools,</p>
+<p>            llm,</p>
+<p>            agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,</p>
+<p>            verbose=True</p>
+<p>        )</p>
+
+<p>    def handle(self, query):</p>
+<p>        &quot;&quot;&quot;Handle student query&quot;&quot;&quot;</p>
+<p>        response = self.agent.run(query)</p>
+<p>        return response</p>
+
+<p>    def search_faq(self, query):</p>
+<p>        # Simulate FAQ search</p>
+<p>        faq_db = {</p>
+<p>            &quot;deadline&quot;: &quot;Application deadline is November 30th&quot;,</p>
+<p>            &quot;fee&quot;: &quot;Application fee is $50&quot;,</p>
+<p>            &quot;documents&quot;: &quot;Required: Transcripts, ID, Recommendation letters&quot;</p>
+<p>        }</p>
+<p>        # Simple keyword matching (in reality, use vector search)</p>
+<p>        for key, answer in faq_db.items():</p>
+<p>            if key in query.lower():</p>
+<p>                return answer</p>
+<p>        return &quot;Please contact admissions office for this query&quot;</p>
+
+<p>    def get_program_info(self, program_name):</p>
+<p>        # Simulate program database</p>
+<p>        programs = {</p>
+<p>            &quot;CS&quot;: {</p>
+<p>                &quot;name&quot;: &quot;Computer Science&quot;,</p>
+<p>                &quot;duration&quot;: &quot;4 years&quot;,</p>
+<p>                &quot;fee&quot;: &quot;$10,000/year&quot;,</p>
+<p>                &quot;requirements&quot;: &quot;Math, Physics in high school&quot;</p>
+<p>            },</p>
+<p>            &quot;EE&quot;: {</p>
+<p>                &quot;name&quot;: &quot;Electrical Engineering&quot;,</p>
+<p>                &quot;duration&quot;: &quot;4 years&quot;,</p>
+<p>                &quot;fee&quot;: &quot;$10,000/year&quot;,</p>
+<p>                &quot;requirements&quot;: &quot;Math, Physics in high school&quot;</p>
+<p>            }</p>
+<p>        }</p>
+<p>        return json.dumps(programs.get(program_name, {}))</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 12 - Workshop 1: Admission System (Implementation Part 2)</h2>
+<p><strong>TIMING:</strong> 4:00 PM - 4:03 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's build the first sub-agent: Query Handler"</p>
+<p><strong>SAY:</strong> "This answers student questions about admissions - 24/7, instantly"</p>
+
+<h3>💻 CODE WALKTHROUGH (Don't read line by line - explain concepts)</h3>
+<p><strong>SAY:</strong> "This is the Query Handler Agent - the Q&A bot. Let me explain the key parts:"</p>
+<p><strong>SAY:</strong> "It's a Python class. In __init__, we pass in the LLM (Llama 3.2) and define TWO custom tools that this agent can use."</p>
+<p><strong>PAUSE</strong> - point to the tools section (2 seconds)</p>
+<p><strong>SAY:</strong> "Tool 1: FAQ_Search. When a student asks 'What's the deadline?' this tool searches a simple FAQ database. Look at the implementation below - it's a dictionary with keywords. In production, you'd use vector search with embeddings, but for the workshop, simple keyword matching works."</p>
+<p><strong>SAY:</strong> "Tool 2: Program_Info. When asked about programs, it returns details about Computer Science, Electrical Engineering, Mechanical Engineering programs - duration, fees, requirements."</p>
+<p><strong>SAY:</strong> "The descriptions are CRITICAL. The LLM reads these descriptions and decides WHEN to use each tool. 'Search FAQ database' tells it this is for general questions. 'Get program information' tells it this is for specific program details."</p>
+<p><strong>PAUSE</strong> - emphasize (2 seconds)</p>
+<p><strong>SAY:</strong> "We use initialize_agent with ZERO_SHOT_REACT_DESCRIPTION. This is the REACT pattern from Session 11 - you already know this! The agent Reasons about what to do, Acts by calling a tool, observes the result, and repeats."</p>
+<p><strong>SAY:</strong> "The handle method is the public interface. Student asks a question, agent.run() processes it using the tools, returns the answer. Simple!"</p>
+
+<h3>💡 REAL-WORLD EXAMPLE</h3>
+<p><strong>SAY:</strong> "Imagine: Student types 'What is the application deadline?' Agent thinks: 'This is a general question, I should use FAQ_Search.' Calls search_faq('deadline'). Finds 'Application deadline is November 30th.' Returns that instantly. No human involved. 24/7 availability."</p>
+<p><strong>SAY:</strong> "Another student: 'Tell me about the CS program.' Agent thinks: 'This is about a specific program, I should use Program_Info.' Calls get_program_info('CS'). Returns: Computer Science, 4 years, $10,000/year, requires Math and Physics."</p>
+
+<h3>🤔 AUDIENCE ENGAGEMENT</h3>
+<p><strong>ASK:</strong> "This should look familiar from Session 11, right? Same tools and agent pattern!"</p>
+<p><strong>SAY:</strong> "The key difference: This is ONE agent in a MULTI-AGENT SYSTEM. It has ONE job: answer questions. It doesn't process documents, doesn't evaluate eligibility, doesn't send emails. Single responsibility principle."</p>
+<p><strong>SAY:</strong> "Benefit: Handles 100+ queries per day automatically. Admissions staff can focus on complex cases instead of answering 'What's the deadline?' for the 50th time."</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Connect to Session 11 - build confidence</li>
+<li>Point to specific line numbers as you explain</li>
+<li>Emphasize "one responsibility" principle</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Next agent is more interesting - Document Processor that extracts data from PDFs..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 1: Admission System (Implementation Part 3)</h2>
+<h3>Document Processor and Eligibility Evaluator</h3>
+
+<pre><code class="python">class DocumentProcessorAgent:
+<p>    def __init__(self, llm):</p>
+<p>        self.llm = llm</p>
+
+<p>    def extract(self, documents):</p>
+<p>        &quot;&quot;&quot;Extract information from documents&quot;&quot;&quot;</p>
+<p>        # In reality, use OCR + LLM parsing</p>
+<p>        # For demo, we&#x27;ll simulate</p>
+
+<p>        extracted = {}</p>
+
+<p>        for doc_type, doc_content in documents.items():</p>
+<p>            if doc_type == &quot;transcript&quot;:</p>
+<p>                # Use LLM to extract GPA, subjects, grades</p>
+<p>                prompt = f&quot;&quot;&quot;Extract the following from this transcript:</p>
+<ul>
+<li>GPA</li>
+<li>Subjects studied</li>
+<li>Graduation year</li>
+</ul>
+
+<p>                Transcript: {doc_content}</p>
+
+<p>                Return as JSON.&quot;&quot;&quot;</p>
+
+<p>                result = self.llm.invoke(prompt)</p>
+<p>                extracted[&quot;transcript&quot;] = result</p>
+
+<p>            elif doc_type == &quot;recommendation&quot;:</p>
+<p>                # Extract key points from recommendation letter</p>
+<p>                prompt = f&quot;&quot;&quot;Summarize this recommendation letter in 3 key points:</p>
+<p>                {doc_content}&quot;&quot;&quot;</p>
+
+<p>                result = self.llm.invoke(prompt)</p>
+<p>                extracted[&quot;recommendation&quot;] = result</p>
+
+<p>        return extracted</p>
+
+
+<p>class EligibilityEvaluatorAgent:</p>
+<p>    def __init__(self, llm):</p>
+<p>        self.llm = llm</p>
+<p>        self.criteria = {</p>
+<p>            &quot;min_gpa&quot;: 3.0,</p>
+<p>            &quot;required_subjects&quot;: [&quot;Math&quot;, &quot;Physics&quot;],</p>
+<p>            &quot;min_recommendation_score&quot;: 7</p>
+<p>        }</p>
+
+<p>    def evaluate(self, extracted_data):</p>
+<p>        &quot;&quot;&quot;Evaluate if student is eligible&quot;&quot;&quot;</p>
+<p>        # Parse extracted data</p>
+<p>        transcript = extracted_data.get(&quot;transcript&quot;, {})</p>
+
+<p>        # Use LLM to parse and score</p>
+<p>        prompt = f&quot;&quot;&quot;Based on this data, determine eligibility:</p>
+
+<p>        Criteria:</p>
+<ul>
+<li>Minimum GPA: {self.criteria[&quot;min_gpa&quot;]}</li>
+<li>Required subjects: {self.criteria[&quot;required_subjects&quot;]}</li>
+</ul>
+
+<p>        Student Data:</p>
+<p>        {json.dumps(extracted_data, indent=2)}</p>
+
+<p>        Return JSON with:</p>
+<ul>
+<li>eligible: true/false</li>
+<li>score: 0-100</li>
+<li>reasoning: explanation</li>
+</ul>
+<p>        &quot;&quot;&quot;</p>
+
+<p>        result = self.llm.invoke(prompt)</p>
+<p>        return result</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 13 - Workshop 1: Admission System (Implementation Part 3)</h2>
+<p><strong>TIMING:</strong> 4:03 PM - 4:06 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Now the interesting part - Document Processor and Eligibility Evaluator. These are the heart of the system."</p>
+
+<h3>📋 DOCUMENT PROCESSOR EXPLANATION</h3>
+<p><strong>SAY:</strong> "Document Processor reads files and extracts data. Look at the extract method - it loops through documents dictionary."</p>
+<p><strong>SAY:</strong> "For transcripts: The prompt says 'Extract GPA, subjects studied, graduation year from this transcript text.' We pass in the raw text from strong_candidate_transcript.txt: 'Student: Sarah Johnson, GPA: 3.9/4.0, Subjects: Mathematics (A+), Physics (A)...'"</p>
+<p><strong>SAY:</strong> "The LLM reads this unstructured text and returns clean JSON: {'gpa': '3.9', 'subjects': ['Mathematics', 'Physics', 'Computer Science'], 'graduation_year': '2025'}"</p>
+<p><strong>PAUSE</strong> - emphasize this (3 seconds)</p>
+<p><strong>SAY:</strong> "This is POWERFUL. Transcripts come in different formats - some from India, some from US, different layouts. The LLM handles all variations and extracts the same structured data. You don't need regex or custom parsers for each format."</p>
+<p><strong>SAY:</strong> "For recommendations: Similar approach. 'Summarize this recommendation letter in 3 key points.' Returns bullet points like 'Strong leadership', 'Excellent analytical abilities', 'Highly recommended.'"</p>
+<p><strong>SAY:</strong> "For essays: It identifies themes, scores writing quality 1-10, scores authenticity 1-10. All using Llama 3.2's language understanding."</p>
+
+<h3>📋 ELIGIBILITY EVALUATOR EXPLANATION</h3>
+<p><strong>SAY:</strong> "Now Eligibility Evaluator receives that clean JSON data. Look at the criteria dictionary: min_gpa: 3.0, required_subjects: Math and Physics."</p>
+<p><strong>SAY:</strong> "The evaluate method builds a prompt for the LLM: 'Here are the criteria. Here is Sarah's data. Is she eligible? Give me a score 0-100. Explain your reasoning.'"</p>
+<p><strong>SAY:</strong> "The LLM analyzes: GPA 3.9 > 3.0? Yes. Has Math and Physics? Yes. Essay themes authentic? Yes, shows genuine interest. Score: 92/100. Eligible: true."</p>
+<p><strong>SAY:</strong> "It also provides reasoning: 'Sarah exceeds minimum GPA requirement. She has strong grades in required subjects. Essay demonstrates authentic passion for computer science.'"</p>
+
+<h3>💡 KEY INSIGHT</h3>
+<p><strong>EMPHASIZE:</strong> "Notice how we're chaining agents. Document Processor outputs JSON → Eligibility Evaluator inputs that JSON → Makes decision. This is the sequential pipeline in action."</p>
+<p><strong>SAY:</strong> "Each agent is independent. You can test Document Processor alone. You can test Eligibility Evaluator with mock data. This makes debugging and maintenance easy."</p>
+
+<h3>🔧 PRODUCTION NOTE</h3>
+<p><strong>SAY:</strong> "In production, you'd add OCR for scanned documents using pytesseract or AWS Textract. But the LLM extraction pattern stays the same - it's incredibly robust to format variations."</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Point to the extraction prompts in the code</p>
+<p><strong>DO:</strong> Show how extracted_data flows from one agent to another</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Use Sarah Johnson's transcript as concrete example</li>
+<li>Show the before (messy text) and after (clean JSON)</li>
+<li>Emphasize the chain: extract → evaluate → decide</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Last agent: Communication Manager - generating the personalized acceptance or rejection email..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 1: Admission System (Implementation Part 4)</h2>
+<h3>Communication Manager</h3>
+
+<pre><code class="python">class CommunicationManagerAgent:
+<p>    def __init__(self, llm):</p>
+<p>        self.llm = llm</p>
+
+<p>    def notify(self, email, eligibility_result):</p>
+<p>        &quot;&quot;&quot;Send notification to student&quot;&quot;&quot;</p>
+<p>        # Generate personalized email</p>
+<p>        prompt = f&quot;&quot;&quot;Write a professional email to a student about their application:</p>
+
+<p>        Eligibility Result: {eligibility_result}</p>
+
+<p>        The email should:</p>
+<ul>
+<li>Be encouraging</li>
+<li>Explain the decision</li>
+<li>Provide next steps</li>
+<li>Be professional but friendly</li>
+</ul>
+<p>        &quot;&quot;&quot;</p>
+
+<p>        email_content = self.llm.invoke(prompt)</p>
+
+<p>        # In reality, integrate with email service</p>
+<p>        print(f&quot;Sending email to {email}:&quot;)</p>
+<p>        print(email_content)</p>
+
+<p>        return {&quot;sent&quot;: True, &quot;content&quot;: email_content}</p>
+
+<p>    def get_status(self, application_id):</p>
+<p>        &quot;&quot;&quot;Get application status&quot;&quot;&quot;</p>
+<p>        # Query database for status</p>
+<p>        # For demo, return mock status</p>
+<p>        return {</p>
+<p>            &quot;application_id&quot;: application_id,</p>
+<p>            &quot;status&quot;: &quot;Under Review&quot;,</p>
+<p>            &quot;last_updated&quot;: &quot;2025-11-20&quot;,</p>
+<p>            &quot;next_step&quot;: &quot;Eligibility evaluation&quot;</p>
+<p>        }</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 14 - Workshop 1: Admission System (Implementation Part 4)</h2>
+<p><strong>TIMING:</strong> 4:06 PM - 4:09 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Eligibility Evaluator Agent - determining if student meets requirements:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Takes extracted student data and admission criteria"</p>
+<p><strong>SAY:</strong> "LLM evaluates eligibility with reasoning"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Returns: eligible (true/false), score (0-100), reasoning text"</p>
+<p><strong>SAY:</strong> "Communication Manager then sends results to student"</p>
+
+<h3>🔧 PRACTICAL NOTE</h3>
+<p><strong>SAY:</strong> "Communication Manager uses LLM to write personalized, professional emails."</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Show the EligibilityEvaluatorAgent code and CommunicationManagerAgent code</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Keep pace up</li>
+<li>These are straightforward</li>
+<li>Focus on the pattern</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Finally: Communication Manager - sends personalized emails..."</p>
+
+<h3>💻 CODE EXPLANATION</h3>
+<p><strong>SAY:</strong> "Eligibility Evaluator code - this is the decision maker"</p>
+<p><strong>SAY:</strong> "evaluate method: Takes structured application data from Document Processor"</p>
+<p><strong>SAY:</strong> "Rules engine: Checks GPA >= 3.0, required courses completed, test scores meet threshold"</p>
+<p><strong>SAY:</strong> "Could make this sophisticated: ML model trained on past decisions, consider edge cases"</p>
+<p><strong>SAY:</strong> "Returns: Dictionary with 'eligible': True/False, 'reasons': explanation, 'confidence': score"</p>
+<p><strong>SAY:</strong> "Notice: Transparent. Not just yes/no, but WHY. Critical for fairness and appeals"</p>
+<p><strong>SAY:</strong> "In production: Add human-in-loop for borderline cases. Agent recommends, human approves"</p>
+<p><strong>SAY:</strong> "Now let's see it all work together! Time for the demo..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 1: Admission System (Live Demo)</h2>
+<h3>Running the Complete System</h3>
+
+<pre><code class="python"># Initialize system
+<p>system = AdmissionOrchestrator()</p>
+
+<p># Scenario 1: Student asks a question</p>
+<p>print(&quot;=== Scenario 1: Query Handling ===&quot;)</p>
+<p>query = &quot;What is the application deadline?&quot;</p>
+<p>response = system.route_request(&quot;query&quot;, query)</p>
+<p>print(f&quot;Response: {response}\n&quot;)</p>
+
+<p># Scenario 2: Student submits application</p>
+<p>print(&quot;=== Scenario 2: Application Processing ===&quot;)</p>
+<p>application = {</p>
+<p>    &quot;email&quot;: &quot;student@example.com&quot;,</p>
+<p>    &quot;documents&quot;: {</p>
+<p>        &quot;transcript&quot;: &quot;GPA: 3.5, Subjects: Math, Physics, Chemistry, CS&quot;,</p>
+<p>        &quot;recommendation&quot;: &quot;Excellent student, highly motivated...&quot;</p>
+<p>    }</p>
+<p>}</p>
+
+<p>result = system.route_request(&quot;application&quot;, application)</p>
+<p>print(f&quot;Result: {json.dumps(result, indent=2)}\n&quot;)</p>
+
+<p># Scenario 3: Check status</p>
+<p>print(&quot;=== Scenario 3: Status Check ===&quot;)</p>
+<p>status = system.route_request(&quot;status&quot;, &quot;APP12345&quot;)</p>
+<p>print(f&quot;Status: {json.dumps(status, indent=2)}&quot;)</code></pre></p>
+
+<h3>Expected Output:</h3>
+<pre><code class="">=== Scenario 1: Query Handling ===
+<p>Step 1: Using FAQ_Search tool</p>
+<p>Response: Application deadline is November 30th</p>
+
+<p>=== Scenario 2: Application Processing ===</p>
+<p>Step 1: Processing documents...</p>
+<p>Step 2: Evaluating eligibility...</p>
+<p>Step 3: Sending notification...</p>
+<p>Result: {</p>
+<p>  &quot;status&quot;: &quot;processed&quot;,</p>
+<p>  &quot;eligibility&quot;: {</p>
+<p>    &quot;eligible&quot;: true,</p>
+<p>    &quot;score&quot;: 85,</p>
+<p>    &quot;reasoning&quot;: &quot;Strong GPA and good recommendations&quot;</p>
+<p>  },</p>
+<p>  &quot;notification_sent&quot;: true</p>
+<p>}</p>
+
+<p>=== Scenario 3: Status Check ===</p>
+<p>Status: {</p>
+<p>  &quot;application_id&quot;: &quot;APP12345&quot;,</p>
+<p>  &quot;status&quot;: &quot;Under Review&quot;,</p>
+<p>  &quot;last_updated&quot;: &quot;2025-11-20&quot;</p>
+<p>}</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 15 - Workshop 1: Admission System (Live Demo)</h2>
+<p><strong>TIMING:</strong> 4:09 PM - 4:12 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Let's run the complete system!"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Scenario 1: Student asks 'What is the application deadline?'"</p>
+<p><strong>SAY:</strong> "Scenario 2: Student submits application with documents"</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> RUN THE CODE - show the output in terminal</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Enthusiastic</li>
+<li>This is the payoff moment</li>
+<li>Show real output</li>
+</ul>
+
+<h3>⭐ KEY HIGHLIGHT</h3>
+<p><strong>EMPHASIZE:</strong> "The system processed the application in SECONDS. In production, this handles 1000s per day."</p>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Now YOUR TURN. You have 10 minutes..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 1: Admission System (Your Turn!)</h2>
+<h3>Exercise: Extend the System</h3>
+
+<strong>Challenge:</strong> Add a new agent to the system
+
+<strong>Option 1: Interview Scheduler Agent</strong>
+<ul>
+<li>Schedule video interviews with eligible candidates</li>
+<li>Check calendar availability</li>
+<li>Send meeting invites</li>
+</ul>
+
+<strong>Option 2: Document Verification Agent</strong>
+<ul>
+<li>Verify authenticity of documents</li>
+<li>Check for plagiarism in essays</li>
+<li>Flag suspicious documents</li>
+</ul>
+
+<strong>Option 3: Fee Payment Agent</strong>
+<ul>
+<li>Process application fees</li>
+<li>Integrate with payment gateway</li>
+<li>Send receipts</li>
+</ul>
+
+<strong>Time: 15 minutes</strong>
+
+<h3>Steps:</h3>
+<ol>
+<li>Create new agent class</li>
+<li>Add tools needed for that agent</li>
+<li>Integrate with orchestrator</li>
+<li>Test with sample data</li>
+</ol>
+
+<strong>Starter code provided in repository</strong>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 16 - Workshop 1: Admission System (Your Turn!)</h2>
+<p><strong>TIMING:</strong> 4:12 PM - 4:22 PM (10 minutes - mostly student work time)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Your task: Add a new agent to this system."</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Option 1: Interview Scheduler - schedules interviews with eligible candidates"</p>
+<p><strong>SAY:</strong> "Option 2: Document Verification - checks document authenticity"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Option 3: Fee Payment Processor - handles application fees"</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Give 10 minutes - walk around virtually, answer questions in chat</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Set timer visible</li>
+<li>Encourage in chat</li>
+<li>Answer questions as they come</li>
+</ul>
+
+<h3>📝 INSTRUCTIONS FOR PARTICIPANTS</h3>
+<p>Follow the same pattern: create agent class, add tools, integrate with orchestrator.</p>
+
+<h3>🏁 CLOSING</h3>
+<p><strong>SAY:</strong> "Time's up! Who wants to share what they built? (Take 1-2 people, 2 minutes each)"</p>
+<p><strong>PRAISE:</strong> "Excellent work! You see how modular this is? Production-quality architecture."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 2: Learning Path System</h2>
+<h3>Personalized Learning Path Generator - Introduction</h3>
+
+<h3>Real Problem:</h3>
+<ul>
+<li>Students overwhelmed by thousands of online courses - which ones to take?</li>
+<li>Generic "learn Python" roadmaps don't consider individual backgrounds</li>
+<li>60% dropout rate because courses are too hard OR too easy</li>
+<li>No way to accurately assess current skill level before starting</li>
+<li>Students lose motivation without personalized guidance and adaptation</li>
+</ul>
+
+<strong>Our Solution: AI-Powered Personal Learning Coach (Reads JSON Student Profiles)</strong>
+
+<h3>Multi-Agent System with Feedback Loops:</h3>
+
+<strong>Agent 1: Skills Assessment Agent (Evaluates Current Level)</strong>
+<ul>
+<li>What it does: Reads JSON student profile with skill scores (python: 7, algorithms: 6, machine_learning: 3)</li>
+<li>Analyzes ratings 0-10 for each skill dimension</li>
+<li>Determines overall level: beginner (0-3), intermediate (4-6), advanced (7-10)</li>
+<li>Example Input: Priya Sharma - Python: 7, ML: 3, Goal: "Become Machine Learning Engineer"</li>
+<li>Example Output: "Intermediate level, strong programming foundation, needs ML fundamentals"</li>
+</ul>
+
+<strong>Agent 2: Learning Path Planner (Creates 6-Month Roadmap)</strong>
+<ul>
+<li>What it does: Uses Llama 3.2 to create intelligent learning progression based on goal</li>
+<li>If goal = "Machine Learning Engineer" → Path: Python+Data (Month 1) → Math (Month 2) → ML (Month 3) → DL (Month 4) → Advanced DL (Month 5) → MLOps (Month 6)</li>
+<li>Personalizes using hours_per_week: 10 hrs/week × 4 weeks × 6 months = 240 total hours</li>
+<li>Output: Structured 6-month plan with topics, milestones, skills gained per month</li>
+</ul>
+
+<strong>Agent 3: Content Recommender (Daily Study Plans)</strong>
+<ul>
+<li>What it does: Generates personalized daily plans using Llama 3.2</li>
+<li>Adapts to learning_style from JSON: "visual" → more videos, "hands-on" → more coding, "reading" → more docs</li>
+<li>Daily plan structure (2 hours): Video tutorial (30-40 min) + Reading (20-30 min) + Practice (60-70 min)</li>
+<li>Example: Today - Watch "Python OOP" video, Read NumPy docs, Build data analysis class</li>
+</ul>
+
+<strong>Agent 4: Progress Monitor (Tracks and Adapts)</strong>
+<ul>
+<li>What it does: Tracks completed activities with scores and time spent</li>
+<li>Evaluates: on_track, behind, ahead, struggling (uses Llama 3.2 for intelligent evaluation)</li>
+<li>Adapts plan: If behind → slow down pace. If ahead → add advanced content</li>
+<li>Example: "2/3 activities done, 90% average score → Status: on_track, keep going!"</li>
+</ul>
+
+<strong>Architecture:</strong> Sequential with Feedback Loop - Assessment → Planning → Content Recommendation → Progress Monitoring → [Adapts back to Planning if needed]
+
+<aside class="notes">
+<h2>⏱️ SLIDE 17 - Workshop 2: Learning Path System (Introduction)</h2>
+<p><strong>TIMING:</strong> 4:22 PM - 4:24 PM (2 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Workshop 2 is even MORE exciting - we're building an AI-powered personal learning coach that creates customized 6-month learning paths."</p>
+
+<h3>📋 THE PROBLEM (Paint the picture)</h3>
+<p><strong>SAY:</strong> "Imagine you're a software developer named Priya. You want to become a Machine Learning Engineer. You open Coursera - there are 1,000+ courses. Where do you start? Which path makes sense?"</p>
+<p><strong>SAY:</strong> "Generic advice says 'Learn Python, then ML, then Deep Learning.' But Priya ALREADY knows Python at level 7 out of 10. She'll be bored in beginner Python courses. But she only knows ML at level 3 - she'll be lost in advanced courses."</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Result: 60% of students drop out. They pick the wrong path, get frustrated, and quit. What a waste!"</p>
+
+<h3>📋 THE SOLUTION - FOUR INTELLIGENT AGENTS</h3>
+<p><strong>SAY:</strong> "Our system reads a JSON profile for each student. Let me show you what each agent does:"</p>
+<p><strong>SAY:</strong> "Agent 1 - Skills Assessment: Reads Priya's JSON profile. It sees 'python: 7, algorithms: 6, machine_learning: 3, deep_learning: 2.' It analyzes: 'Intermediate level overall. Strong programming, weak in ML theory.' This becomes the foundation."</p>
+<p><strong>SAY:</strong> "Agent 2 - Learning Path Planner: Reads Priya's goal: 'Become Machine Learning Engineer.' It also sees she has 10 hours per week for 6 months. Using Llama 3.2, it creates an intelligent progression: Month 1 - strengthen Python with data libraries. Month 2 - learn the math (linear algebra, calculus). Month 3 - ML fundamentals. Month 4 - Deep Learning basics. Month 5 - Advanced DL. Month 6 - MLOps and deployment. Logical progression!"</p>
+<p><strong>SAY:</strong> "Agent 3 - Content Recommender: Every day, Priya needs to know: 'What should I study today?' This agent reads her learning_style from the JSON - she's 'hands-on.' So it generates a 2-hour daily plan: 35 min video, 25 min reading, 60 min coding practice. Heavy on the practice because that's her style!"</p>
+<p><strong>SAY:</strong> "Agent 4 - Progress Monitor: This is THE MAGIC. It tracks what Priya completes. After 2 weeks, if she's behind schedule, it tells the Planner: 'Slow down, she's struggling.' If she's ahead, it says: 'Add more advanced content.' The system ADAPTS to her."</p>
+
+<h3>🔑 KEY CONCEPT - THE FEEDBACK LOOP</h3>
+<p><strong>EMPHASIZE:</strong> "Unlike Workshop 1 which was purely sequential, THIS system has a FEEDBACK LOOP. Progress Monitor feeds back to Planner which adjusts the path. It's like having a personal tutor who watches your progress and adapts the curriculum in real-time."</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Use hand gestures to show circular feedback flow</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Use Priya Sharma as your running example throughout Workshop 2</li>
+<li>Emphasize the JSON file input - concrete and real</li>
+<li>High energy - this is genuinely exciting technology</li>
+<li>Connect to personal experience: "How many of you have quit an online course?"</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let me show you the architecture diagram with that feedback loop..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 2: Learning Path System (Architecture)</h2>
+<h3>System Design Overview</h3>
+
+<pre><code class="">┌─────────────────────────────────────┐
+<p>│        Student Onboarding           │</p>
+<p>└──────────────┬──────────────────────┘</p>
+<p>               │</p>
+<p>    ┌──────────▼─────────────┐</p>
+<p>    │ Skills Assessment Agent │</p>
+<p>    │ (Tests current level)   │</p>
+<p>    └──────────┬─────────────┘</p>
+<p>               │</p>
+<p>    ┌──────────▼──────────────┐</p>
+<p>    │ Learning Path Planner   │</p>
+<p>    │ (Creates roadmap)       │</p>
+<p>    └──────────┬──────────────┘</p>
+<p>               │</p>
+<p>    ┌──────────▼──────────────┐</p>
+<p>    │ Content Recommender     │</p>
+<p>    │ (Daily study plan)      │</p>
+<p>    └──────────┬──────────────┘</p>
+<p>               │</p>
+<p>         [Student Studies]</p>
+<p>               │</p>
+<p>    ┌──────────▼──────────────┐</p>
+<p>    │ Progress Monitor        │</p>
+<p>    │ (Adapts plan)           │</p>
+<p>    └─────────────────────────┘</code></pre></p>
+
+<strong>Flow:</strong> Sequential with feedback loops
+
+<aside class="notes">
+<h2>⏱️ SLIDE 18 - Workshop 2: Learning Path System (Architecture)</h2>
+<p><strong>TIMING:</strong> 4:24 PM - 4:27 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Here's the architecture - notice the VERTICAL flow and the feedback loop at the bottom. Very different from Workshop 1."</p>
+
+<h3>📋 ARCHITECTURE WALKTHROUGH (Point to diagram top to bottom)</h3>
+<p><strong>SAY:</strong> "Top: Student Onboarding. Priya fills out a profile or we load her JSON file: name, goal, current skills, hours per week, learning style."</p>
+<p><strong>SAY:</strong> "First box: Skills Assessment Agent. Reads the JSON profile, analyzes the skill scores. Priya has python:7, algorithms:6, ML:3. Agent determines: 'Intermediate level overall, strong foundation, ready for structured learning.'"</p>
+<p><strong>PAUSE</strong> - point to next box (2 seconds)</p>
+<p><strong>SAY:</strong> "Second box: Learning Path Planner. Takes the assessment AND Priya's goal 'Become ML Engineer.' Uses Llama 3.2 to create intelligent 6-month roadmap. Month 1: Advanced Python + Data Libraries. Month 2: Math Foundations. Month 3: Machine Learning Basics. And so on. Logical progression that builds on her current level."</p>
+<p><strong>SAY:</strong> "Third box: Content Recommender. Now that we have the roadmap, what should Priya study TODAY? This agent reads her learning_style: 'hands-on.' Generates daily plan: 35 min video, 25 min reading, 60 min coding. Heavy on practice because she's hands-on."</p>
+<p><strong>PAUSE</strong> - emphasize this (3 seconds)</p>
+<p><strong>SAY:</strong> "Middle: Student Studies. Priya actually does the work. Watches videos, reads articles, codes projects."</p>
+<p><strong>SAY:</strong> "Bottom box: Progress Monitor. This tracks everything Priya completes. 'OOP Module completed, score 90, time 5 hours. NumPy Project completed, score 85, time 8 hours.' It evaluates: Is she on track? Behind? Ahead?"</p>
+
+<h3>🔑 KEY CONCEPT - THE FEEDBACK LOOP</h3>
+<p><strong>EMPHASIZE:</strong> "Here's the MAGIC - see the feedback arrow from Progress Monitor back to the top? If Priya is behind, Progress Monitor tells the system: 'Slow down, simplify the plan.' If she's ahead: 'Add more advanced content.' The Learning Path Planner ADJUSTS the roadmap. This is a LIVING, ADAPTING system."</p>
+<p><strong>SAY:</strong> "Compare to Workshop 1: That was a one-way pipeline. Document → Evaluate → Email. Done. THIS system is continuous. It keeps monitoring, keeps adapting. That's why it's called Sequential WITH FEEDBACK LOOPS."</p>
+
+<h3>📊 REAL-WORLD ANALOGY</h3>
+<p><strong>SAY:</strong> "Think of it like a personal trainer. They assess your fitness (Skills Assessment), create a workout plan (Learning Path Planner), give you daily exercises (Content Recommender), watch your progress (Progress Monitor), and adjust the plan if you're struggling or crushing it. Same concept!"</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Trace the flow with your mouse from top to bottom</p>
+<p><strong>DO:</strong> Draw special attention to the feedback loop arrow</p>
+<p><strong>DO:</strong> Use circular hand gesture for the feedback concept</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Keep using Priya Sharma example - consistency builds understanding</li>
+<li>Emphasize feedback loop MULTIPLE times - it's the key differentiator</li>
+<li>Connect to personal experience: "Like a coach who adapts based on your performance"</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Now let's build it! Open VS Code - we'll code each agent..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 2: Learning Path System (Implementation Part 1)</h2>
+<h3>Skills Assessment Agent</h3>
+
+<pre><code class="python">class SkillsAssessmentAgent:
+<p>    def __init__(self, llm):</p>
+<p>        self.llm = llm</p>
+<p>        self.tools = [</p>
+<p>            Tool(</p>
+<p>                name=&quot;CodeChallenge&quot;,</p>
+<p>                func=self.run_code_challenge,</p>
+<p>                description=&quot;Run coding challenge to assess programming skills&quot;</p>
+<p>            ),</p>
+<p>            Tool(</p>
+<p>                name=&quot;ConceptQuiz&quot;,</p>
+<p>                func=self.run_concept_quiz,</p>
+<p>                description=&quot;Quiz on theoretical concepts&quot;</p>
+<p>            )</p>
+<p>        ]</p>
+<p>        self.agent = initialize_agent(</p>
+<p>            self.tools,</p>
+<p>            llm,</p>
+<p>            agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,</p>
+<p>            verbose=True</p>
+<p>        )</p>
+
+<p>    def assess(self, student_profile):</p>
+<p>        &quot;&quot;&quot;Assess student&#x27;s current skills&quot;&quot;&quot;</p>
+<p>        prompt = f&quot;&quot;&quot;Assess this student&#x27;s skills:</p>
+
+<p>        Profile: {json.dumps(student_profile, indent=2)}</p>
+
+<p>        Create an assessment plan:</p>
+<ol>
+<li>Which programming languages to test?</li>
+<li>What difficulty level?</li>
+<li>Which concepts to quiz on?</li>
+</ol>
+
+<p>        Then execute the assessment and return skill matrix.</p>
+<p>        &quot;&quot;&quot;</p>
+
+<p>        assessment_result = self.agent.run(prompt)</p>
+<p>        return self.parse_assessment(assessment_result)</p>
+
+<p>    def run_code_challenge(self, difficulty):</p>
+<p>        &quot;&quot;&quot;Run a coding challenge&quot;&quot;&quot;</p>
+<p>        challenges = {</p>
+<p>            &quot;beginner&quot;: {</p>
+<p>                &quot;problem&quot;: &quot;Write a function to find the largest number in a list&quot;,</p>
+<p>                &quot;test_cases&quot;: [[1,5,3,9,2], [10,20,5,30]]</p>
+<p>            },</p>
+<p>            &quot;intermediate&quot;: {</p>
+<p>                &quot;problem&quot;: &quot;Implement binary search&quot;,</p>
+<p>                &quot;test_cases&quot;: [[1,3,5,7,9], 5]</p>
+<p>            }</p>
+<p>        }</p>
+
+<p>        challenge = challenges.get(difficulty, challenges[&quot;beginner&quot;])</p>
+
+<p>        # In reality, execute student&#x27;s code safely</p>
+<p>        # For demo, simulate score</p>
+<p>        return {</p>
+<p>            &quot;problem&quot;: challenge[&quot;problem&quot;],</p>
+<p>            &quot;score&quot;: 75,</p>
+<p>            &quot;time_taken&quot;: &quot;15 minutes&quot;</p>
+<p>        }</p>
+
+<p>    def run_concept_quiz(self, topic):</p>
+<p>        &quot;&quot;&quot;Run concept quiz&quot;&quot;&quot;</p>
+<p>        # Generate quiz using LLM</p>
+<p>        prompt = f&quot;&quot;&quot;Generate 3 multiple choice questions on {topic}.</p>
+<p>        Format as JSON with questions, options, and correct answers.&quot;&quot;&quot;</p>
+
+<p>        quiz = self.llm.invoke(prompt)</p>
+
+<p>        # In reality, present to student and grade</p>
+<p>        # For demo, return mock score</p>
+<p>        return {</p>
+<p>            &quot;topic&quot;: topic,</p>
+<p>            &quot;score&quot;: 80,</p>
+<p>            &quot;strengths&quot;: [&quot;Understands basics well&quot;],</p>
+<p>            &quot;weaknesses&quot;: [&quot;Needs work on advanced topics&quot;]</p>
+<p>        }</p>
+
+<p>    def parse_assessment(self, result):</p>
+<p>        &quot;&quot;&quot;Parse assessment into skill matrix&quot;&quot;&quot;</p>
+<p>        return {</p>
+<p>            &quot;python&quot;: 7,  # out of 10</p>
+<p>            &quot;algorithms&quot;: 6,</p>
+<p>            &quot;data_structures&quot;: 5,</p>
+<p>            &quot;ml_basics&quot;: 3,</p>
+<p>            &quot;overall_level&quot;: &quot;intermediate&quot;</p>
+<p>        }</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 19 - Workshop 2: Learning Path System (Implementation Part 1)</h2>
+<p><strong>TIMING:</strong> 4:27 PM - 4:31 PM (4 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "First agent in Workshop 2: Skills Assessment. This figures out what Priya already knows before creating her learning path."</p>
+
+<h3>📋 HOW IT WORKS - READING THE JSON PROFILE</h3>
+<p><strong>SAY:</strong> "In the real interactive version, this agent reads Priya's JSON file: intermediate_student.json. It contains her current skill ratings."</p>
+<p><strong>SAY:</strong> "Look at the data structure: 'python': 7 out of 10, 'algorithms': 6, 'data_structures': 6, 'machine_learning': 3, 'deep_learning': 2, 'mathematics': 6."</p>
+<p><strong>SAY:</strong> "The assess method reads this profile and creates an assessment plan. The prompt says: 'Based on these skill ratings, determine the student's overall level and readiness for learning.'"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+
+<h3>📋 THE TOOLS (For more detailed assessment)</h3>
+<p><strong>SAY:</strong> "This agent has TWO tools for deeper assessment if needed:"</p>
+<p><strong>SAY:</strong> "Tool 1: CodeChallenge - Can run actual coding challenges. 'Write a function to find largest number' for beginners. 'Implement binary search' for intermediate. Returns score and time taken."</p>
+<p><strong>SAY:</strong> "Tool 2: ConceptQuiz - Generates multiple choice questions on topics using the LLM. Tests theoretical understanding. Returns score, strengths, weaknesses."</p>
+<p><strong>SAY:</strong> "In our workshop, we're using the pre-rated JSON profiles. But in production, these tools would run real assessments and generate the ratings dynamically."</p>
+
+<h3>📋 THE OUTPUT</h3>
+<p><strong>SAY:</strong> "The parse_assessment method returns a skill matrix: Each skill rated 0-10. Plus an overall_level: 'beginner' (0-3), 'intermediate' (4-6), or 'advanced' (7-10)."</p>
+<p><strong>SAY:</strong> "For Priya: Python 7, algorithms 6 → Overall: 'intermediate'. Assessment summary: 'Current skill level: Intermediate. Strong programming foundation. Ready for structured ML learning path.'"</p>
+
+<h3>💡 KEY CONCEPT</h3>
+<p><strong>EMPHASIZE:</strong> "This assessment becomes the FOUNDATION for everything else. The Learning Path Planner will use these ratings to decide where to start, what to skip, what to emphasize."</p>
+<p><strong>SAY:</strong> "If Priya had Python: 3, we'd start with Python basics. But she has Python: 7, so we skip basics and go to advanced Python + data libraries. Personalization!"</p>
+
+<h3>🔧 PRODUCTION NOTE</h3>
+<p><strong>SAY:</strong> "In production, you'd safely execute student code in a sandboxed environment using Docker containers. Grade it automatically. Provide instant feedback. The pattern shown here is production-ready."</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Show the JSON profile file on screen - make it concrete</p>
+<p><strong>DO:</strong> Highlight the assess method and how it processes the profile</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Keep using Priya as your example</li>
+<li>Show the actual JSON data - numbers make it real</li>
+<li>Connect to the next step: "These ratings determine the learning path"</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Now that we know Priya is intermediate level with Python 7 and ML 3, how do we create her 6-month learning path? That's the Learning Path Planner..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 2: Learning Path System (Implementation Part 2)</h2>
+<h3>Learning Path Planner</h3>
+
+<pre><code class="python">class LearningPathPlanner:
+<p>    def __init__(self, llm):</p>
+<p>        self.llm = llm</p>
+
+<p>    def create_path(self, skills_matrix, goal, time_available):</p>
+<p>        &quot;&quot;&quot;Create personalized learning path&quot;&quot;&quot;</p>
+
+<p>        prompt = f&quot;&quot;&quot;Create a detailed learning path:</p>
+
+<p>        Current Skills:</p>
+<p>        {json.dumps(skills_matrix, indent=2)}</p>
+
+<p>        Goal: {goal}</p>
+<p>        Time Available: {time_available} hours/week</p>
+
+<p>        Create a 6-month roadmap with:</p>
+<ol>
+<li>Month-by-month breakdown</li>
+<li>Specific topics to learn</li>
+<li>Estimated hours per topic</li>
+<li>Prerequisites clearly marked</li>
+<li>Milestones to achieve</li>
+</ol>
+
+<p>        Format as structured JSON.</p>
+<p>        &quot;&quot;&quot;</p>
+
+<p>        path = self.llm.invoke(prompt)</p>
+<p>        return self.structure_path(path)</p>
+
+<p>    def structure_path(self, raw_path):</p>
+<p>        &quot;&quot;&quot;Structure the learning path&quot;&quot;&quot;</p>
+<p>        # Parse LLM output into structured format</p>
+<p>        # For demo, return mock structured path</p>
+<p>        return {</p>
+<p>            &quot;duration&quot;: &quot;6 months&quot;,</p>
+<p>            &quot;total_hours&quot;: 240,</p>
+<p>            &quot;months&quot;: [</p>
+<p>                {</p>
+<p>                    &quot;month&quot;: 1,</p>
+<p>                    &quot;focus&quot;: &quot;Advanced Python + NumPy&quot;,</p>
+<p>                    &quot;topics&quot;: [</p>
+<p>                        &quot;Object-oriented programming&quot;,</p>
+<p>                        &quot;NumPy arrays and operations&quot;,</p>
+<p>                        &quot;Pandas basics&quot;</p>
+<p>                    ],</p>
+<p>                    &quot;hours&quot;: 40,</p>
+<p>                    &quot;milestone&quot;: &quot;Complete 3 Python projects&quot;</p>
+<p>                },</p>
+<p>                {</p>
+<p>                    &quot;month&quot;: 2,</p>
+<p>                    &quot;focus&quot;: &quot;Math Foundations&quot;,</p>
+<p>                    &quot;topics&quot;: [</p>
+<p>                        &quot;Linear Algebra&quot;,</p>
+<p>                        &quot;Calculus basics&quot;,</p>
+<p>                        &quot;Probability&quot;</p>
+<p>                    ],</p>
+<p>                    &quot;hours&quot;: 40,</p>
+<p>                    &quot;milestone&quot;: &quot;Pass math quiz with 80%&quot;</p>
+<p>                },</p>
+<p>                # ... more months</p>
+<p>            ],</p>
+<p>            &quot;final_project&quot;: &quot;Build end-to-end ML pipeline&quot;</p>
+<p>        }</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 20 - Workshop 2: Learning Path System (Implementation Part 2)</h2>
+<p><strong>TIMING:</strong> 4:31 PM - 4:34 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Learning Path Planner - this is where the INTELLIGENCE happens. Creating a personalized 6-month roadmap."</p>
+
+<h3>📋 THE INPUTS</h3>
+<p><strong>SAY:</strong> "Look at the create_path method. It takes THREE inputs:"</p>
+<p><strong>SAY:</strong> "1. skills_matrix from Skills Assessment: Priya's ratings - Python 7, ML 3, etc."</p>
+<p><strong>SAY:</strong> "2. goal from her JSON profile: 'Become Machine Learning Engineer'"</p>
+<p><strong>SAY:</strong> "3. time_available from JSON: 10 hours per week"</p>
+
+<h3>📋 THE LLM MAGIC</h3>
+<p><strong>SAY:</strong> "The prompt is DETAILED. It says: 'Create a 6-month roadmap with month-by-month breakdown, specific topics, estimated hours, prerequisites clearly marked, milestones to achieve.'"</p>
+<p><strong>SAY:</strong> "Llama 3.2 reads Priya's current skills and goal. It REASONS: 'She knows Python at level 7 - good foundation. She knows ML at level 3 - needs work. Goal is ML Engineer. Logical path: Strengthen Python with data libraries → Learn math foundations → ML basics → Deep Learning → Advanced topics → MLOps.'"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "The LLM knows the logical progression. You can't learn Deep Learning without Machine Learning basics. You can't learn ML without math foundations. You can't apply ML without knowing NumPy and Pandas. It creates a DEPENDENCY-AWARE learning path."</p>
+
+<h3>📋 THE OUTPUT STRUCTURE</h3>
+<p><strong>SAY:</strong> "Look at the structure_path method output. It's beautifully organized:"</p>
+<p><strong>SAY:</strong> "Total duration: 6 months. Total hours: 240 (10 hrs/week × 4 weeks × 6 months). Then a months array with details for each month."</p>
+<p><strong>SAY:</strong> "Month 1: Focus 'Advanced Python + NumPy'. Topics: OOP, decorators, NumPy arrays, Pandas basics. Hours: 40. Milestone: 'Complete 3 Python projects.' Skills gained: OOP, NumPy, Pandas."</p>
+<p><strong>SAY:</strong> "Month 2: Focus 'Math Foundations'. Topics: Linear Algebra, Calculus, Probability. Hours: 40. Milestone: 'Pass math quiz with 80%.' Why month 2? Because you need math BEFORE starting ML!"</p>
+<p><strong>SAY:</strong> "Months 3-6 progressively build: ML basics → Deep Learning → Advanced DL → MLOps. Each month builds on the previous."</p>
+
+<h3>💡 KEY CONCEPT - PERSONALIZATION</h3>
+<p><strong>EMPHASIZE:</strong> "This is PERSONALIZED. If Priya had Python: 3, Month 1 would be 'Python Basics - variables, loops, functions.' But she has Python: 7, so Month 1 is 'Advanced Python + Data Libraries.' The plan adjusts to HER level."</p>
+<p><strong>SAY:</strong> "If she said 'I have 20 hours per week', the system would compress the 6-month plan into 3 months or add more advanced topics. If she said '5 hours per week', it would extend to 12 months. Dynamic!"</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Show the month-by-month breakdown on screen</p>
+<p><strong>DO:</strong> Highlight how each month logically builds on the previous</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Emphasize the REASONING - the LLM understands dependencies</li>
+<li>Use concrete example: "Can't learn DL before ML"</li>
+<li>Show how it adapts to Priya's level</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Okay, we have a 6-month roadmap. But every day, Priya wakes up and asks: 'What should I study TODAY?' That's where Content Recommender comes in..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 2: Learning Path System (Implementation Part 3)</h2>
+<h3>Content Recommender and Progress Monitor</h3>
+
+<pre><code class="python">class ContentRecommender:
+<p>    def __init__(self, llm):</p>
+<p>        self.llm = llm</p>
+
+<p>    def recommend_daily_content(self, current_month_plan, learning_style):</p>
+<p>        &quot;&quot;&quot;Recommend specific content for today&quot;&quot;&quot;</p>
+
+<p>        prompt = f&quot;&quot;&quot;Recommend learning resources for today:</p>
+
+<p>        Current focus: {current_month_plan[&quot;focus&quot;]}</p>
+<p>        Topics: {current_month_plan[&quot;topics&quot;]}</p>
+<p>        Learning style: {learning_style}</p>
+
+<p>        Recommend:</p>
+<ol>
+<li>One video (with link)</li>
+<li>One article/blog</li>
+<li>One hands-on exercise</li>
+<li>Total study time: 2 hours</li>
+</ol>
+
+<p>        Prioritize based on learning style.</p>
+<p>        &quot;&quot;&quot;</p>
+
+<p>        recommendations = self.llm.invoke(prompt)</p>
+<p>        return recommendations</p>
+
+
+<p>class ProgressMonitor:</p>
+<p>    def __init__(self, llm):</p>
+<p>        self.llm = llm</p>
+<p>        self.student_progress = {}</p>
+
+<p>    def track_completion(self, student_id, completed_item):</p>
+<p>        &quot;&quot;&quot;Track what student completed&quot;&quot;&quot;</p>
+<p>        if student_id not in self.student_progress:</p>
+<p>            self.student_progress[student_id] = []</p>
+
+<p>        self.student_progress[student_id].append(completed_item)</p>
+
+<p>    def evaluate_progress(self, student_id, original_plan):</p>
+<p>        &quot;&quot;&quot;Evaluate if student is on track&quot;&quot;&quot;</p>
+<p>        progress = self.student_progress.get(student_id, [])</p>
+
+<p>        prompt = f&quot;&quot;&quot;Evaluate student progress:</p>
+
+<p>        Original Plan: {json.dumps(original_plan, indent=2)}</p>
+
+<p>        Completed So Far: {json.dumps(progress, indent=2)}</p>
+
+<p>        Determine:</p>
+<ol>
+<li>Is student on track? (Yes/No/Behind/Ahead)</li>
+<li>Should we adjust the plan?</li>
+<li>What encouragement/feedback to provide?</li>
+<li>Any red flags?</li>
+</ol>
+
+<p>        Return as JSON.</p>
+<p>        &quot;&quot;&quot;</p>
+
+<p>        evaluation = self.llm.invoke(prompt)</p>
+<p>        return evaluation</p>
+
+<p>    def adapt_plan(self, current_plan, evaluation):</p>
+<p>        &quot;&quot;&quot;Adapt plan based on progress&quot;&quot;&quot;</p>
+<p>        if &quot;behind&quot; in evaluation.lower():</p>
+<p>            # Simplify or extend timeline</p>
+<p>            return self.simplify_plan(current_plan)</p>
+<p>        elif &quot;ahead&quot; in evaluation.lower():</p>
+<p>            # Add more advanced content</p>
+<p>            return self.accelerate_plan(current_plan)</p>
+<p>        else:</p>
+<p>            return current_plan</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 21 - Workshop 2: Learning Path System (Implementation Part 3)</h2>
+<p><strong>TIMING:</strong> 4:34 PM - 4:37 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Two final agents: Content Recommender for daily plans and Progress Monitor for adaptation. These complete the feedback loop."</p>
+
+<h3>📋 CONTENT RECOMMENDER EXPLANATION</h3>
+<p><strong>SAY:</strong> "Content Recommender answers: 'What should I study TODAY?' Look at the recommend_daily_content method."</p>
+<p><strong>SAY:</strong> "It takes TWO inputs: current_month_plan (Month 1: Advanced Python + NumPy) and learning_style from Priya's JSON ('hands-on')."</p>
+<p><strong>SAY:</strong> "The prompt says: 'Recommend one video, one article, one hands-on exercise. Total 2 hours. Prioritize based on learning style.'"</p>
+<p><strong>SAY:</strong> "Because Priya is 'hands-on', the LLM gives her: 35 min video (just enough context), 25 min article (quick reference), 60 min coding exercise (HEAVY on practice because that's her style)."</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "If she were a 'visual' learner, she'd get: 60 min video tutorials, 20 min reading, 40 min practice. The time allocation adapts to learning preference!"</p>
+<p><strong>SAY:</strong> "Example daily plan: Video - 'Python OOP Masterclass' by Corey Schafer. Article - NumPy documentation on arrays. Practice - Build a data analysis class that reads CSV files and calculates statistics. Concrete, actionable, personalized."</p>
+
+<h3>📋 PROGRESS MONITOR EXPLANATION</h3>
+<p><strong>SAY:</strong> "Progress Monitor is THE KEY to the feedback loop. Look at the track_completion method."</p>
+<p><strong>SAY:</strong> "As Priya completes activities, we store them: 'OOP Module completed, date: 2025-11-25, score: 90, time_spent: 5 hours.' 'NumPy Project completed, date: 2025-12-01, score: 85, time_spent: 8 hours.'"</p>
+<p><strong>SAY:</strong> "The evaluate_progress method compares this against the original plan. Prompt: 'Original Plan: Month 1 should cover OOP, NumPy, Pandas in 40 hours. Completed So Far: 2 activities, 13 hours, 87.5% average score. Is student on track?'"</p>
+<p><strong>SAY:</strong> "The LLM evaluates: 'Student is ON TRACK. Completed 2/3 planned activities. High scores indicate strong understanding. Encourage to continue.'"</p>
+<p><strong>PAUSE</strong> - emphasize (3 seconds)</p>
+<p><strong>SAY:</strong> "But what if Priya was BEHIND? LLM detects: 'Only 1 activity completed in 2 weeks, low scores.' The adapt_plan method triggers simplify_plan - reduces topics, extends timeline, provides additional support resources."</p>
+<p><strong>SAY:</strong> "What if she's AHEAD? 'All 3 activities done in 2 weeks with 95% scores.' The adapt_plan method triggers accelerate_plan - adds advanced topics, recommends bonus projects, suggests moving to Month 2 early."</p>
+
+<h3>⭐ KEY HIGHLIGHT - THE FEEDBACK LOOP</h3>
+<p><strong>EMPHASIZE:</strong> "This is THE MAGIC of Workshop 2. Unlike Workshop 1's one-way pipeline, THIS system continuously monitors and adapts."</p>
+<p><strong>SAY:</strong> "Progress Monitor → feeds data back to → Learning Path Planner → adjusts the roadmap → Content Recommender generates new daily plans → Student studies → Progress Monitor tracks again. CONTINUOUS IMPROVEMENT."</p>
+<p><strong>SAY:</strong> "It's like a thermostat. Set target temperature (learning goal). Monitor current temperature (progress). Adjust heating/cooling (pace and difficulty). Maintains optimal learning environment."</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Draw a circular arrow with your hand showing the feedback loop</p>
+<p><strong>DO:</strong> Show the adapt_plan logic in the code</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Keep energy high - this is the coolest part</li>
+<li>Use concrete examples: "Behind → simplify. Ahead → accelerate."</li>
+<li>Emphasize ADAPTATION - key differentiator from Workshop 1</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Now let's see how all four agents integrate into the complete system with the orchestrator..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 2: Learning Path System (Complete Integration)</h2>
+<h3>System Orchestrator</h3>
+
+<pre><code class="python">class LearningPathSystem:
+<p>    def __init__(self):</p>
+<p>        llm = Ollama(model=&quot;llama3.2&quot;)</p>
+
+<p>        self.skills_agent = SkillsAssessmentAgent(llm)</p>
+<p>        self.planner = LearningPathPlanner(llm)</p>
+<p>        self.recommender = ContentRecommender(llm)</p>
+<p>        self.monitor = ProgressMonitor(llm)</p>
+
+<p>    def onboard_student(self, student_profile):</p>
+<p>        &quot;&quot;&quot;Complete onboarding flow&quot;&quot;&quot;</p>
+<p>        print(&quot;Step 1: Assessing skills...&quot;)</p>
+<p>        skills_matrix = self.skills_agent.assess(student_profile)</p>
+
+<p>        print(&quot;Step 2: Creating learning path...&quot;)</p>
+<p>        learning_path = self.planner.create_path(</p>
+<p>            skills_matrix,</p>
+<p>            goal=student_profile[&quot;goal&quot;],</p>
+<p>            time_available=student_profile[&quot;hours_per_week&quot;]</p>
+<p>        )</p>
+
+<p>        print(&quot;Step 3: Generating first week&#x27;s content...&quot;)</p>
+<p>        week1_content = self.recommender.recommend_daily_content(</p>
+<p>            learning_path[&quot;months&quot;][0],</p>
+<p>            student_profile.get(&quot;learning_style&quot;, &quot;visual&quot;)</p>
+<p>        )</p>
+
+<p>        return {</p>
+<p>            &quot;skills_assessment&quot;: skills_matrix,</p>
+<p>            &quot;learning_path&quot;: learning_path,</p>
+<p>            &quot;first_week_content&quot;: week1_content</p>
+<p>        }</p>
+
+<p>    def daily_study_session(self, student_id):</p>
+<p>        &quot;&quot;&quot;Generate today&#x27;s study plan&quot;&quot;&quot;</p>
+<p>        # Get student&#x27;s current position in path</p>
+<p>        content = self.recommender.recommend_daily_content(...)</p>
+<p>        return content</p>
+
+<p>    def weekly_review(self, student_id, original_plan):</p>
+<p>        &quot;&quot;&quot;Weekly progress check and plan adaptation&quot;&quot;&quot;</p>
+<p>        evaluation = self.monitor.evaluate_progress(student_id, original_plan)</p>
+
+<p>        if evaluation[&quot;needs_adjustment&quot;]:</p>
+<p>            adapted_plan = self.monitor.adapt_plan(original_plan, evaluation)</p>
+<p>            return {</p>
+<p>                &quot;evaluation&quot;: evaluation,</p>
+<p>                &quot;new_plan&quot;: adapted_plan</p>
+<p>            }</p>
+
+<p>        return {</p>
+<p>            &quot;evaluation&quot;: evaluation,</p>
+<p>            &quot;message&quot;: &quot;Keep up the great work!&quot;</p>
+<p>        }</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 22 - Workshop 2: Learning Path System (Complete Integration)</h2>
+<p><strong>TIMING:</strong> 4:37 PM - 4:40 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Complete Learning Path System integration:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Onboard_student method: Step 1 Assess, Step 2 Plan, Step 3 First week content"</p>
+<p><strong>SAY:</strong> "All four agents working together in sequence"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Returns complete profile: skills assessment, 6-month path, first week's content"</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Show the LearningPathSystem class with onboard_student method</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>This brings it all together</li>
+<li>Emphasize the workflow</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let me show you a complete flow with a demo..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 2: Learning Path System (Live Demo)</h2>
+<h3>Running the Complete System</h3>
+
+<pre><code class="python"># Initialize system
+<p>system = LearningPathSystem()</p>
+
+<p># Student profile</p>
+<p>student = {</p>
+<p>    &quot;name&quot;: &quot;Priya&quot;,</p>
+<p>    &quot;background&quot;: &quot;2 years Python experience, basic data analysis&quot;,</p>
+<p>    &quot;goal&quot;: &quot;Become ML Engineer&quot;,</p>
+<p>    &quot;hours_per_week&quot;: 10,</p>
+<p>    &quot;learning_style&quot;: &quot;hands-on&quot;</p>
+<p>}</p>
+
+<p># Onboard student</p>
+<p>print(&quot;=== Onboarding Priya ===&quot;)</p>
+<p>result = system.onboard_student(student)</p>
+
+<p>print(&quot;\n--- Skills Assessment ---&quot;)</p>
+<p>print(json.dumps(result[&quot;skills_assessment&quot;], indent=2))</p>
+
+<p>print(&quot;\n--- Learning Path (6 months) ---&quot;)</p>
+<p>for month in result[&quot;learning_path&quot;][&quot;months&quot;]:</p>
+<p>    print(f&quot;Month {month[&#x27;month&#x27;]}: {month[&#x27;focus&#x27;]}&quot;)</p>
+<p>    print(f&quot;  Topics: {&#x27;, &#x27;.join(month[&#x27;topics&#x27;])}&quot;)</p>
+<p>    print(f&quot;  Milestone: {month[&#x27;milestone&#x27;]}\n&quot;)</p>
+
+<p>print(&quot;--- This Week&#x27;s Content ---&quot;)</p>
+<p>print(result[&quot;first_week_content&quot;])</p>
+
+<p># Simulate progress</p>
+<p>print(&quot;\n=== After 1 Month ===&quot;)</p>
+<p>review = system.weekly_review(&quot;priya_001&quot;, result[&quot;learning_path&quot;])</p>
+<p>print(review[&quot;evaluation&quot;])</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 23 - Workshop 2: Learning Path System (Live Demo)</h2>
+<p><strong>TIMING:</strong> 4:40 PM - 4:43 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Complete flow demo - Priya wants to become an ML Engineer:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Student: Priya, 2 years Python, basic data analysis, goal ML Engineer, 10 hrs/week, hands-on learner"</p>
+<p><strong>SAY:</strong> "System assesses skills, creates 6-month plan, provides week 1 content"</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> RUN THE CODE - show output: skills assessment, month-by-month path, this week's content</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Enthusiastic</li>
+<li>Amazing, right?</li>
+<li>This is powerful</li>
+</ul>
+
+<h3>⭐ KEY HIGHLIGHT</h3>
+<p><strong>EMPHASIZE:</strong> "In 30 seconds, we created a personalized 6-month plan. Would take human advisor HOURS."</p>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Now YOUR TURN. 10 minutes. Extend this system..."</p>
+</aside>
+
+</section>
+
+<section>
+<h2>Workshop 2: Learning Path System (Your Turn!)</h2>
+<h3>Exercise: Extend the Learning System</h3>
+
+<strong>Challenge:</strong> Add a new feature
+
+<strong>Option 1: Peer Matching Agent</strong>
+<ul>
+<li>Find students learning similar topics</li>
+<li>Create study groups</li>
+<li>Facilitate peer learning</li>
+</ul>
+
+<strong>Option 2: Project Suggester Agent</strong>
+<ul>
+<li>Suggest projects based on learned topics</li>
+<li>Provide project templates</li>
+<li>Grade completed projects</li>
+</ul>
+
+<strong>Option 3: Career Advisor Agent</strong>
+<ul>
+<li>Map skills to job requirements</li>
+<li>Suggest which skills to prioritize</li>
+<li>Connect to job postings</li>
+</ul>
+
+<strong>Time: 15 minutes</strong>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 24 - Workshop 2: Learning Path System (Your Turn!)</h2>
+<p><strong>TIMING:</strong> 4:43 PM - 4:53 PM (10 minutes - mostly student work time)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Your task: Extend this system. Add one of these agents:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Option 1: Peer Matching Agent - find study buddies learning similar topics"</p>
+<p><strong>SAY:</strong> "Option 2: Project Suggester Agent - suggest projects based on learned topics"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Option 3: Career Advisor Agent - map skills to job requirements"</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Give 10 minutes - answer questions in chat, provide hints as needed</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Encourage experimentation</li>
+<li>This is creative task</li>
+</ul>
+
+<h3>🏁 CLOSING</h3>
+<p><strong>SAY:</strong> "Great work everyone! You've now built two complete multi-agent systems."</p>
+<p><strong>PRAISE:</strong> "These are production-ready patterns. Use them in your own projects!"</p>
+</aside>
+
+</section>
+
+<section>
+<p>Production Deployment Strategies</p>
+<strong>Taking Systems to Production</strong>
+
+<h3>Deployment Checklist:</h3>
+
+<strong>1. Infrastructure</strong>
+<ul>
+<li>Containerize with Docker</li>
+<li>Orchestrate with Kubernetes</li>
+<li>Load balancing for scale</li>
+<li>Auto-scaling based on demand</li>
+</ul>
+
+<strong>2. Model Serving</strong>
+<ul>
+<li>Use vLLM or TGI for fast inference</li>
+<li>Model quantization (4-bit/8-bit)</li>
+<li>GPU optimization</li>
+<li>Model caching</li>
+</ul>
+
+<strong>3. Data Management</strong>
+<ul>
+<li>Persistent storage for state</li>
+<li>Redis for session management</li>
+<li>Vector DB for long-term memory (Pinecone, Weaviate)</li>
+<li>Database for structured data</li>
+</ul>
+
+<strong>4. Monitoring</strong>
+<ul>
+<li>Log all agent decisions</li>
+<li>Track success/failure rates</li>
+<li>Monitor response times</li>
+<li>Alert on anomalies</li>
+</ul>
+
+<strong>5. Security</strong>
+<ul>
+<li>Input validation</li>
+<li>Rate limiting</li>
+<li>API authentication</li>
+<li>Data encryption</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 25 - Production Deployment Strategies</h2>
+<p><strong>TIMING:</strong> 4:53 PM - 4:56 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "You've built amazing systems. But how do you actually deploy this? How do you serve 10,000 users?"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Can't run on your laptop in production"</p>
+<p><strong>SAY:</strong> "Need: reliability, scalability, monitoring, security"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Production architecture: load balancer, multiple instances, shared services, monitoring stack"</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Set expectations</li>
+<li>This is critical for real deployment</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let me show you production architecture..."</p>
+</aside>
+
+</section>
+
+<section>
+<p>Production Architecture Example</p>
+
+<pre><code class="">┌─────────────────────────────────────────────────┐
+<p>│           Load Balancer (nginx)                 │</p>
+<p>└──────────────┬──────────────────────────────────┘</p>
+<p>               │</p>
+<p>    ┌──────────┴──────────┐</p>
+<p>    │                     │</p>
+<p>┌───▼────────┐    ┌──────▼───────┐</p>
+<p>│  Agent     │    │  Agent       │</p>
+<p>│  Instance 1│    │  Instance 2  │  ... (N instances)</p>
+<p>└───┬────────┘    └──────┬───────┘</p>
+<p>    │                     │</p>
+<p>    └──────────┬──────────┘</p>
+<p>               │</p>
+<p>    ┌──────────▼──────────┐</p>
+<p>    │  Shared Services    │</p>
+<p>    ├─────────────────────┤</p>
+<p>    │ Redis (Sessions)    │</p>
+<p>    │ PostgreSQL (Data)   │</p>
+<p>    │ Pinecone (Vectors)  │</p>
+<p>    │ LLM Server (vLLM)   │</p>
+<p>    └─────────────────────┘</p>
+<p>               │</p>
+<p>    ┌──────────▼──────────┐</p>
+<p>    │  Monitoring Stack   │</p>
+<p>    ├─────────────────────┤</p>
+<p>    │ Prometheus          │</p>
+<p>    │ Grafana             │</p>
+<p>    │ ELK Stack (Logs)    │</p>
+<p>    └─────────────────────┘</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 26 - Production Architecture Example</h2>
+<p><strong>TIMING:</strong> 4:56 PM - 4:59 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Production architecture for multi-agent systems:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Load Balancer (nginx/AWS ALB) - distributes traffic across instances"</p>
+<p><strong>SAY:</strong> "Multiple Agent System Instances - for redundancy and scale, auto-scale during peak"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Shared Services: Redis (sessions/cache), PostgreSQL (structured data), Pinecone (vector storage), LLM server (vLLM/TGI)"</p>
+<p><strong>SAY:</strong> "Monitoring Stack: Prometheus (metrics), Grafana (dashboards), ELK (logs)"</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Share screen - show the production architecture diagram</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Point to each component</li>
+<li>Explain why each is needed</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "First step: containerize your application..."</p>
+</aside>
+
+</section>
+
+<section>
+<p>Docker Deployment Example</p>
+
+<pre><code class="dockerfile"># Dockerfile for agent system
+<p>FROM python:3.11-slim</p>
+
+<p># Install dependencies</p>
+<p>COPY requirements.txt .</p>
+<p>RUN pip install --no-cache-dir -r requirements.txt</p>
+
+<p># Copy application</p>
+<p>COPY . /app</p>
+<p>WORKDIR /app</p>
+
+<p># Environment variables</p>
+<p>ENV OLLAMA_HOST=http://ollama-server:11434</p>
+<p>ENV REDIS_HOST=redis</p>
+<p>ENV DB_HOST=postgres</p>
+
+<p># Run application</p>
+<p>CMD [&quot;python&quot;, &quot;main.py&quot;]</code></pre></p>
+
+<pre><code class="yaml"># docker-compose.yml
+<p>version: &#x27;3.8&#x27;</p>
+<p>services:</p>
+<p>  agent:</p>
+<p>    build: .</p>
+<p>    ports:</p>
+<ul>
+<li>&quot;8000:8000&quot;</li>
+</ul>
+<p>    depends_on:</p>
+<ul>
+<li>redis</li>
+<li>postgres</li>
+<li>ollama</li>
+</ul>
+<p>    environment:</p>
+<ul>
+<li>OLLAMA_HOST=http://ollama:11434</li>
+</ul>
+
+<p>  ollama:</p>
+<p>    image: ollama/ollama</p>
+<p>    ports:</p>
+<ul>
+<li>&quot;11434:11434&quot;</li>
+</ul>
+<p>    volumes:</p>
+<ul>
+<li>ollama_data:/root/.ollama</li>
+</ul>
+
+<p>  redis:</p>
+<p>    image: redis:alpine</p>
+<p>    ports:</p>
+<ul>
+<li>&quot;6379:6379&quot;</li>
+</ul>
+
+<p>  postgres:</p>
+<p>    image: postgres:15</p>
+<p>    environment:</p>
+<p>      POSTGRES_PASSWORD: password</p>
+<p>    volumes:</p>
+<ul>
+<li>postgres_data:/var/lib/postgresql/data</li>
+</ul>
+
+<p>volumes:</p>
+<p>  ollama_data:</p>
+<p>  postgres_data:</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 27 - Docker Deployment Example</h2>
+<p><strong>TIMING:</strong> 4:59 PM - 5:02 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Containerization with Docker:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Dockerfile packages your app with all dependencies"</p>
+<p><strong>SAY:</strong> "Everything needed is packaged together - reproducible, portable"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Docker Compose for local development - run multiple services with one command"</p>
+<p><strong>SAY:</strong> "In production: Kubernetes for orchestration at scale"</p>
+
+<h3>🔧 PRACTICAL NOTE</h3>
+<p><strong>SAY:</strong> "With docker-compose up, you get: agent app, Ollama, Redis, PostgreSQL - all running together."</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Show Dockerfile and docker-compose.yml on slide, don't deep dive into syntax</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Keep high level</li>
+<li>They can read docs later</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "How do you handle 50,000 concurrent users?"</p>
+</aside>
+
+</section>
+
+<section>
+<p>Scaling Considerations</p>
+
+<h3>Performance Optimization:</h3>
+
+<strong>1. Concurrent Request Handling</strong>
+<pre><code class="python">import asyncio
+<p>from concurrent.futures import ThreadPoolExecutor</p>
+
+<p>class ScalableOrchestrator:</p>
+<p>    def __init__(self):</p>
+<p>        self.executor = ThreadPoolExecutor(max_workers=10)</p>
+
+<p>    async def process_batch(self, requests):</p>
+<p>        &quot;&quot;&quot;Process multiple requests in parallel&quot;&quot;&quot;</p>
+<p>        tasks = [</p>
+<p>            self.process_single(req) for req in requests</p>
+<p>        ]</p>
+<p>        results = await asyncio.gather(*tasks)</p>
+<p>        return results</code></pre></p>
+
+<strong>2. Caching Strategy</strong>
+<pre><code class="python">from functools import lru_cache
+<p>import redis</p>
+
+<p>redis_client = redis.Redis(host=&#x27;localhost&#x27;, port=6379)</p>
+
+<p>def cached_query(query):</p>
+<p>    # Check cache first</p>
+<p>    cached = redis_client.get(f&quot;query:{query}&quot;)</p>
+<p>    if cached:</p>
+<p>        return cached</p>
+
+<p>    # If not in cache, execute and store</p>
+<p>    result = agent.run(query)</p>
+<p>    redis_client.setex(f&quot;query:{query}&quot;, 3600, result)  # 1 hour TTL</p>
+<p>    return result</code></pre></p>
+
+<strong>3. Model Optimization</strong>
+<ul>
+<li>Use quantized models (4-bit, 8-bit)</li>
+<li>Batch inference when possible</li>
+<li>Use smaller models for simple tasks</li>
+<li>Model distillation for production</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 28 - Scaling Considerations</h2>
+<p><strong>TIMING:</strong> 5:02 PM - 5:05 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Scaling strategies for high load:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Horizontal Scaling: Add more agent instances behind load balancer"</p>
+<p><strong>SAY:</strong> "Caching: Cache common queries in Redis - if 100 students ask 'What's the deadline?', compute once"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Async Processing: Use message queues (RabbitMQ, Kafka) for non-urgent tasks"</p>
+<p><strong>SAY:</strong> "Model Optimization: Use quantized models (4-bit, 8-bit), smaller models for simple tasks"</p>
+
+<h3>🔧 PRACTICAL NOTE</h3>
+<p><strong>SAY:</strong> "With caching, repeated queries are instant. Massive performance gain."</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Show the caching code example on slide</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Emphasize practical impact</li>
+<li>These are battle-tested strategies</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let's talk money. What does this actually cost?"</p>
+</aside>
+
+</section>
+
+<section>
+<p>Cost Analysis</p>
+<strong>Open-Source vs Cloud APIs</strong>
+
+<strong>Example: Customer Support System</strong>
+<ul>
+<li>50,000 queries/month</li>
+<li>Average 500 tokens per query</li>
+</ul>
+
+<strong>Option 1: Cloud API (GPT-4)</strong>
+<pre><code class="">Cost per query: $0.015 (input) + $0.03 (output) = $0.045
+<p>Monthly: 50,000 × $0.045 = $2,250</p>
+<p>Yearly: $27,000</code></pre></p>
+
+<strong>Option 2: Open-Source (Llama 3.2 8B)</strong>
+<pre><code class="">Initial Setup:
+<ul>
+<li>GPU Server (RTX 4090): $2,000</li>
+<li>Development time: $5,000</li>
+</ul>
+
+<p>Operating Costs:</p>
+<ul>
+<li>Electricity: $50/month = $600/year</li>
+<li>Maintenance: $100/month = $1,200/year</li>
+</ul>
+
+<p>First Year Total: $8,800</p>
+<p>Year 2+: $1,800/year</p>
+
+<p>Break-even: ~4 months</code></pre></p>
+
+<strong>ROI: $18,200 saved in first year</strong>
+
+<strong>Note:</strong> Cloud APIs better for:
+<ul>
+<li>Low volume (<5,000 queries/month)</li>
+<li>Rapid prototyping</li>
+<li>Maximum quality requirements</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 29 - Cost Analysis</h2>
+<p><strong>TIMING:</strong> 5:05 PM - 5:08 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Cost analysis - cloud APIs vs self-hosted:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "50,000 queries/month scenario"</p>
+<p><strong>SAY:</strong> "Option 1 GPT-4 API: $0.045/query = $2,250/month = $27,000/year"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Option 2 Open-source Llama: GPU $2,000 one-time + $600/year electricity + $1,200/year maintenance = $3,800 year 1, $1,800/year after"</p>
+<p><strong>SAY:</strong> "Break even in 2 months. ROI is massive for high volume."</p>
+
+<h3>🤔 AUDIENCE CHECK</h3>
+<p><strong>ASK:</strong> "Everyone clear on deployment? Questions?"</p>
+<p><strong>WAIT FOR RESPONSE</strong> - check chat, look for nods/reactions</p>
+<p><strong>⏸️ PAUSE:</strong> Take 1-2 questions</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Show the math clearly</li>
+<li>Be balanced - not anti-cloud</li>
+</ul>
+
+<h3>⚠️ IMPORTANT CAVEAT</h3>
+<p><strong>SAY:</strong> "BUT - cloud APIs better if: low volume (<5,000/month) or need absolute max quality. Choose based on YOUR needs."</p>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Final stretch! Let me give you best practices..."</p>
+</aside>
+
+</section>
+
+<section>
+<p>Best Practices for Production Systems</p>
+
+<h3>DO's:</h3>
+<p>✅ Version control your prompts</p>
+<p>✅ A/B test agent variations</p>
+<p>✅ Implement graceful degradation</p>
+<p>✅ Have human-in-the-loop for critical decisions</p>
+<p>✅ Log everything for debugging</p>
+<p>✅ Monitor token usage and costs</p>
+<p>✅ Implement retry logic with exponential backoff</p>
+<p>✅ Use async/await for I/O operations</p>
+<p>✅ Test with diverse inputs</p>
+<p>✅ Document agent decision logic</p>
+
+<h3>DON'Ts:</h3>
+<p>❌ Trust agent outputs blindly</p>
+<p>❌ Ignore edge cases</p>
+<p>❌ Hard-code prompts in code (use config files)</p>
+<p>❌ Forget about API rate limits</p>
+<p>❌ Expose sensitive data in logs</p>
+<p>❌ Skip error handling</p>
+<p>❌ Optimize prematurely</p>
+<p>❌ Forget about cost monitoring</p>
+<p>❌ Ignore user feedback</p>
+<p>❌ Deploy without testing at scale</p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 30 - Best Practices for Production Systems</h2>
+<p><strong>TIMING:</strong> 5:08 PM - 5:10 PM (2 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Best practices that will save you hours of debugging:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "DO: Version control prompts, A/B test configs, implement graceful degradation, log everything, start simple"</p>
+<p><strong>SAY:</strong> "DON'T: Trust agent outputs blindly, hard-code prompts, forget rate limits, optimize prematurely"</p>
+
+<h3>🔧 PRACTICAL NOTE</h3>
+<p><strong>SAY:</strong> "Graceful degradation: if LLM server down, fall back to simpler rules."</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Rapid fire</li>
+<li>These are learned from experience</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "How do you know if your agent is working?"</p>
+</aside>
+
+</section>
+
+<section>
+<p>Real-World Success Metrics</p>
+
+<h3>How to Measure Success:</h3>
+
+<strong>1. Performance Metrics</strong>
+<ul>
+<li>Response time (p50, p95, p99)</li>
+<li>Throughput (queries/second)</li>
+<li>Token usage per query</li>
+<li>Agent tool usage frequency</li>
+</ul>
+
+<strong>2. Quality Metrics</strong>
+<ul>
+<li>User satisfaction score</li>
+<li>Task completion rate</li>
+<li>Accuracy of agent decisions</li>
+<li>Number of escalations to humans</li>
+</ul>
+
+<strong>3. Business Metrics</strong>
+<ul>
+<li>Cost per query</li>
+<li>Time saved vs manual process</li>
+<li>Revenue impact</li>
+<li>User retention</li>
+</ul>
+
+<h3>Example Dashboard:</h3>
+<pre><code class="">Today&#x27;s Stats:
+<ul>
+<li>Queries handled: 1,247</li>
+<li>Avg response time: 2.3s</li>
+<li>Success rate: 94%</li>
+<li>Cost: $4.23 (vs $56 with GPT-4)</li>
+<li>Users satisfied: 89%</code></pre></li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 31 - Real-World Success Metrics</h2>
+<p><strong>TIMING:</strong> 5:10 PM - 5:11 PM (1 minute)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Real-world success metrics:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Track: Response time (<3s for good UX), Success rate (% handled correctly), User satisfaction, Cost per query, Time saved vs manual"</p>
+<p><strong>SAY:</strong> "Create dashboards, monitor daily, iterate based on data"</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Quick</li>
+<li>Emphasize measurement</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "What about when things go wrong?"</p>
+</aside>
+
+</section>
+
+<section>
+<p>Handling Failures Gracefully</p>
+
+<h3>Failure Modes and Solutions:</h3>
+
+<strong>1. LLM Server Down</strong>
+<pre><code class="python">def call_llm_with_fallback(prompt):
+<p>    try:</p>
+<p>        return local_llm.invoke(prompt)</p>
+<p>    except ConnectionError:</p>
+<p>        # Fallback to cloud API</p>
+<p>        return openai_client.invoke(prompt)</code></pre></p>
+
+<strong>2. Agent Gets Stuck</strong>
+<pre><code class="python">agent = initialize_agent(
+<p>    tools=tools,</p>
+<p>    llm=llm,</p>
+<p>    max_iterations=5,  # Prevent infinite loops</p>
+<p>    max_execution_time=30,  # 30 second timeout</p>
+<p>    early_stopping_method=&quot;generate&quot;</p>
+<p>)</code></pre></p>
+
+<strong>3. Tool Failure</strong>
+<pre><code class="python">class RobustTool:
+<p>    def run(self, input):</p>
+<p>        try:</p>
+<p>            return self.actual_function(input)</p>
+<p>        except Exception as e:</p>
+<p>            logger.error(f&quot;Tool failed: {e}&quot;)</p>
+<p>            return &quot;Tool temporarily unavailable. Please try again.&quot;</code></pre></p>
+
+<strong>4. Memory Overflow</strong>
+<pre><code class="python"># Use sliding window memory
+<p>from langchain.memory import ConversationBufferWindowMemory</p>
+
+<p>memory = ConversationBufferWindowMemory(</p>
+<p>    k=10  # Keep only last 10 interactions</p>
+<p>)</code></pre></p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 32 - Handling Failures Gracefully</h2>
+<p><strong>TIMING:</strong> 5:11 PM - 5:12 PM (1 minute)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Handling failures gracefully:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Retry logic with exponential backoff"</p>
+<p><strong>SAY:</strong> "Circuit breakers for external services"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Human escalation for low-confidence decisions"</p>
+<p><strong>SAY:</strong> "Detailed error logging for debugging"</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Very brief</li>
+<li>Production systems fail - plan for it</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Looking ahead..."</p>
+</aside>
+
+</section>
+
+<section>
+<p>Future Enhancements</p>
+
+<h3>What's Next in Agentic AI:</h3>
+
+<strong>1. Multi-Modal Agents</strong>
+<ul>
+<li>Process images, video, audio</li>
+<li>Generate visualizations</li>
+<li>Real-time video analysis</li>
+</ul>
+
+<strong>2. Long-Running Agents</strong>
+<ul>
+<li>Background task execution</li>
+<li>Scheduled actions</li>
+<li>Proactive notifications</li>
+</ul>
+
+<strong>3. Self-Improving Agents</strong>
+<ul>
+<li>Learn from feedback</li>
+<li>Automatic prompt optimization</li>
+<li>Continuous fine-tuning</li>
+</ul>
+
+<strong>4. Agent Marketplaces</strong>
+<ul>
+<li>Pre-built agent templates</li>
+<li>Community-contributed tools</li>
+<li>Plug-and-play integrations</li>
+</ul>
+
+<strong>5. Regulation & Standards</strong>
+<ul>
+<li>AI agent certifications</li>
+<li>Compliance frameworks</li>
+<li>Ethical guidelines</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 33 - Future Enhancements</h2>
+<p><strong>TIMING:</strong> 5:12 PM - 5:13 PM (1 minute)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Future enhancements you can add:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Add more specialized agents for edge cases"</p>
+<p><strong>SAY:</strong> "Implement A/B testing for prompt variations"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Add streaming responses for better UX"</p>
+<p><strong>SAY:</strong> "Multi-language support with translation agents"</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Inspire them</li>
+<li>These systems evolve</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Here are resources for continued learning..."</p>
+</aside>
+
+</section>
+
+<section>
+<p>Resources for Continued Learning</p>
+
+<h3>Documentation:</h3>
+<ul>
+<li>LangChain: https://python.langchain.com</li>
+<li>AutoGen: https://microsoft.github.io/autogen</li>
+<li>CrewAI: https://docs.crewai.com</li>
+<li>Ollama: https://ollama.ai</li>
+</ul>
+
+<h3>Papers:</h3>
+<ul>
+<li>"ReAct: Reasoning and Acting" (Google)</li>
+<li>"Generative Agents" (Stanford)</li>
+<li>"AutoGPT" (Significant Gravitas)</li>
+</ul>
+
+<h3>Communities:</h3>
+<ul>
+<li>LangChain Discord</li>
+<li>r/LocalLLaMA</li>
+<li>AI Engineer World's Fair</li>
+</ul>
+
+<h3>Practice:</h3>
+<ul>
+<li>Build 1 agent per week</li>
+<li>Contribute to open-source agent projects</li>
+<li>Participate in hackathons</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 34 - Resources for Continued Learning</h2>
+<p><strong>TIMING:</strong> 5:13 PM - 5:14 PM (1 minute)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Resources for continued learning:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "All code on GitHub at https://github.com/rootusercop/AgenticAgent.git - complete implementations, additional examples, deployment templates, troubleshooting guide, extended reading list"</p>
+<p><strong>SAY:</strong> "LangChain docs, LangGraph tutorials, CrewAI examples"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Join communities: Discord, Reddit r/LangChain"</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Share GitHub link (https://github.com/rootusercop/AgenticAgent.git) and LinkedIn (https://www.linkedin.com/in/rootuser/) in chat</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Provide concrete next steps</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Let me reflect on this 6-day journey..."</p>
+</aside>
+
+</section>
+
+<section>
+<p>Key Takeaways from Both Sessions</p>
+
+<h3>Session 11:</h3>
+<p>✅ Built simple agents with open-source LLMs</p>
+<p>✅ Implemented tools and memory</p>
+<p>✅ Learned testing and debugging</p>
+
+<h3>Session 12:</h3>
+<p>✅ Designed multi-agent architectures</p>
+<p>✅ Built complex workflow systems</p>
+<p>✅ Understood production deployment</p>
+
+<h3>You Now Have:</h3>
+<ul>
+<li>Complete agent templates</li>
+<li>Multi-agent system patterns</li>
+<li>Production deployment knowledge</li>
+<li>Real-world problem-solving skills</li>
+</ul>
+
+<h3>Next Steps:</h3>
+<ol>
+<li>Build an agent for YOUR specific problem</li>
+<li>Start small, iterate, improve</li>
+<li>Share your learnings with community</li>
+<li>Keep learning - this field moves fast!</li>
+</ol>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 35 - Key Takeaways from Both Sessions</h2>
+<p><strong>TIMING:</strong> 5:14 PM - 5:16 PM (2 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Key takeaways from Sessions 11 and 12:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Session 11: Built first agents, learned tools and memory"</p>
+<p><strong>SAY:</strong> "Session 12: Multi-agent systems, production deployment"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "You've learned: theory, architecture patterns, security, ethics, tools, hands-on implementation, production deployment"</p>
+<p><strong>SAY:</strong> "More importantly: learned HOW TO THINK about agentic AI"</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Reflective tone</li>
+<li>Acknowledge their progress</li>
+<li>Be genuine</li>
+</ul>
+
+<h3>⭐ KEY HIGHLIGHT</h3>
+<p><strong>EMPHASIZE:</strong> "You can now look at any complex problem and ask: Can agents solve this? How would I design the system?"</p>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Here's your action plan..."</p>
+</aside>
+
+</section>
+
+<section>
+<p>Your Action Plan</p>
+
+<strong>Week 1-2: Build</strong>
+<ul>
+<li>Take one problem from your work</li>
+<li>Design an agent solution</li>
+<li>Implement MVP</li>
+</ul>
+
+<strong>Week 3-4: Test</strong>
+<ul>
+<li>Get real user feedback</li>
+<li>Iterate based on feedback</li>
+<li>Optimize performance</li>
+</ul>
+
+<strong>Month 2: Scale</strong>
+<ul>
+<li>Containerize your solution</li>
+<li>Deploy to production</li>
+<li>Monitor and improve</li>
+</ul>
+
+<strong>Month 3+: Expand</strong>
+<ul>
+<li>Add more agents</li>
+<li>Integrate more tools</li>
+<li>Build agent library for your organization</li>
+</ul>
+
+<h3>Share Your Journey:</h3>
+<ul>
+<li>Write blog posts</li>
+<li>Present at conferences</li>
+<li>Open-source your agents</li>
+<li>Help others learn</li>
+</ul>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 36 - Your Action Plan</h2>
+<p><strong>TIMING:</strong> 5:16 PM - 5:17 PM (1 minute)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Your action plan:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Week 1-2: Pick ONE problem from your work/research. Design agent solution. Build MVP."</p>
+<p><strong>SAY:</strong> "Week 3-4: Get real users to test. Collect feedback. Iterate."</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Month 2: Deploy to production. Start small (10 users). Monitor closely."</p>
+<p><strong>SAY:</strong> "Month 3+: Scale up. Add more agents. Build your agent library."</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Give clear, actionable steps</li>
+<li>Inspire action</li>
+</ul>
+<p><strong>ENCOURAGE:</strong> "SHARE what you build! Blog about it, present at conferences, open-source it."</p>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Final Q&A - last chance to ask anything..."</p>
+</aside>
+
+</section>
+
+<section>
+<p>Final Q&A</p>
+<strong>Questions?</strong>
+
+<h3>Topics We Covered:</h3>
+<ul>
+<li>Multi-agent system design</li>
+<li>Production deployment</li>
+<li>Scaling strategies</li>
+<li>Real-world implementations</li>
+</ul>
+
+<strong>What Questions Do You Have?</strong>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 37 - Final Q&A</h2>
+<p><strong>TIMING:</strong> 5:17 PM - 5:22 PM (5 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "We have 5 minutes for questions. This is your last chance to ask anything!"</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Take questions generously, go slightly over time if needed</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Be patient</li>
+<li>Give thoughtful answers</li>
+<li>Acknowledge every question</li>
+</ul>
+
+<h3>❓ QUESTION PROMPTS</h3>
+<ul>
+<li>About Sessions 11 and 12?</li>
+<li>About the entire FDP?</li>
+<li>About agentic AI in general?</li>
+<li>About my experience at Walmart?</li>
+<li>Anything!</li>
+</ul>
+
+<h3>💭 COMMON QUESTIONS TO PREPARE FOR</h3>
+<ul>
+<li>Claude or GPT-4 for agents? - Yes, just swap LLM class</li>
+<li>Deploy on AWS/Azure/GCP? - Same containerization, use their K8s services</li>
+<li>Can agents write code? - Yes! Add code execution tools</li>
+<li>What about safety? - Always validate outputs, human-in-the-loop for critical decisions</li>
+<li>How long to build production system? - MVP in 1-2 weeks, production-ready in 1-2 months</li>
+</ul>
+
+<h3>🔄 TRANSITION</h3>
+<p><strong>SAY:</strong> "Final words of thanks and inspiration..."</p>
+</aside>
+
+</section>
+
+<section>
+<p>Thank You!</p>
+<strong>Congratulations on Completing the FDP!</strong>
+
+<h3>You've Learned:</h3>
+<ul>
+<li>6 days of intensive agentic AI training</li>
+<li>From theory to production-ready systems</li>
+<li>Hands-on experience building agents</li>
+</ul>
+
+<h3>Stay Connected:</h3>
+<ul>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/rootuser/" target="_blank">https://www.linkedin.com/in/rootuser/</a></li>
+<li>GitHub: <a href="https://github.com/rootusercop/AgenticAgent.git" target="_blank">https://github.com/rootusercop/AgenticAgent.git</a></li>
+</ul>
+
+<h3>Special Thanks:</h3>
+<ul>
+<li>AICTE ATAL for organizing</li>
+<li>All faculty speakers</li>
+<li>Atharva College of Engineering</li>
+<li>And YOU for your engagement!</li>
+</ul>
+
+<h3>Final Words:</h3>
+<p>The future of AI is agentic. You're now equipped to build that future. Go make something amazing!</p>
+
+<strong>Keep Building! 🚀</strong>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 38 - Thank You!</h2>
+<p><strong>TIMING:</strong> 5:22 PM - 5:25 PM (3 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Thank you all so much for your energy, engagement, and curiosity over these six days."</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "Special thanks to AICTE ATAL for organizing, Atharva College for hosting, all speakers for expertise"</p>
+<p><strong>SAY:</strong> "The future of AI is agentic - systems that work alongside us autonomously"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "You are now equipped to build that future"</p>
+<p><strong>SAY:</strong> "So go build! Experiment! Break things! Learn! Share what you create!"</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Genuine gratitude</li>
+<li>Inspirational closing</li>
+<li>High energy finish</li>
+</ul>
+
+<h3>📧 SHARE CONTACT INFO</h3>
+<p>Stay in touch: LinkedIn https://www.linkedin.com/in/rootuser/, GitHub https://github.com/rootusercop/AgenticAgent.git</p>
+<p><strong>DO:</strong> Share links in chat for easy access</p>
+
+<h3>🎯 FINAL LINE</h3>
+<p><strong>SAY:</strong> "Remember - this isn't the end of your learning journey. It's just the beginning. Thank you, and good luck!"</p>
+<p><em>Make eye contact, smile, be present, leave them inspired</em></p>
+</aside>
+
+</section>
+
+<section>
+<p>Workshop Materials Available</p>
+
+<h3>GitHub Repository:</h3>
+<p><a href="https://github.com/rootusercop/AgenticAgent.git" target="_blank">https://github.com/rootusercop/AgenticAgent.git</a></p>
+
+<h3>What's Included:</h3>
+<ul>
+<li>All code from Sessions 11 & 12</li>
+<li>Additional examples</li>
+<li>Deployment templates</li>
+<li>Troubleshooting guide</li>
+<li>Extended reading list</li>
+<li>Video recordings (if available)</li>
+</ul>
+
+<h3>Bonus Materials:</h3>
+<ul>
+<li>Agent design templates</li>
+<li>System architecture diagrams</li>
+<li>Cost calculator spreadsheet</li>
+<li>Production checklist</li>
+</ul>
+
+<h3>Certificate:</h3>
+<ul>
+<li>Complete the feedback form</li>
+<li>Certificates will be emailed within 1 week</li>
+</ul>
+
+<p>Thank you! 🙏</p>
+
+<aside class="notes">
+<h2>⏱️ SLIDE 39 - Workshop Materials Available</h2>
+<p><strong>TIMING:</strong> 5:25 PM - 5:27 PM (2 minutes)</p>
+
+<h3>🎤 OPENING</h3>
+<p><strong>SAY:</strong> "Workshop materials are all available now:"</p>
+
+<h3>📋 MAIN POINTS</h3>
+<p><strong>SAY:</strong> "GitHub repository at https://github.com/rootusercop/AgenticAgent.git - with all code"</p>
+<p><strong>DO:</strong> Share link in chat</p>
+<p><strong>SAY:</strong> "Slides and speaker notes"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Setup instructions"</p>
+<p><strong>SAY:</strong> "Troubleshooting guide"</p>
+<p><strong>PAUSE</strong> - let this sink in (3 seconds)</p>
+<p><strong>SAY:</strong> "Additional resources"</p>
+
+<h3>🎬 ACTION</h3>
+<p><strong>DO:</strong> Share links in chat, confirm everyone has access</p>
+
+<h3>💡 DELIVERY TIPS</h3>
+<ul>
+<li>Helpful tone</li>
+<li>Make sure they have resources</li>
+</ul>
+
+<h3>🏁 CLOSING</h3>
+<p><strong>SAY:</strong> "Feel free to reach out anytime. Good luck with your agentic AI journey!"</p>
+</aside>
+
+</section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [ RevealNotes, RevealHighlight ],
+            width: 1280,
+            height: 720,
+            margin: 0.1,
+            showNotes: false
+        });
+    </script>
+</body>
+</html>
