@@ -277,13 +277,84 @@ python 05_complete_agent_final.py
 Student → Orchestrator → [Agent 1 | Agent 2 | Agent 3 | Agent 4] → Result
 ```
 
-**Agents:**
-1. **Query Handler** - Answers questions (FAQ, program info)
-2. **Document Processor** - Extracts data from applications
-3. **Eligibility Evaluator** - Determines admission decision
-4. **Communication Manager** - Sends personalized emails
+**The Four Agents & How They Work:**
 
-**What's New:**
+1. **Query Handler Agent** 🤖
+   - **What it does**: Answers student questions using FAQ database and program information
+   - **Tools it uses**:
+     - FAQ_Search: Searches admission FAQ for keywords
+     - Program_Info: Retrieves detailed program information (CS, EE, ME)
+   - **Example interaction**:
+     - Input: "What is the application deadline?"
+     - Output: "📋 Application deadline is November 30th, 2025"
+
+2. **Document Processor Agent** 📄
+   - **What it does**: Extracts structured information from unstructured documents using Llama 3.2
+   - **How it processes files**:
+     - **Transcript**: Reads text file → Extracts GPA, subjects, graduation year → Returns JSON
+     - **Recommendation**: Reads letter → Summarizes key points in 3 bullets
+     - **Essay**: Analyzes content → Identifies themes, scores writing quality (1-10), authenticity (1-10)
+   - **Sample input** (strong_candidate_transcript.txt):
+     ```
+     Name: Sarah Johnson
+     GPA: 3.9/4.0
+     Subjects: Mathematics, Physics, Computer Science...
+     ```
+   - **Sample output**:
+     ```json
+     {"gpa": "3.9", "subjects": ["Mathematics", "Physics", "Computer Science"], "graduation_year": "2025"}
+     ```
+
+3. **Eligibility Evaluator Agent** 🎯
+   - **What it does**: Analyzes extracted data against admission criteria using Llama 3.2
+   - **Evaluation criteria**:
+     - Minimum GPA: 3.0
+     - Required subjects: Math, Physics
+     - Minimum essay score: 6/10
+   - **How it decides**:
+     1. Takes all extracted data (GPA, subjects, essay scores, recommendation)
+     2. Compares against criteria
+     3. Calculates overall score (0-100)
+     4. Identifies strengths and weaknesses
+     5. Provides reasoning for decision
+   - **Sample output**:
+     ```json
+     {
+       "eligible": true,
+       "score": 92,
+       "strengths": ["Strong leadership", "Excellent writing"],
+       "reasoning": ["Meets GPA requirement", "Authentic passion for field"]
+     }
+     ```
+
+4. **Communication Manager Agent** 📧
+   - **What it does**: Generates personalized admission emails using Llama 3.2
+   - **How it works**:
+     1. Takes eligibility decision
+     2. Generates email with appropriate tone (congratulatory or encouraging)
+     3. Includes next steps or suggestions
+     4. Maintains professional yet warm communication
+   - **Sample email** (if accepted):
+     ```
+     Dear Sarah,
+
+     Congratulations! We are pleased to inform you that...
+     Next steps: ...
+
+     For questions: admissions@university.edu
+     ```
+
+**How the Agents Work Together (Sequential Pipeline):**
+
+```
+📁 User loads files →
+📄 Document Processor reads & extracts data →
+🎯 Eligibility Evaluator analyzes & scores →
+📧 Communication Manager generates email →
+✅ Final formatted results displayed
+```
+
+**Interactive Features:**
 - 🎯 **Interactive Q&A** - Ask questions about admissions in real-time
 - 📁 **Load from Files** - Submit applications from text/JSON files
 - ✍️ **Manual Entry** - Type applications directly
@@ -419,20 +490,146 @@ Assessment → Planning → Content Recommendation → Progress Monitoring → A
                                                     [Feedback Loop]
 ```
 
-**Agents:**
-1. **Skills Assessment** - Tests current level
-2. **Learning Path Planner** - Creates 6-month roadmap
-3. **Content Recommender** - Daily study plans
-4. **Progress Monitor** - Tracks and adapts
+**The Four Agents & How They Work:**
+
+1. **Skills Assessment Agent** 📊
+   - **What it does**: Evaluates student's current skill levels across multiple dimensions
+   - **Tools it uses**:
+     - CodeChallenge: Simulates coding challenges (beginner/intermediate/advanced)
+     - ConceptQuiz: Tests understanding of specific topics
+   - **How it assesses from file data**:
+     - Reads `current_skills` from JSON profile
+     - Analyzes scores for: Python, Algorithms, Data Structures, ML, DL, Mathematics
+     - Each skill rated 0-10
+     - Calculates overall level: beginner (0-3), intermediate (4-6), advanced (7-10)
+   - **Sample input** (intermediate_student.json):
+     ```json
+     {
+       "current_skills": {
+         "python": 7,
+         "algorithms": 6,
+         "data_structures": 6,
+         "machine_learning": 3,
+         "deep_learning": 2,
+         "mathematics": 6
+       }
+     }
+     ```
+   - **Sample output**:
+     ```json
+     {
+       "python": 7,
+       "algorithms": 6,
+       "overall_level": "intermediate",
+       "assessment_summary": "Current skill level: Intermediate. Ready for structured learning path."
+     }
+     ```
+
+2. **Learning Path Planner Agent** 🗺️
+   - **What it does**: Creates intelligent 6-month roadmap using Llama 3.2 based on skills, goal, and time
+   - **How it decides which path**:
+     - Reads student's `goal` field
+     - If goal contains "Machine Learning" → ML Engineer path (6 months: Python+Data → Math → ML → DL → Advanced DL → MLOps)
+     - If goal contains "Software Developer" → Full-stack path (6 months: Fundamentals → Web → Backend → Frontend → DevOps → Portfolio)
+     - If goal contains "Data Scientist" → Data Science path (6 months: Python Analysis → Statistics → Visualization → ML → Big Data → Portfolio)
+   - **How it personalizes**:
+     - Uses `hours_per_week` to calculate total study hours
+     - Considers current skill level to adjust difficulty
+     - Example: 10 hrs/week × 4 weeks × 6 months = 240 total hours
+   - **Sample output structure**:
+     ```json
+     {
+       "duration": "6 months",
+       "total_hours": 240,
+       "hours_per_week": 10,
+       "months": [
+         {
+           "month": 1,
+           "focus": "Advanced Python + Data Libraries",
+           "topics": ["OOP", "Decorators", "NumPy", "Pandas"],
+           "milestone": "Complete 3 data analysis projects",
+           "skills_gained": ["OOP", "NumPy", "Pandas"]
+         },
+         // ... 5 more months
+       ]
+     }
+     ```
+
+3. **Content Recommender Agent** 📚
+   - **What it does**: Generates personalized daily study plans using Llama 3.2
+   - **How it adapts to learning style** (from file):
+     - **Visual learner**: Prioritizes video tutorials and diagrams
+     - **Hands-on learner**: Emphasizes coding exercises and projects
+     - **Reading learner**: Focuses on documentation and articles
+     - **Mixed learner**: Balances all three approaches
+   - **Daily plan structure** (for 2-hour session):
+     1. Video tutorial (30-40 min) - specific YouTube/course recommendation
+     2. Reading material (20-30 min) - documentation or article
+     3. Hands-on practice (60-70 min) - coding exercise or mini-project
+   - **Sample input**:
+     ```
+     Current month focus: "Advanced Python + Data Libraries"
+     Learning style: "hands-on"
+     ```
+   - **Sample output**:
+     ```
+     Today's Study Plan (2 hours):
+
+     1. 📺 Video (35 min):
+        "Python OOP Masterclass" - Corey Schafer YouTube
+        Focus: Classes, inheritance, and polymorphism
+
+     2. 📖 Reading (25 min):
+        Official NumPy documentation - Array basics
+
+     3. 💻 Practice (60 min):
+        Build a data analysis class that reads CSV files
+        Use NumPy arrays to calculate statistics
+     ```
+
+4. **Progress Monitor Agent** 📈
+   - **What it does**: Tracks completed activities and evaluates if student is on track
+   - **How it monitors**:
+     - Stores completion records (activity name, date, score, time spent)
+     - Compares progress against original plan milestones
+     - Uses Llama 3.2 to evaluate: ahead/on_track/behind/struggling
+   - **How it adapts**:
+     - If student is behind → Suggests simplifying pace
+     - If student is ahead → Recommends adding advanced content
+     - Provides encouraging feedback
+   - **Sample tracked data**:
+     ```json
+     [
+       {"name": "OOP Module", "date": "2025-11-25", "score": 90, "time_spent": "5 hours"},
+       {"name": "NumPy Project", "date": "2025-12-01", "score": 85, "time_spent": "8 hours"}
+     ]
+     ```
+   - **Sample evaluation output**:
+     ```json
+     {
+       "status": "on_track",
+       "feedback": "Great progress! You've completed 2/3 planned activities.",
+       "recommendations": ["Continue with Pandas exercises", "Start preparing for Month 2 math review"]
+     }
+     ```
+
+**How the Agents Work Together (Sequential with Feedback):**
+
+```
+📁 User loads profile (name, goal, skills, hours, learning style) →
+📊 Skills Assessment analyzes current levels →
+🗺️ Learning Path Planner creates 6-month roadmap based on goal →
+📚 Content Recommender generates Week 1 study plan adapted to learning style →
+✅ Results displayed with skill bars and monthly breakdown →
+
+[During learning journey:]
+📈 Progress Monitor tracks completions →
+🔄 Adapts plan if needed (feedback loop)
+```
 
 **What This System Does:**
 
-This multi-agent system creates **personalized 6-month learning paths** for students based on their current skills, goals, and available time. It's like having a personal AI tutor that:
-
-1. **Assesses Current Skills** - Evaluates student's proficiency in multiple areas
-2. **Creates Custom Roadmap** - Generates month-by-month learning plan
-3. **Recommends Content** - Suggests daily study materials based on learning style
-4. **Tracks Progress** - Monitors completion and adapts the plan
+This multi-agent system creates **personalized 6-month learning paths** for students based on their current skills, goals, and available time. It's like having a personal AI tutor that adapts to your unique situation.
 
 **Interactive Features:**
 - 🎯 **Load Multiple Profile Types** - Beginner, Intermediate, Advanced, Career Changer
