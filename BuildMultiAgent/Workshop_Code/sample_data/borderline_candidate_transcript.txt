@@ -1,0 +1,6 @@
+Student: Alex Rivera
+GPA: 3.1 / 4.0
+Subjects: Mathematics (B+), Physics (B), Computer Science (B+), Chemistry (C+), English (B)
+Activities: Programming Club Member, Volunteer Tutor
+Graduation: June 2025
+Notes: Showed significant improvement in senior year with 3.6 GPA in final semester

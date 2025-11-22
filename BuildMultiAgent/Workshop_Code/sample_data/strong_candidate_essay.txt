@@ -1,0 +1,9 @@
+My Journey into Computer Science
+
+Ever since I built my first website at age 14, I knew I wanted to pursue computer science. What started as a simple HTML page for my school project evolved into a passion for understanding how technology shapes our world.
+
+The ability to create solutions that impact millions of people fascinates me. During high school, I led our school's coding club and organized three successful hackathons, bringing together over 100 students. Through these experiences, I learned that computer science is not just about writing code—it's about solving real problems and building communities.
+
+I'm particularly interested in artificial intelligence and its potential to solve pressing societal challenges. Last summer, I interned at a local startup where I worked on a machine learning model to predict equipment failures in hospitals, potentially saving lives and resources. Seeing my code make a tangible difference solidified my commitment to this field.
+
+Your university's research in agentic AI and human-computer interaction aligns perfectly with my goals. I'm excited to contribute to groundbreaking research while learning from world-class faculty and collaborating with talented peers. I'm ready to take on the challenges ahead and make meaningful contributions to the field of computer science.

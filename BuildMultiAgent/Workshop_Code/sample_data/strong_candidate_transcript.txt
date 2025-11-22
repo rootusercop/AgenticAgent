@@ -1,0 +1,6 @@
+Student: Sarah Johnson
+GPA: 3.9 / 4.0
+Subjects: Mathematics (A+), Physics (A), Computer Science (A+), Chemistry (A), English (A)
+Awards: National Merit Scholar, Regional Math Olympiad Gold Medal
+Activities: Robotics Team Captain, Computer Science Club President
+Graduation: June 2025
