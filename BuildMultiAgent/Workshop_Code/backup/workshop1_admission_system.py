@@ -1,12 +1,12 @@
 """
-Session 12 - Workshop 1: INTERACTIVE College Admission Management System
+Session 12 - Workshop 1: College Admission Management System
 Multi-Agent System Architecture
 
-Interactive Features:
-1. Query Handler Agent - Answer your admission questions
-2. Document Processor Agent - Submit and process applications
-3. Eligibility Evaluator Agent - Get instant eligibility feedback
-4. Communication Manager Agent - Receive personalized notifications
+Components:
+1. Query Handler Agent - Answers student questions
+2. Document Processor Agent - Extracts data from applications
+3. Eligibility Evaluator Agent - Determines admission eligibility
+4. Communication Manager Agent - Sends notifications
 
 Using: Meta's Llama 3.2 8B via Ollama
 """
@@ -34,7 +34,7 @@ class Colors:
     RESET = '\033[0m'       # Reset to default
 
 print(f"{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}")
-print(f"{Colors.MAGENTA}{Colors.BOLD}{' ' * 10}SESSION 12 - WORKSHOP 1 (INTERACTIVE){Colors.RESET}")
+print(f"{Colors.MAGENTA}{Colors.BOLD}{' ' * 10}SESSION 12 - WORKSHOP 1{Colors.RESET}")
 print(f"{Colors.MAGENTA}{Colors.BOLD}{' ' * 5}COLLEGE ADMISSION MANAGEMENT SYSTEM{Colors.RESET}")
 print(f"{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}")
 print(f"\n{Colors.CYAN}🎓 Multi-Agent System for Automated Admissions{Colors.RESET}")
@@ -132,20 +132,7 @@ class QueryHandlerAgent:
 
     def handle(self, query: str) -> str:
         """Handle a student query"""
-        return self.agent.run(query)
-
-    def show_available_info(self):
-        """Display available information"""
-        print(f"\n{Colors.CYAN}{Colors.BOLD}📚 AVAILABLE INFORMATION{Colors.RESET}")
-        print(f"{Colors.BLUE}{'=' * 70}{Colors.RESET}")
-        print("\n📋 FAQ Topics:")
-        for key in self.faq_db.keys():
-            print(f"   • {key.title()}")
-        print("\n🎓 Available Programs:")
-        print("   • Computer Science (CS)")
-        print("   • Electrical Engineering (EE)")
-        print("   • Mechanical Engineering (ME)")
-        print(f"\n{Colors.BLUE}{'=' * 70}{Colors.RESET}\n")
+        return self.agent.invoke({"input": query})["output"]
 
 
 class DocumentProcessorAgent:
@@ -222,7 +209,7 @@ class EligibilityEvaluatorAgent:
             "required_subjects": ["Math", "Physics"],
             "min_essay_score": 6
         }
-        print(f"{Colors.CYAN}     ✓ Evaluator ready with criteria: GPA≥{self.criteria['min_gpa']}{Colors.RESET}")
+        print(f"     ✓ Evaluator ready with criteria: GPA≥{self.criteria['min_gpa']}")
 
     def evaluate(self, extracted_data: dict) -> str:
         """Evaluate eligibility and return decision"""
@@ -381,125 +368,110 @@ class AdmissionOrchestrator:
         }
 
 
-def get_multiline_input(prompt_msg):
-    """Get multi-line input from user"""
-    print(prompt_msg)
-    print("(Type your content and press Ctrl+D (Unix/Mac) or Ctrl+Z (Windows) when done)")
-    lines = []
-    try:
-        while True:
-            line = input()
-            lines.append(line)
-    except EOFError:
-        pass
-    return "\n".join(lines)
-
-
 def main():
-    """Interactive demo of the admission system"""
+    """Demo the admission system"""
 
     # Initialize the multi-agent system
     system = AdmissionOrchestrator()
 
-    print(f"\n{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}")
-    print(f"{Colors.MAGENTA}{Colors.BOLD}{' ' * 20}INTERACTIVE MODE{Colors.RESET}")
-    print(f"{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}")
+    print("\n" + "📋" * 35)
+    print(" " * 20 + "DEMO SCENARIOS")
+    print("📋" * 35 + "\n")
 
+    # SCENARIO 1: Student Query
+    print("\n" + "=" * 70)
+    print("SCENARIO 1: Student Query")
+    separator = "=" * 70
+    print(f"{Colors.MAGENTA}{Colors.BOLD}{separator}{Colors.RESET}")
+    query = "What is the application deadline and what documents do I need?"
+    print(f"\n💬 Student asks: {query}\n")
+    print("🤖 Query Handler Agent processing...\n")
+
+    response = system.route_request("query", query)
+    print(f"\n📝 Response:\n{response}\n")
+
+    input("\n⏸️  Press Enter to continue to Scenario 2...\n")
+
+    # SCENARIO 2: Application Submission
+    print("\n" + "=" * 70)
+    print("SCENARIO 2: Complete Application Processing")
+    separator = "=" * 70
+    print(f"{Colors.MAGENTA}{Colors.BOLD}{separator}{Colors.RESET}")
+
+    application = {
+        "email": "priya.sharma@email.com",
+        "documents": {
+            "transcript": """
+Student: Priya Sharma
+GPA: 3.7 / 4.0
+Subjects: Mathematics (A), Physics (A), Computer Science (A-), Chemistry (B+)
+Graduation: June 2025
+            """,
+            "recommendation": """
+To the Admissions Committee,
+
+I have known Priya for three years as her Computer Science teacher.
+She is an exceptional student with:
+- Strong analytical and problem-solving skills
+- Leadership in coding club and hackathons
+- Consistent top 5% class ranking
+- Genuine passion for technology and innovation
+
+I highly recommend her for your Computer Science program.
+
+Sincerely,
+Prof. Raj Mehta
+            """,
+            "essay": """
+My Journey into Computer Science
+
+Ever since I built my first website at age 14, I knew I wanted to pursue computer science.
+The ability to create solutions that impact millions of people fascinates me.
+During high school, I led our school's coding club and organized hackathons.
+I'm particularly interested in artificial intelligence and its potential to solve real-world problems.
+Your university's research in agentic AI aligns perfectly with my goals.
+I'm excited to contribute to this field and learn from the best.
+            """
+        }
+    }
+
+    print("\n📨 Student submits application:")
+    print(f"   Email: {application['email']}")
+    print(f"   Documents: {len(application['documents'])} files")
+    print("\n🚀 Starting multi-agent processing...\n")
+
+    result = system.process_application(application)
+
+    print("\n" + "=" * 70)
+    print(" " * 20 + "📊 FINAL RESULTS")
+    separator = "=" * 70
+    print(f"{Colors.MAGENTA}{Colors.BOLD}{separator}{Colors.RESET}")
+    print(json.dumps(result, indent=2, default=str))
+
+    print("\n" + "=" * 70)
+    print(" " * 15 + "🎉 WORKSHOP 1 COMPLETE!")
+    separator = "=" * 70
+    print(f"{Colors.MAGENTA}{Colors.BOLD}{separator}{Colors.RESET}")
     print("""
-🎯 WHAT YOU CAN DO:
+✅ You've built a multi-agent system that:
+   - Answers student queries (Agent 1)
+   - Processes documents automatically (Agent 2)
+   - Evaluates eligibility intelligently (Agent 3)
+   - Sends personalized communications (Agent 4)
 
-1️⃣  ASK QUESTIONS
-   - Ask about admission deadlines, fees, programs, requirements
-   - Example: "What is the application deadline?"
-   - Example: "Tell me about the CS program"
+💡 This pattern can be adapted for:
+   - HR recruitment systems
+   - Loan application processing
+   - Grant proposal evaluation
+   - Customer onboarding
+   - And much more!
 
-2️⃣  SUBMIT APPLICATION
-   - Submit your full application for processing
-   - Includes transcript, recommendation letter, and essay
+🔧 Architecture: Sequential Pipeline
+   Document Processing → Evaluation → Communication
 
-3️⃣  VIEW AVAILABLE INFO
-   - See all FAQ topics and programs
-
-Commands:
-   'info'  - Show available information
-   'apply' - Start application submission
-   'quit'  - Exit the system
+🤖 Powered by: Meta's Llama 3.2 8B via Ollama
 """)
-
-    print(f"{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}\n")
-
-    while True:
-        try:
-            user_input = input(f"{Colors.CYAN}You: {Colors.RESET}").strip()
-
-            if user_input.lower() in ['quit', 'exit', 'q']:
-                print(f"\n{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}")
-                print(" " * 25 + "SESSION ENDED")
-                print(f"{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}")
-                print("\n🎓 Thank you for using the Admission Management System!")
-                print("   For questions, contact: admissions@university.edu\n")
-                break
-
-            elif user_input.lower() == 'info':
-                system.query_handler.show_available_info()
-                continue
-
-            elif user_input.lower() == 'apply':
-                print(f"\n{Colors.YELLOW}{'=' * 70}{Colors.RESET}")
-                print(" " * 20 + "📝 APPLICATION SUBMISSION")
-                print(f"{Colors.YELLOW}{'=' * 70}{Colors.RESET}\n")
-
-                # Collect application data
-                email = input("Your email address: ").strip()
-
-                print("\n📄 TRANSCRIPT")
-                print("Enter your transcript information (Name, GPA, Subjects, Graduation):")
-                transcript = get_multiline_input("")
-
-                print("\n📝 RECOMMENDATION LETTER")
-                recommendation = get_multiline_input("Enter your recommendation letter:")
-
-                print("\n✍️  ESSAY")
-                essay = get_multiline_input("Enter your essay:")
-
-                # Create application
-                application = {
-                    "email": email,
-                    "documents": {
-                        "transcript": transcript,
-                        "recommendation": recommendation,
-                        "essay": essay
-                    }
-                }
-
-                print(f"\n{Colors.GREEN}✅ Application received! Processing...{Colors.RESET}\n")
-
-                # Process application
-                result = system.process_application(application)
-
-                print(f"\n{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}")
-                print(" " * 20 + "📊 FINAL RESULTS")
-                print(f"{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}")
-                print(json.dumps(result, indent=2, default=str))
-                print()
-
-            elif not user_input:
-                continue
-
-            else:
-                # Handle as a query
-                print(f"\n{Colors.YELLOW}🤖 Query Handler Agent processing...{Colors.RESET}\n")
-                response = system.route_request("query", user_input)
-                print(f"\n{Colors.BLUE}📝 Response:{Colors.RESET}")
-                print(f"{response}\n")
-                print(f"{Colors.BLUE}{'-' * 70}{Colors.RESET}\n")
-
-        except KeyboardInterrupt:
-            print("\n\nExiting on user interrupt...")
-            break
-        except Exception as e:
-            print(f"\n{Colors.RED}❌ Error occurred: {str(e)}{Colors.RESET}")
-            print("Please try again.\n")
+    print("=" * 70 + "\n")
 
 
 if __name__ == "__main__":

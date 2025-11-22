@@ -132,7 +132,7 @@ class QueryHandlerAgent:
 
     def handle(self, query: str) -> str:
         """Handle a student query"""
-        return self.agent.run(query)
+        return self.agent.invoke({"input": query})["output"]
 
     def show_available_info(self):
         """Display available information"""
@@ -381,6 +381,180 @@ class AdmissionOrchestrator:
         }
 
 
+def format_json_field(key, value, indent=2):
+    """Format a JSON field value for readable display"""
+    indent_str = " " * indent
+
+    if isinstance(value, dict):
+        lines = [f"{Colors.CYAN}{key}:{Colors.RESET}"]
+        for k, v in value.items():
+            lines.append(f"{indent_str}{Colors.YELLOW}{k}:{Colors.RESET} {v}")
+        return "\n".join(lines)
+    elif isinstance(value, list):
+        lines = [f"{Colors.CYAN}{key}:{Colors.RESET}"]
+        for item in value:
+            lines.append(f"{indent_str}• {item}")
+        return "\n".join(lines)
+    else:
+        # Try to parse if it's a JSON string
+        try:
+            parsed = json.loads(value)
+            return format_json_field(key, parsed, indent)
+        except (json.JSONDecodeError, TypeError):
+            # Not JSON, just display as text
+            # Handle multi-line text
+            if '\n' in str(value):
+                lines = [f"{Colors.CYAN}{key}:{Colors.RESET}"]
+                for line in str(value).split('\n'):
+                    if line.strip():
+                        lines.append(f"{indent_str}{line}")
+                return "\n".join(lines)
+            else:
+                return f"{Colors.CYAN}{key}:{Colors.RESET} {value}"
+
+
+def format_result_output(result):
+    """Format the final result in a readable way"""
+    print(f"\n{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}")
+    print(f"{Colors.MAGENTA}{Colors.BOLD}{' ' * 20}📊 FINAL RESULTS{Colors.RESET}")
+    print(f"{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}\n")
+
+    # Status
+    status = result.get("status", "unknown")
+    status_icon = "✅" if status == "processed" else "⚠️"
+    print(f"{status_icon} {Colors.GREEN}{Colors.BOLD}Status:{Colors.RESET} {status.upper()}\n")
+
+    # Extracted Data
+    if "extracted_data" in result:
+        print(f"{Colors.BLUE}{Colors.BOLD}📄 EXTRACTED DATA{Colors.RESET}")
+        print(f"{Colors.BLUE}{'-' * 70}{Colors.RESET}")
+
+        extracted = result["extracted_data"]
+
+        # Transcript
+        if "transcript" in extracted:
+            print(f"\n{Colors.YELLOW}📋 Transcript Information:{Colors.RESET}")
+            try:
+                transcript_data = json.loads(extracted["transcript"])
+                print(f"  {Colors.CYAN}GPA:{Colors.RESET} {transcript_data.get('gpa', 'N/A')}")
+                print(f"  {Colors.CYAN}Graduation Year:{Colors.RESET} {transcript_data.get('graduation_year', 'N/A')}")
+                print(f"  {Colors.CYAN}Subjects:{Colors.RESET}")
+                for subject in transcript_data.get('subjects', []):
+                    print(f"    • {subject}")
+            except (json.JSONDecodeError, KeyError):
+                print(f"  {extracted['transcript']}")
+
+        # Recommendation
+        if "recommendation" in extracted:
+            print(f"\n{Colors.YELLOW}📝 Recommendation Summary:{Colors.RESET}")
+            rec_text = extracted["recommendation"]
+            for line in rec_text.split('\n'):
+                if line.strip():
+                    print(f"  {line}")
+
+        # Essay
+        if "essay" in extracted:
+            print(f"\n{Colors.YELLOW}✍️  Essay Analysis:{Colors.RESET}")
+            essay_text = extracted["essay"]
+            # Try to extract JSON from the essay analysis
+            try:
+                # Find JSON block in the text
+                json_start = essay_text.find('{')
+                json_end = essay_text.rfind('}') + 1
+                if json_start != -1 and json_end > json_start:
+                    essay_data = json.loads(essay_text[json_start:json_end])
+                    print(f"  {Colors.CYAN}Main Themes:{Colors.RESET}")
+                    for theme in essay_data.get('main_themes', []):
+                        print(f"    • {theme}")
+                    print(f"  {Colors.CYAN}Writing Quality:{Colors.RESET} {essay_data.get('writing_quality', 'N/A')}/10")
+                    print(f"  {Colors.CYAN}Authenticity:{Colors.RESET} {essay_data.get('authenticity', 'N/A')}/10")
+                else:
+                    # No JSON found, print as is
+                    for line in essay_text.split('\n'):
+                        if line.strip():
+                            print(f"  {line}")
+            except (json.JSONDecodeError, KeyError):
+                for line in essay_text.split('\n'):
+                    if line.strip():
+                        print(f"  {line}")
+
+        print()
+
+    # Eligibility Decision
+    if "eligibility" in result:
+        print(f"{Colors.BLUE}{Colors.BOLD}🎯 ELIGIBILITY DECISION{Colors.RESET}")
+        print(f"{Colors.BLUE}{'-' * 70}{Colors.RESET}")
+
+        eligibility_text = result["eligibility"]
+        try:
+            # Try to extract JSON from eligibility text
+            json_start = eligibility_text.find('{')
+            json_end = eligibility_text.rfind('}') + 1
+            if json_start != -1 and json_end > json_start:
+                eligibility_data = json.loads(eligibility_text[json_start:json_end])
+
+                eligible = eligibility_data.get('eligible', False)
+                score = eligibility_data.get('score', 0)
+
+                # Decision
+                if eligible:
+                    print(f"\n  {Colors.GREEN}{Colors.BOLD}✅ ELIGIBLE FOR ADMISSION{Colors.RESET}")
+                else:
+                    print(f"\n  {Colors.RED}{Colors.BOLD}❌ NOT ELIGIBLE{Colors.RESET}")
+
+                # Score
+                print(f"\n  {Colors.CYAN}Overall Score:{Colors.RESET} {score}/100")
+
+                # Progress bar
+                bar_length = 40
+                filled = int(bar_length * score / 100)
+                bar = '█' * filled + '░' * (bar_length - filled)
+                bar_color = Colors.GREEN if score >= 70 else Colors.YELLOW if score >= 50 else Colors.RED
+                print(f"  {bar_color}[{bar}]{Colors.RESET} {score}%")
+
+                # Strengths
+                if eligibility_data.get('strengths'):
+                    print(f"\n  {Colors.GREEN}{Colors.BOLD}💪 Strengths:{Colors.RESET}")
+                    for strength in eligibility_data['strengths']:
+                        print(f"    ✓ {strength}")
+
+                # Weaknesses
+                if eligibility_data.get('weaknesses') and len(eligibility_data['weaknesses']) > 0:
+                    print(f"\n  {Colors.YELLOW}{Colors.BOLD}⚠️  Areas for Improvement:{Colors.RESET}")
+                    for weakness in eligibility_data['weaknesses']:
+                        print(f"    • {weakness}")
+
+                # Reasoning
+                if eligibility_data.get('reasoning'):
+                    print(f"\n  {Colors.CYAN}{Colors.BOLD}📋 Reasoning:{Colors.RESET}")
+                    reasoning = eligibility_data['reasoning']
+                    if isinstance(reasoning, list):
+                        for reason in reasoning:
+                            print(f"    • {reason}")
+                    else:
+                        for line in str(reasoning).split('\n'):
+                            if line.strip():
+                                print(f"    {line}")
+            else:
+                # No JSON found, display as text
+                for line in eligibility_text.split('\n'):
+                    if line.strip():
+                        print(f"  {line}")
+        except (json.JSONDecodeError, KeyError) as e:
+            # Fallback to plain text display
+            for line in eligibility_text.split('\n'):
+                if line.strip():
+                    print(f"  {line}")
+
+        print()
+
+    # Notification Status
+    if result.get("notification_sent"):
+        print(f"{Colors.GREEN}✅ Notification email has been sent{Colors.RESET}")
+
+    print(f"\n{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}\n")
+
+
 def load_application_from_files(email, transcript_file, rec_file, essay_file):
     """Load application from separate text files"""
     try:
@@ -509,22 +683,25 @@ Commands:
                     print(f"\n{Colors.CYAN}Loading strong candidate sample...{Colors.RESET}")
                     application = load_application_from_files(
                         "sarah.johnson@email.com",
-                        "sample_data/strong_candidate_transcript.txt",
-                        "sample_data/strong_candidate_recommendation.txt",
-                        "sample_data/strong_candidate_essay.txt"
+                        "workshop1_sample_data/strong_candidate_transcript.txt",
+                        "workshop1_sample_data/strong_candidate_recommendation.txt",
+                        "workshop1_sample_data/strong_candidate_essay.txt"
                     )
 
                 elif choice == '2':
                     print(f"\n{Colors.CYAN}Loading borderline candidate sample...{Colors.RESET}")
                     application = load_application_from_files(
                         "alex.rivera@email.com",
-                        "sample_data/borderline_candidate_transcript.txt",
-                        "sample_data/borderline_candidate_recommendation.txt",
-                        "sample_data/borderline_candidate_essay.txt"
+                        "workshop1_sample_data/borderline_candidate_transcript.txt",
+                        "workshop1_sample_data/borderline_candidate_recommendation.txt",
+                        "workshop1_sample_data/borderline_candidate_essay.txt"
                     )
 
                 elif choice == '3':
-                    json_path = input("\nEnter JSON file path (e.g., sample_data/sample_applications.json): ").strip()
+                    json_path = input("\nEnter JSON file path (e.g., workshop1_sample_data/sample_applications.json): ").strip()
+                    if not json_path:
+                        print(f"{Colors.RED}No file path provided{Colors.RESET}")
+                        continue
                     print(f"\n{Colors.CYAN}Loading from JSON...{Colors.RESET}")
                     data = load_application_from_json(json_path)
                     if data:
@@ -548,6 +725,11 @@ Commands:
                     transcript_file = input("Transcript file path: ").strip()
                     rec_file = input("Recommendation file path: ").strip()
                     essay_file = input("Essay file path: ").strip()
+
+                    if not email or not transcript_file or not rec_file or not essay_file:
+                        print(f"{Colors.RED}All fields are required{Colors.RESET}")
+                        continue
+
                     print(f"\n{Colors.CYAN}Loading from your files...{Colors.RESET}")
                     application = load_application_from_files(email, transcript_file, rec_file, essay_file)
 
@@ -567,11 +749,8 @@ Commands:
                     # Process application
                     result = system.process_application(application)
 
-                    print(f"\n{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}")
-                    print(" " * 20 + "📊 FINAL RESULTS")
-                    print(f"{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}")
-                    print(json.dumps(result, indent=2, default=str))
-                    print()
+                    # Format and display results
+                    format_result_output(result)
                 else:
                     print(f"\n{Colors.RED}Failed to load application{Colors.RESET}")
 
@@ -610,11 +789,8 @@ Commands:
                 # Process application
                 result = system.process_application(application)
 
-                print(f"\n{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}")
-                print(" " * 20 + "📊 FINAL RESULTS")
-                print(f"{Colors.MAGENTA}{Colors.BOLD}{'=' * 70}{Colors.RESET}")
-                print(json.dumps(result, indent=2, default=str))
-                print()
+                # Format and display results
+                format_result_output(result)
 
             elif not user_input:
                 continue

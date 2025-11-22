@@ -1,0 +1,24 @@
+{
+  "name": "Alex Chen",
+  "email": "alex.chen@email.com",
+  "background": "Recent computer science graduate with basic programming knowledge. Completed introductory courses in Python and Java. No professional experience yet.",
+  "current_role": "Recent Graduate",
+  "goal": "Land first job as Junior Software Developer",
+  "hours_per_week": 15,
+  "learning_style": "visual",
+  "deadline": "6 months",
+  "current_skills": {
+    "python": 4,
+    "algorithms": 3,
+    "data_structures": 3,
+    "machine_learning": 1,
+    "deep_learning": 0,
+    "mathematics": 5
+  },
+  "interests": [
+    "Web Development",
+    "Mobile Apps",
+    "Problem Solving"
+  ],
+  "previous_experience": "Academic projects only, no industry experience"
+}

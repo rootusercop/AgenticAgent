@@ -1,0 +1,25 @@
+{
+  "name": "Priya Sharma",
+  "email": "priya.sharma@email.com",
+  "background": "2 years Python experience, built web apps using Flask and Django. Basic data analysis with pandas. Work on backend APIs and database design.",
+  "current_role": "Software Developer",
+  "goal": "Become Machine Learning Engineer",
+  "hours_per_week": 10,
+  "learning_style": "hands-on",
+  "deadline": "6 months",
+  "current_skills": {
+    "python": 7,
+    "algorithms": 6,
+    "data_structures": 6,
+    "machine_learning": 3,
+    "deep_learning": 2,
+    "mathematics": 6
+  },
+  "interests": [
+    "Artificial Intelligence",
+    "Data Science",
+    "Deep Learning",
+    "Computer Vision"
+  ],
+  "previous_experience": "2 years building web applications, basic ML coursework"
+}

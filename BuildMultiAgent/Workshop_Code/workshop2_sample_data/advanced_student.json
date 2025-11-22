@@ -1,0 +1,26 @@
+{
+  "name": "Marcus Johnson",
+  "email": "marcus.j@email.com",
+  "background": "5 years as Senior Software Engineer. Built scalable distributed systems. Strong in algorithms and system design. Completed several ML online courses and built hobby projects.",
+  "current_role": "Senior Software Engineer",
+  "goal": "Transition to AI Research / Deep Learning Specialist",
+  "hours_per_week": 12,
+  "learning_style": "reading",
+  "deadline": "6 months",
+  "current_skills": {
+    "python": 9,
+    "algorithms": 9,
+    "data_structures": 9,
+    "machine_learning": 6,
+    "deep_learning": 5,
+    "mathematics": 7
+  },
+  "interests": [
+    "Natural Language Processing",
+    "Transformer Models",
+    "Research Papers",
+    "Generative AI",
+    "Model Architecture Design"
+  ],
+  "previous_experience": "5 years software engineering, 1 year ML hobby projects, published tech blog posts"
+}

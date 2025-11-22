@@ -268,7 +268,8 @@ python 05_complete_agent_final.py
 ## 🏗️ SESSION 12: Multi-Agent Systems
 
 ### Workshop 1: College Admission Management System
-**File:** `workshop1_admission_system.py`
+
+**File:** `workshop1_interactive_with_files.py`
 
 **Architecture:** Sequential Pipeline
 
@@ -282,18 +283,115 @@ Student → Orchestrator → [Agent 1 | Agent 2 | Agent 3 | Agent 4] → Result
 3. **Eligibility Evaluator** - Determines admission decision
 4. **Communication Manager** - Sends personalized emails
 
+**What's New:**
+- 🎯 **Interactive Q&A** - Ask questions about admissions in real-time
+- 📁 **Load from Files** - Submit applications from text/JSON files
+- ✍️ **Manual Entry** - Type applications directly
+- 📊 **Enhanced Output** - Beautiful, readable formatted results
+
 **Run:**
 ```bash
-cd Session12_Workshop_Code
-python workshop1_admission_system.py
+cd Workshop_Code
+python workshop1_interactive_with_files.py
 ```
 
-**What you'll see:**
-- Demo Scenario 1: Student asks about deadlines
-- Demo Scenario 2: Complete application processing
-  - Document extraction with Llama 3.2
-  - Eligibility evaluation
-  - Personalized email generation
+**Features:**
+
+1. **Ask Questions** - Get instant answers
+   ```
+   You: What is the application deadline?
+   You: Tell me about the CS program?
+   You: What documents do I need?
+   ```
+
+2. **Load Applications from Files** (3 ways)
+   - **Sample Data** (Quickstart): Pre-loaded strong/borderline candidates
+   - **JSON Files**: Load structured application data
+   - **Text Files**: Load from separate transcript, recommendation, essay files
+
+3. **Sample Data Included:**
+   ```
+   workshop1_sample_data/
+   ├── strong_candidate_transcript.txt
+   ├── strong_candidate_recommendation.txt
+   ├── strong_candidate_essay.txt
+   ├── borderline_candidate_transcript.txt
+   ├── borderline_candidate_recommendation.txt
+   └── borderline_candidate_essay.txt
+   ```
+
+4. **Enhanced Output Format:**
+   Instead of raw JSON, you'll see:
+   ```
+   ======================================================================
+                         📊 FINAL RESULTS
+   ======================================================================
+
+   ✅ Status: PROCESSED
+
+   📄 EXTRACTED DATA
+   ----------------------------------------------------------------------
+
+   📋 Transcript Information:
+     GPA: 3.9
+     Graduation Year: 2025
+     Subjects:
+       • Mathematics
+       • Physics
+       • Computer Science
+
+   📝 Recommendation Summary:
+     • Exceptional student with outstanding analytical abilities
+     • Demonstrated strong leadership qualities
+     • Highly recommended by department head
+
+   ✍️  Essay Analysis:
+     Main Themes:
+       • Personal passion for computer science
+       • Interest in artificial intelligence
+     Writing Quality: 8/10
+     Authenticity: 9/10
+
+   🎯 ELIGIBILITY DECISION
+   ----------------------------------------------------------------------
+
+     ✅ ELIGIBLE FOR ADMISSION
+
+     Overall Score: 92/100
+     [████████████████████████████████████░░░░] 92%
+
+     💪 Strengths:
+       ✓ Strong leadership qualities
+       ✓ Excellent writing quality
+
+     📋 Reasoning:
+       • Sarah meets the minimum GPA requirement
+       • Essay demonstrates authentic passion for field
+
+   ✅ Notification email has been sent
+   ```
+
+**Commands:**
+- `info` - Show all available FAQ topics and programs
+- `file` - Load application from files (RECOMMENDED)
+- `apply` - Type application manually
+- `quit` - Exit the system
+
+**Quick Start Example:**
+```bash
+# Start the interactive system
+python workshop1_interactive_with_files.py
+
+# When prompted:
+You: file
+
+# Choose option 1 (strong candidate sample)
+Your choice (1-5): 1
+
+# Watch the multi-agent system process the application!
+```
+
+---
 
 **Real-world impact:**
 - Processing time: 2-3 weeks → 2-3 days
@@ -310,7 +408,8 @@ python workshop1_admission_system.py
 ---
 
 ### Workshop 2: Personalized Learning Path Generator
-**File:** `workshop2_learning_path_system.py`
+
+**File:** `workshop2_interactive_with_files.py`
 
 **Architecture:** Sequential with Feedback Loops
 
@@ -326,17 +425,168 @@ Assessment → Planning → Content Recommendation → Progress Monitoring → A
 3. **Content Recommender** - Daily study plans
 4. **Progress Monitor** - Tracks and adapts
 
+**What This System Does:**
+
+This multi-agent system creates **personalized 6-month learning paths** for students based on their current skills, goals, and available time. It's like having a personal AI tutor that:
+
+1. **Assesses Current Skills** - Evaluates student's proficiency in multiple areas
+2. **Creates Custom Roadmap** - Generates month-by-month learning plan
+3. **Recommends Content** - Suggests daily study materials based on learning style
+4. **Tracks Progress** - Monitors completion and adapts the plan
+
+**Interactive Features:**
+- 🎯 **Load Multiple Profile Types** - Beginner, Intermediate, Advanced, Career Changer
+- 📁 **JSON File Support** - Load custom student profiles
+- ✍️ **Manual Entry** - Create profiles on the fly
+- 📊 **Beautiful Visualizations** - Skill bars, progress indicators, color-coded output
+- 🗺️ **Three Different Learning Paths**:
+  - Machine Learning Engineer path
+  - Software Developer path
+  - Data Scientist path
+
 **Run:**
 ```bash
-python workshop2_learning_path_system.py
+cd Workshop_Code
+python workshop2_interactive_with_files.py
 ```
 
-**What you'll see:**
-- Student profile input
-- Skills assessment results
-- Complete 6-month personalized learning path
-- Daily content recommendations
-- Progress tracking simulation
+**Features:**
+
+1. **Load Student Profiles** (4 pre-built samples + custom)
+   - **Beginner**: Recent grad seeking first job (15 hrs/week, visual learner)
+   - **Intermediate**: Developer → ML Engineer (10 hrs/week, hands-on)
+   - **Advanced**: Senior Engineer → AI Research (12 hrs/week, reading)
+   - **Career Changer**: Business Analyst → Data Scientist (20 hrs/week, mixed)
+
+2. **Sample Data Included:**
+   ```
+   workshop2_sample_data/
+   ├── beginner_student.json
+   ├── intermediate_student.json
+   ├── advanced_student.json
+   └── career_changer.json
+   ```
+
+3. **Intelligent Path Generation:**
+   The system automatically generates different paths based on the student's goal:
+
+   - **"Machine Learning Engineer"** → 6-month ML path
+     - Month 1: Advanced Python + Data Libraries
+     - Month 2: Math for ML
+     - Month 3: ML Fundamentals
+     - Month 4: Deep Learning Basics
+     - Month 5: Advanced DL
+     - Month 6: MLOps & Deployment
+
+   - **"Software Developer"** → Full-stack development path
+     - Month 1: Programming Fundamentals
+     - Month 2: Web Development
+     - Month 3: Backend Development
+     - Month 4: Frontend Frameworks
+     - Month 5: DevOps & Testing
+     - Month 6: Portfolio & Interview Prep
+
+   - **"Data Scientist"** → Data science path
+     - Month 1: Python for Data Analysis
+     - Month 2: Statistics & Probability
+     - Month 3: Data Visualization
+     - Month 4: ML for Data Science
+     - Month 5: Advanced ML & Big Data
+     - Month 6: Portfolio & Business Skills
+
+4. **Enhanced Output Format:**
+   ```
+   ======================================================================
+                      📊 LEARNING PATH RESULTS
+                         FOR PRIYA SHARMA
+   ======================================================================
+
+   📊 SKILLS ASSESSMENT
+   ----------------------------------------------------------------------
+
+   Python........................ [███████░░░] 7/10
+   Algorithms.................... [██████░░░░] 6/10
+   Data Structures............... [██████░░░░] 6/10
+   Machine Learning.............. [███░░░░░░░] 3/10
+   Deep Learning................. [██░░░░░░░░] 2/10
+   Mathematics................... [██████░░░░] 6/10
+
+   Overall Level: INTERMEDIATE
+   Summary: Current skill level: Intermediate. Ready for structured learning path.
+
+   🗺️  6-MONTH LEARNING PATH
+   ----------------------------------------------------------------------
+
+   Goal: Become Machine Learning Engineer
+   Duration: 6 months
+   Total Hours: 240 hours (10 hours/week)
+   Difficulty: Intermediate
+
+   📅 MONTH 1: Advanced Python + Data Libraries
+      Topics:
+        • Object-oriented programming (classes, inheritance)
+        • Decorators and generators
+        • NumPy arrays and vectorization
+        • Pandas DataFrames and data manipulation
+      Prerequisites: Basic Python
+      Time Investment: 40 hours
+      🎯 Milestone: Complete 3 data analysis projects using real datasets
+      Skills Gained: OOP, NumPy, Pandas
+
+   📅 MONTH 2: Mathematics for Machine Learning
+      Topics:
+        • Linear Algebra (vectors, matrices, eigenvalues)
+        • Calculus (derivatives, gradients, chain rule)
+        • Probability and statistics
+        • Mathematical notation in ML papers
+      Prerequisites: High school math
+      Time Investment: 40 hours
+      🎯 Milestone: Pass math fundamentals quiz with 80%+ score
+      Skills Gained: Linear Algebra, Calculus, Statistics
+
+   [... continues for all 6 months ...]
+
+   🏆 FINAL GOAL: Job-ready ML Engineer with portfolio of projects
+
+   📚 WEEK 1 STUDY PLAN
+   ----------------------------------------------------------------------
+   [Personalized daily recommendations based on learning style]
+   ```
+
+**Commands:**
+- `load` - Load student profile from file (RECOMMENDED)
+- `manual` - Enter profile information manually
+- `quit` - Exit the system
+
+**Quick Start Example:**
+```bash
+# Start the interactive system
+python workshop2_interactive_with_files.py
+
+# When prompted:
+You: load
+
+# Choose option 2 (intermediate - developer to ML)
+Your choice (1-6): 2
+
+# Watch the system generate a personalized 6-month learning path!
+```
+
+**How It Works (Behind the Scenes):**
+
+1. **Skills Assessment Agent** analyzes current proficiency levels
+2. **Learning Path Planner** uses Llama 3.2 to create intelligent roadmap
+3. **Content Recommender** generates daily study plans adapted to learning style
+4. **Progress Monitor** can track completion and provide feedback
+
+**Use Cases:**
+
+- **Students**: Get personalized roadmap to achieve career goals
+- **Bootcamps**: Automate curriculum planning for each student
+- **Corporate Training**: Create custom paths for employee upskilling
+- **Online Platforms**: Offer adaptive learning at scale
+
+---
 
 **Real-world impact:**
 - Course completion: 40% → 75%
@@ -345,10 +595,12 @@ python workshop2_learning_path_system.py
 - Revenue per student: $200 → $500
 
 **Adapt this for:**
-- Corporate training
-- Certification prep
-- Academic tutoring
+- Corporate training programs
+- Certification prep platforms
+- Academic tutoring systems
 - Professional development
+- Career transition coaching
+- Skill assessment services
 
 ---
 

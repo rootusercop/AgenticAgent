@@ -1,0 +1,26 @@
+{
+  "name": "Sarah Martinez",
+  "email": "sarah.martinez@email.com",
+  "background": "Former business analyst with 3 years experience in data reporting and Excel. Completed Python fundamentals bootcamp. Strong analytical thinking but limited programming experience.",
+  "current_role": "Business Analyst",
+  "goal": "Become Data Scientist",
+  "hours_per_week": 20,
+  "learning_style": "mixed",
+  "deadline": "6 months",
+  "current_skills": {
+    "python": 3,
+    "algorithms": 2,
+    "data_structures": 2,
+    "machine_learning": 2,
+    "deep_learning": 0,
+    "mathematics": 6
+  },
+  "interests": [
+    "Data Analytics",
+    "Business Intelligence",
+    "Predictive Modeling",
+    "Data Visualization",
+    "Statistical Analysis"
+  ],
+  "previous_experience": "3 years business analysis, SQL, Excel, Tableau. New to programming."
+}
